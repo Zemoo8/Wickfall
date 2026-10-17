@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d8a17ca1dda3c44d9f9f8795ff429a6, type: 3}
+  m_Name: GameEvents
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.GameEvents
+  waxChanged: {fileID: 11400000, guid: ddd6c9c6754016143ab15ab23d37234b, type: 2}
+  lightChanged: {fileID: 11400000, guid: 9d313dfb7c017674db3b5cb621c179a0, type: 2}
+  trimChanged: {fileID: 11400000, guid: 8d07878ccc3c19a48a788dd03065c45f, type: 2}
+  statusChanged: {fileID: 11400000, guid: 665e02b5898541f41912953fee6b8fbb, type: 2}
+  playerExtinguished: {fileID: 11400000, guid: 00023f058a871e24690c7ac90ab0942e, type: 2}
+  playerRespawned: {fileID: 11400000, guid: 384a4f0f3b19a534ba9f61100d333e6f, type: 2}
+  flameSwitched: {fileID: 11400000, guid: 032113e6879fcd74d813e0e0697ff19e, type: 2}
+  flare: {fileID: 11400000, guid: 034de86c221286146bd389b926ebb6a5, type: 2}
+  playerActed: {fileID: 11400000, guid: 950dd3ab8989c4b4abc660b629f93984, type: 2}
+  dodgeChanged: {fileID: 11400000, guid: 845e122ba8ab19645ac048c0f1066d93, type: 2}
+  playerHit: {fileID: 11400000, guid: 55a40918061ebcc4cbc4d6c08f66d712, type: 2}
+  enemyHit: {fileID: 11400000, guid: 2ca3abbba3098a94baa243fc47ee2474, type: 2}
+  enemyKilled: {fileID: 11400000, guid: dd3c4e275874da04ab58e5db19ec7a29, type: 2}
+  enemyAlerted: {fileID: 11400000, guid: bcd855a3dba8276498d4ebad214a958a, type: 2}
+  shardsChanged: {fileID: 11400000, guid: 55dc4eaa82b063741b0ef41f9b769f13, type: 2}
+  relicCollected: {fileID: 11400000, guid: 4dd3924fc2e88e040abdb2f2c2545cda, type: 2}
+  progressChanged: {fileID: 11400000, guid: 4f0b07a9eb372f84187bd64552dd4f28, type: 2}
+  brazierRested: {fileID: 11400000, guid: b91c096a836fe2d458b405b793c5c6d7, type: 2}
+  regionEntered: {fileID: 11400000, guid: ed9b5c20fe7449844a3b80b37f6ffa02, type: 2}
+  regionCompleted: {fileID: 11400000, guid: 37fcbf0d12643e84fb7c64721a786b90, type: 2}
+  interactPrompt: {fileID: 11400000, guid: 16dbc847a42d72444849382e1322f2ec, type: 2}
+  bossPhaseChanged: {fileID: 11400000, guid: d59f54da4c6382f4b9988c09babeb32c, type: 2}
+  bossDefeated: {fileID: 11400000, guid: ecbb3576892d38d4baa5b305adab5184, type: 2}
+  endingReached: {fileID: 11400000, guid: 94e26b73543ebbb448c2d5894b485ff6, type: 2}
+  sound: {fileID: 11400000, guid: 0e62047384f9afe4b91071282609e37d, type: 2}
+  music: {fileID: 11400000, guid: 2c7574e9747c77b479ee82abc15b264d, type: 2}
+  feedback: {fileID: 11400000, guid: 1664b37388976c94eb050be99cb18697, type: 2}
+  gamePaused: {fileID: 11400000, guid: 08d0793a0c6c2044aa4a0f0dfb6e4362, type: 2}
+  languageChanged: {fileID: 11400000, guid: 5280f9a7ab6366442acf8cab887d04a3, type: 2}

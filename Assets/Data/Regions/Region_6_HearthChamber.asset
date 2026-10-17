@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5da95f5987f4454fa6bdbb1b760b7a2, type: 3}
+  m_Name: Region_6_HearthChamber
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.RegionSO
+  id: 5
+  nameKey: region.hearth
+  environmentKey: region.hearth.env
+  ambientIntensity: 0.2
+  ambientColor: {r: 0.6392157, g: 0.6039216, b: 0.54509807, a: 1}
+  waxLossMultiplier: 1
+  lightRevealGround: 0
+  negativeLight: 1
+  flameFound: 3
+  grantsFlame: 0
+  relicIndex: 5
+  parTimeSeconds: 720
+  music: 7
+  heartbeat: 0
+  baseScene: R6_HearthChamber
+  roomGroupScenes: []

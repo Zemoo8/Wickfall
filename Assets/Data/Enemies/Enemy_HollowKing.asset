@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9708bdadca5e8bf45a0ef7e1b78a8787, type: 3}
+  m_Name: Enemy_HollowKing
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.EnemyTypeSO
+  kind: 9
+  nameKey: enemy.hollowking
+  homeRegion: 5
+  maxHealth: 780
+  tags: 4
+  colliderRadius: 1.4
+  knockbackResistance: 1
+  wanderSpeed: 0
+  chaseSpeed: 1.4
+  wanderRadius: 2.5
+  leashRadius: 12
+  perceptionScale: 1
+  alertSeconds: 0.45
+  loseSightSeconds: 2.5
+  searchSeconds: 2.5
+  contactDamage: 10
+  attackDamage: 8
+  attackRange: 1.1
+  attackWindup: 0.45
+  attackActive: 0.15
+  attackRecover: 0.6
+  attackCooldown: 0.9
+  projectileSpeed: 6
+  killWaxMin: 15
+  killWaxMax: 15
+  shardDrop: 0
+  countsForAvoided: 0

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfceb7dd2360ac4d90b3366c900163e, type: 3}
+  m_Name: Hazard_Laser
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.HazardSO
+  kind: 6
+  nameKey: hazard.laser
+  damage: 25
+  telegraphSeconds: 0.8
+  lightEffectSeconds: 0
+  damageTakenMultiplier: 1
+  period: 3.2
+  activeSeconds: 1.3
+  moveMultiplier: 1
+  pushSpeed: 0
+  radius: 0.25
+  statusSeconds: 0

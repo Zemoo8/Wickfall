@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9708bdadca5e8bf45a0ef7e1b78a8787, type: 3}
+  m_Name: Enemy_Husk
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.EnemyTypeSO
+  kind: 2
+  nameKey: enemy.husk
+  homeRegion: 1
+  maxHealth: 32
+  tags: 0
+  colliderRadius: 0.5
+  knockbackResistance: 0
+  wanderSpeed: 0
+  chaseSpeed: 2.5
+  wanderRadius: 2.5
+  leashRadius: 12
+  perceptionScale: 0.7
+  alertSeconds: 0.45
+  loseSightSeconds: 2.5
+  searchSeconds: 2.5
+  contactDamage: 0
+  attackDamage: 12
+  attackRange: 1.3
+  attackWindup: 0.4
+  attackActive: 0.2
+  attackRecover: 0.8
+  attackCooldown: 1.2
+  projectileSpeed: 6
+  killWaxMin: 7
+  killWaxMax: 9
+  shardDrop: 3
+  countsForAvoided: 1

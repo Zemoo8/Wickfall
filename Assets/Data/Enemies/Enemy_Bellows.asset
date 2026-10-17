@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9708bdadca5e8bf45a0ef7e1b78a8787, type: 3}
+  m_Name: Enemy_Bellows
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.EnemyTypeSO
+  kind: 6
+  nameKey: enemy.bellows
+  homeRegion: 2
+  maxHealth: 24
+  tags: 0
+  colliderRadius: 0.5
+  knockbackResistance: 0.5
+  wanderSpeed: 0.4
+  chaseSpeed: 1
+  wanderRadius: 2.5
+  leashRadius: 12
+  perceptionScale: 1
+  alertSeconds: 0.45
+  loseSightSeconds: 2.5
+  searchSeconds: 2.5
+  contactDamage: 0
+  attackDamage: 10
+  attackRange: 6
+  attackWindup: 0.7
+  attackActive: 0.1
+  attackRecover: 0.8
+  attackCooldown: 2.2
+  projectileSpeed: 5.5
+  killWaxMin: 7
+  killWaxMax: 9
+  shardDrop: 4
+  countsForAvoided: 1

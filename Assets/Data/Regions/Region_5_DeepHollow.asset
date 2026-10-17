@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5da95f5987f4454fa6bdbb1b760b7a2, type: 3}
+  m_Name: Region_5_DeepHollow
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.RegionSO
+  id: 4
+  nameKey: region.hollow
+  environmentKey: region.hollow.env
+  ambientIntensity: 0
+  ambientColor: {r: 0, g: 0, b: 0, a: 1}
+  waxLossMultiplier: 1.5
+  lightRevealGround: 1
+  negativeLight: 0
+  flameFound: 3
+  grantsFlame: 0
+  relicIndex: 4
+  parTimeSeconds: 900
+  music: 6
+  heartbeat: 1
+  baseScene: R5_DeepHollow
+  roomGroupScenes: []

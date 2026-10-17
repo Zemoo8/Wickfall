@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f30fb5ee540f404f9398f9110fbc549, type: 3}
+  m_Name: Flame_1_Amber
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.FlameTypeSO
+  id: 0
+  nameKey: flame.amber
+  roleKey: flame.amber.role
+  waxCostMultiplier: 1
+  damageMultiplier: 1
+  damageScalesWithLowWax: 0
+  damageAtEmptyWax: 2.2
+  damageAtFullWax: 0.6
+  lightMultiplier: 1
+  coreColor: {r: 1, g: 0.9137255, b: 0.65882355, a: 1}
+  bodyColor: {r: 1, g: 0.75686276, b: 0.3019608, a: 1}
+  edgeColor: {r: 0.9490196, g: 0.5411765, b: 0.11372549, a: 1}
+  lightColor: {r: 1, g: 0.7764706, b: 0.47843137, a: 1}
+  attackStyle: 0
+  attackRange: 1.45
+  attackArcDegrees: 130
+  attackDuration: 0.26
+  attackCooldown: 0.1
+  projectileSpeed: 11
+  projectileRange: 7
+  slowFactor: 1
+  slowSeconds: 0
+  poisonDamagePerSecond: 0
+  poisonSeconds: 0
+  hollowBonus: 1
+  artNameKey: art.amber
+  artBaseWaxCost: 6
+  artDamageMultiplier: 2.4
+  artRadius: 2.4
+  artCooldown: 0.8
+  unlockedIn: 0
+  unlockedAtStart: 1

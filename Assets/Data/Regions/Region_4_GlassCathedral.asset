@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5da95f5987f4454fa6bdbb1b760b7a2, type: 3}
+  m_Name: Region_4_GlassCathedral
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.RegionSO
+  id: 3
+  nameKey: region.cathedral
+  environmentKey: region.cathedral.env
+  ambientIntensity: 0.1
+  ambientColor: {r: 0.80784315, g: 0.77254903, b: 0.69803923, a: 1}
+  waxLossMultiplier: 1
+  lightRevealGround: 0
+  negativeLight: 0
+  flameFound: 4
+  grantsFlame: 1
+  relicIndex: 3
+  parTimeSeconds: 960
+  music: 5
+  heartbeat: 0
+  baseScene: R4_GlassCathedral
+  roomGroupScenes: []

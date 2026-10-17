@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5da95f5987f4454fa6bdbb1b760b7a2, type: 3}
+  m_Name: Region_2_Wickwood
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.RegionSO
+  id: 1
+  nameKey: region.wickwood
+  environmentKey: region.wickwood.env
+  ambientIntensity: 0.09
+  ambientColor: {r: 0.43529412, g: 0.3647059, b: 0.2509804, a: 1}
+  waxLossMultiplier: 1
+  lightRevealGround: 0
+  negativeLight: 0
+  flameFound: 2
+  grantsFlame: 1
+  relicIndex: 1
+  parTimeSeconds: 840
+  music: 3
+  heartbeat: 0
+  baseScene: R2_Wickwood
+  roomGroupScenes: []

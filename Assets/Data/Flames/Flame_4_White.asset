@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f30fb5ee540f404f9398f9110fbc549, type: 3}
+  m_Name: Flame_4_White
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.FlameTypeSO
+  id: 3
+  nameKey: flame.white
+  roleKey: flame.white.role
+  waxCostMultiplier: 1.2
+  damageMultiplier: 1.6
+  damageScalesWithLowWax: 0
+  damageAtEmptyWax: 2.2
+  damageAtFullWax: 0.6
+  lightMultiplier: 1.8
+  coreColor: {r: 1, g: 1, b: 1, a: 1}
+  bodyColor: {r: 0.95686275, g: 0.9411765, b: 0.87058824, a: 1}
+  edgeColor: {r: 0.80784315, g: 0.77254903, b: 0.69803923, a: 1}
+  lightColor: {r: 1, g: 0.972549, b: 0.9019608, a: 1}
+  attackStyle: 3
+  attackRange: 1.5
+  attackArcDegrees: 150
+  attackDuration: 0.3
+  attackCooldown: 0.14
+  projectileSpeed: 11
+  projectileRange: 7
+  slowFactor: 1
+  slowSeconds: 0
+  poisonDamagePerSecond: 0
+  poisonSeconds: 0
+  hollowBonus: 1.5
+  artNameKey: art.white
+  artBaseWaxCost: 6
+  artDamageMultiplier: 1.8
+  artRadius: 3.2
+  artCooldown: 1.1
+  unlockedIn: 2
+  unlockedAtStart: 0

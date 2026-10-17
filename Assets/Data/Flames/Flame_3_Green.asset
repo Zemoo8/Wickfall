@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f30fb5ee540f404f9398f9110fbc549, type: 3}
+  m_Name: Flame_3_Green
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.FlameTypeSO
+  id: 2
+  nameKey: flame.green
+  roleKey: flame.green.role
+  waxCostMultiplier: 1.4
+  damageMultiplier: 0.9
+  damageScalesWithLowWax: 0
+  damageAtEmptyWax: 2.2
+  damageAtFullWax: 0.6
+  lightMultiplier: 1.1
+  coreColor: {r: 0.9019608, g: 1, b: 0.8156863, a: 1}
+  bodyColor: {r: 0.60784316, g: 0.91764706, b: 0.41568628, a: 1}
+  edgeColor: {r: 0.27450982, g: 0.64705884, b: 0.24313726, a: 1}
+  lightColor: {r: 0.7137255, g: 0.9411765, b: 0.5568628, a: 1}
+  attackStyle: 2
+  attackRange: 1.6
+  attackArcDegrees: 200
+  attackDuration: 0.32
+  attackCooldown: 0.18
+  projectileSpeed: 11
+  projectileRange: 7
+  slowFactor: 1
+  slowSeconds: 0
+  poisonDamagePerSecond: 3
+  poisonSeconds: 3
+  hollowBonus: 1
+  artNameKey: art.green
+  artBaseWaxCost: 6
+  artDamageMultiplier: 1.6
+  artRadius: 2.8
+  artCooldown: 1
+  unlockedIn: 1
+  unlockedAtStart: 0

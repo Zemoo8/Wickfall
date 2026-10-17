@@ -11,16 +11,16 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Player
+  - Enemy
+  - Hazard
+  - Pickup
+  - Interactable
+  - Projectile
+  - Occluder
+  - Breakable
+  - Zone
   - 
   - 
   - 
@@ -38,8 +38,26 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 1940363555
+    locked: 0
+  - name: GroundDecal
+    uniqueID: 2346096227
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Entities
+    uniqueID: 3187924745
+    locked: 0
+  - name: Overhead
+    uniqueID: 1344419653
+    locked: 0
+  - name: VFX
+    uniqueID: 2811771219
+    locked: 0
+  - name: Foreground
+    uniqueID: 857193819
     locked: 0
   m_RenderingLayers:
   - Default

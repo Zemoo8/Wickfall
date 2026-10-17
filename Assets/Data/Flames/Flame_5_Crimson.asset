@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f30fb5ee540f404f9398f9110fbc549, type: 3}
+  m_Name: Flame_5_Crimson
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.FlameTypeSO
+  id: 4
+  nameKey: flame.crimson
+  roleKey: flame.crimson.role
+  waxCostMultiplier: 1.6
+  damageMultiplier: 1
+  damageScalesWithLowWax: 1
+  damageAtEmptyWax: 2.2
+  damageAtFullWax: 0.6
+  lightMultiplier: 1.3
+  coreColor: {r: 1, g: 0.8156863, b: 0.78431374, a: 1}
+  bodyColor: {r: 1, g: 0.3529412, b: 0.2901961, a: 1}
+  edgeColor: {r: 0.7607843, g: 0.101960786, b: 0.2, a: 1}
+  lightColor: {r: 1, g: 0.47843137, b: 0.4, a: 1}
+  attackStyle: 4
+  attackRange: 1.4
+  attackArcDegrees: 100
+  attackDuration: 0.34
+  attackCooldown: 0.2
+  projectileSpeed: 11
+  projectileRange: 7
+  slowFactor: 1
+  slowSeconds: 0
+  poisonDamagePerSecond: 0
+  poisonSeconds: 0
+  hollowBonus: 1
+  artNameKey: art.crimson
+  artBaseWaxCost: 6
+  artDamageMultiplier: 2.6
+  artRadius: 1.8
+  artCooldown: 1
+  unlockedIn: 3
+  unlockedAtStart: 0

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8720966170d03e846b3ae1d7b9209544, type: 3}
+  m_Name: AudioReactive
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.AudioReactiveSO
+  cracklePitchAtFullWax: 0.85
+  cracklePitchAtEmptyWax: 1.75
+  crackleVolume: 0.55
+  trimmedVolumeMultiplier: 0.35
+  heartbeatBpmAtFullWax: 54
+  heartbeatBpmAtEmptyWax: 132
+  heartbeatVolume: 0.8
