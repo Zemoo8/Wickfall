@@ -12,6 +12,8 @@ namespace Wickfall.Player
         public bool TrimHeld;
         public bool InteractPressed;
         public bool WheelHeld;
+        public bool UseCandlePressed;
+        public bool UseSalvePressed;
         /// <summary>Loadout slot chosen this frame (0..4), or -1.</summary>
         public int SelectSlot;
         /// <summary>+1 next flame, -1 previous flame, 0 none.</summary>
@@ -22,7 +24,7 @@ namespace Wickfall.Player
 
         public void ClearPresses()
         {
-            AttackPressed = ArtPressed = DodgePressed = InteractPressed = false;
+            AttackPressed = ArtPressed = DodgePressed = InteractPressed = UseCandlePressed = UseSalvePressed = false;
             SelectSlot = -1;
             CycleFlame = 0;
             HasAim = false;

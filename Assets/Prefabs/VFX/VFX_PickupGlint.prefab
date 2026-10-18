@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7589256165215505669}
   - component: {fileID: 5052767059097443002}
   - component: {fileID: 6973513869529885138}
-  - component: {fileID: 5059180386879215589}
+  - component: {fileID: 7215600791886130425}
   m_Layer: 0
   m_Name: VFX_PickupGlint
   m_TagString: Untagged
@@ -117,7 +117,7 @@ MonoBehaviour:
   flashIntensity: 1.2
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &5059180386879215589
+--- !u!114 &7215600791886130425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

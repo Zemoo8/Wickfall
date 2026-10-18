@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8017785221132921003}
   - component: {fileID: 1056475497279066240}
   - component: {fileID: 4691889928473595391}
-  - component: {fileID: 8683152641182395507}
+  - component: {fileID: 4684843394950112753}
   m_Layer: 0
   m_Name: VFX_Slash
   m_TagString: Untagged
@@ -120,7 +120,7 @@ MonoBehaviour:
   flashIntensity: 1.1
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &8683152641182395507
+--- !u!114 &4684843394950112753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

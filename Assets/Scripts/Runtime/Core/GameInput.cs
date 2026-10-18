@@ -42,6 +42,8 @@ namespace Wickfall
         public readonly InputAction PrevFlame;
         public readonly InputAction Scroll;
         public readonly InputAction Interact;
+        public readonly InputAction UseCandle;
+        public readonly InputAction UseSalve;
         public readonly InputAction Pause;
         public readonly InputAction DevOverlay;
         public readonly InputAction Point;
@@ -71,6 +73,8 @@ namespace Wickfall
             NextFlame = Button("NextFlame", "<Keyboard>/tab", "<Gamepad>/rightShoulder");
             PrevFlame = Button("PrevFlame", "<Keyboard>/r");
             Interact = Button("Interact", "<Keyboard>/e", "<Gamepad>/buttonEast");
+            UseCandle = Button("UseCandle", "<Keyboard>/c", "<Gamepad>/rightStickPress");
+            UseSalve = Button("UseSalve", "<Keyboard>/x", "<Gamepad>/leftStickPress");
             Pause = Button("Pause", "<Keyboard>/escape", "<Gamepad>/start");
             DevOverlay = Button("DevOverlay", "<Keyboard>/backquote");
             for (int i = 0; i < SelectSlot.Length; i++)

@@ -1,0 +1,33 @@
+{
+ "sheet": "Prop_ShadowLarge",
+ "cell": [
+  32,
+  10
+ ],
+ "pivot": [
+  16,
+  5
+ ],
+ "frames": [
+  {
+   "name": "shadow_0",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 10
+  }
+ ],
+ "clips": {
+  "shadow": [
+   "shadow_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "shadow",
+   "frames": [
+    "shadow_0"
+   ]
+  }
+ ]
+}

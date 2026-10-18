@@ -1,0 +1,33 @@
+{
+ "sheet": "Prop_Stone",
+ "cell": [
+  16,
+  24
+ ],
+ "pivot": [
+  8,
+  2
+ ],
+ "frames": [
+  {
+   "name": "stone_0",
+   "x": 0,
+   "y": 0,
+   "w": 16,
+   "h": 24
+  }
+ ],
+ "clips": {
+  "stone": [
+   "stone_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "stone",
+   "frames": [
+    "stone_0"
+   ]
+  }
+ ]
+}

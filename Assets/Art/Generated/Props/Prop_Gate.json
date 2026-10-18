@@ -1,0 +1,42 @@
+{
+ "sheet": "Prop_Gate",
+ "cell": [
+  48,
+  48
+ ],
+ "pivot": [
+  24,
+  0
+ ],
+ "frames": [
+  {
+   "name": "gate_0",
+   "x": 0,
+   "y": 0,
+   "w": 48,
+   "h": 48
+  },
+  {
+   "name": "gate_1",
+   "x": 48,
+   "y": 0,
+   "w": 48,
+   "h": 48
+  }
+ ],
+ "clips": {
+  "gate": [
+   "gate_0",
+   "gate_1"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "gate",
+   "frames": [
+    "gate_0",
+    "gate_1"
+   ]
+  }
+ ]
+}

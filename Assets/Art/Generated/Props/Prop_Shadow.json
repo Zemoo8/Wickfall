@@ -1,0 +1,33 @@
+{
+ "sheet": "Prop_Shadow",
+ "cell": [
+  16,
+  6
+ ],
+ "pivot": [
+  8,
+  3
+ ],
+ "frames": [
+  {
+   "name": "shadow_0",
+   "x": 0,
+   "y": 0,
+   "w": 16,
+   "h": 6
+  }
+ ],
+ "clips": {
+  "shadow": [
+   "shadow_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "shadow",
+   "frames": [
+    "shadow_0"
+   ]
+  }
+ ]
+}

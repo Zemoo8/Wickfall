@@ -1,0 +1,76 @@
+{
+ "sheet": "Prop_GreatBell",
+ "cell": [
+  48,
+  64
+ ],
+ "pivot": [
+  24,
+  2
+ ],
+ "frames": [
+  {
+   "name": "still_0",
+   "x": 0,
+   "y": 64,
+   "w": 48,
+   "h": 64
+  },
+  {
+   "name": "ring_0",
+   "x": 0,
+   "y": 0,
+   "w": 48,
+   "h": 64
+  },
+  {
+   "name": "ring_1",
+   "x": 48,
+   "y": 0,
+   "w": 48,
+   "h": 64
+  },
+  {
+   "name": "ring_2",
+   "x": 96,
+   "y": 0,
+   "w": 48,
+   "h": 64
+  },
+  {
+   "name": "ring_3",
+   "x": 144,
+   "y": 0,
+   "w": 48,
+   "h": 64
+  }
+ ],
+ "clips": {
+  "still": [
+   "still_0"
+  ],
+  "ring": [
+   "ring_0",
+   "ring_1",
+   "ring_2",
+   "ring_3"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "still",
+   "frames": [
+    "still_0"
+   ]
+  },
+  {
+   "name": "ring",
+   "frames": [
+    "ring_0",
+    "ring_1",
+    "ring_2",
+    "ring_3"
+   ]
+  }
+ ]
+}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3352270988561227569}
   - component: {fileID: 1021944287425011325}
   - component: {fileID: 4320898146347354656}
-  - component: {fileID: 3194849166937021884}
+  - component: {fileID: 537291836963527625}
   m_Layer: 0
   m_Name: Bolt
   m_TagString: Untagged
@@ -126,7 +126,7 @@ MonoBehaviour:
   spin: 0
   impactVfx: {fileID: 5944283181971091327, guid: bab7be1e080d8da47a00e0a2ae510209, type: 3}
   glow: {fileID: 4247075555817730696}
---- !u!114 &3194849166937021884
+--- !u!114 &537291836963527625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

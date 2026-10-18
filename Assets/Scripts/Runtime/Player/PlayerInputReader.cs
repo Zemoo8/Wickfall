@@ -31,6 +31,8 @@ namespace Wickfall.Player
             intent.DodgePressed = input.Dodge.WasPressedThisFrame();
             intent.InteractPressed = input.Interact.WasPressedThisFrame();
             intent.WheelHeld = input.Wheel.IsPressed();
+            intent.UseCandlePressed = input.UseCandle.WasPressedThisFrame();
+            intent.UseSalvePressed = input.UseSalve.WasPressedThisFrame();
 
             if (TrimToggle)
             {

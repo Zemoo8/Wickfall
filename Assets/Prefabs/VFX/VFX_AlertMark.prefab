@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1160056049091193251}
   - component: {fileID: 216621461086601761}
   - component: {fileID: 7804214597802806607}
-  - component: {fileID: 7160902971506068107}
+  - component: {fileID: 22046971709224428}
   m_Layer: 0
   m_Name: VFX_AlertMark
   m_TagString: Untagged
@@ -115,7 +115,7 @@ MonoBehaviour:
   flashIntensity: 1.2
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &7160902971506068107
+--- !u!114 &22046971709224428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

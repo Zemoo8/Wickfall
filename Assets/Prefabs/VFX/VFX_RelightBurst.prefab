@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 123978507008977558}
   - component: {fileID: 8284699946233694558}
   - component: {fileID: 3972504754030078318}
-  - component: {fileID: 6781848322405306340}
+  - component: {fileID: 453132743288147791}
   m_Layer: 0
   m_Name: VFX_RelightBurst
   m_TagString: Untagged
@@ -206,7 +206,7 @@ MonoBehaviour:
   flashIntensity: 1.1
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &6781848322405306340
+--- !u!114 &453132743288147791
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

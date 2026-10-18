@@ -1,0 +1,33 @@
+{
+ "sheet": "Prop_Nest",
+ "cell": [
+  24,
+  16
+ ],
+ "pivot": [
+  12,
+  3
+ ],
+ "frames": [
+  {
+   "name": "nest_0",
+   "x": 0,
+   "y": 0,
+   "w": 24,
+   "h": 16
+  }
+ ],
+ "clips": {
+  "nest": [
+   "nest_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "nest",
+   "frames": [
+    "nest_0"
+   ]
+  }
+ ]
+}

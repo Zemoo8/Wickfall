@@ -135,6 +135,12 @@ namespace Wickfall.Player
             bool canTrim = !IsExtinguished && !IsInteracting && !ControlsLocked;
             Dim.Request(canTrim && intent.TrimHeld);
 
+            if (!IsExtinguished && Meta.GameSession.Instance != null)
+            {
+                if (intent.UseCandlePressed) Meta.GameSession.Instance.UseCandle();
+                if (intent.UseSalvePressed) Meta.GameSession.Instance.UseSalve();
+            }
+
             UpdateFlameWheel();
             fsm.Tick(Time.deltaTime);
         }

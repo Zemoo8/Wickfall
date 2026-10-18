@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5467863770610941530}
   - component: {fileID: 6575047088835045066}
   - component: {fileID: 8815674008230296883}
-  - component: {fileID: 3381757127047760838}
+  - component: {fileID: 4894744194244445815}
   m_Layer: 0
   m_Name: VFX_HitSpark
   m_TagString: Untagged
@@ -117,7 +117,7 @@ MonoBehaviour:
   flashIntensity: 1.2
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &3381757127047760838
+--- !u!114 &4894744194244445815
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

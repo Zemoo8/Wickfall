@@ -22,7 +22,9 @@ namespace Wickfall.EditorTools
             ArtFactory.EnsureAll();
             EnsureAudioLibrary();
             PrefabFactory.EnsureAll();
+            WorldPrefabs.EnsureAll();
             SceneFactory.EnsureAll();
+            RegionFactory.EnsureAll();
             SceneFactory.SetupBuildScenes();
         }
 

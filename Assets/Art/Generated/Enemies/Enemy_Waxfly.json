@@ -1,0 +1,119 @@
+{
+ "sheet": "Enemy_Waxfly",
+ "cell": [
+  8,
+  8
+ ],
+ "pivot": [
+  4,
+  2
+ ],
+ "frames": [
+  {
+   "name": "idle_0",
+   "x": 0,
+   "y": 8,
+   "w": 8,
+   "h": 8
+  },
+  {
+   "name": "idle_1",
+   "x": 8,
+   "y": 8,
+   "w": 8,
+   "h": 8
+  },
+  {
+   "name": "idle_2",
+   "x": 16,
+   "y": 8,
+   "w": 8,
+   "h": 8
+  },
+  {
+   "name": "idle_3",
+   "x": 24,
+   "y": 8,
+   "w": 8,
+   "h": 8
+  },
+  {
+   "name": "move_0",
+   "x": 0,
+   "y": 0,
+   "w": 8,
+   "h": 8
+  },
+  {
+   "name": "move_1",
+   "x": 8,
+   "y": 0,
+   "w": 8,
+   "h": 8
+  },
+  {
+   "name": "move_2",
+   "x": 16,
+   "y": 0,
+   "w": 8,
+   "h": 8
+  },
+  {
+   "name": "move_3",
+   "x": 24,
+   "y": 0,
+   "w": 8,
+   "h": 8
+  }
+ ],
+ "clips": {
+  "idle": [
+   "idle_0",
+   "idle_1",
+   "idle_2",
+   "idle_3"
+  ],
+  "move": [
+   "move_0",
+   "move_1",
+   "move_2",
+   "move_3"
+  ]
+ },
+ "fps": {
+  "idle": 8,
+  "move": 12
+ },
+ "clipList": [
+  {
+   "name": "idle",
+   "frames": [
+    "idle_0",
+    "idle_1",
+    "idle_2",
+    "idle_3"
+   ]
+  },
+  {
+   "name": "move",
+   "frames": [
+    "move_0",
+    "move_1",
+    "move_2",
+    "move_3"
+   ]
+  }
+ ],
+ "fpsList": [
+  {
+   "name": "idle",
+   "x": 8.0,
+   "y": 0.0
+  },
+  {
+   "name": "move",
+   "x": 12.0,
+   "y": 0.0
+  }
+ ]
+}

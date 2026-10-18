@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 674988964845339877}
   - component: {fileID: 3707177400664416063}
   - component: {fileID: 3208056554028722793}
-  - component: {fileID: 3526904972396995751}
+  - component: {fileID: 4643945185252682337}
   m_Layer: 0
   m_Name: VFX_WideSweep
   m_TagString: Untagged
@@ -206,7 +206,7 @@ MonoBehaviour:
   flashIntensity: 1.1
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &3526904972396995751
+--- !u!114 &4643945185252682337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

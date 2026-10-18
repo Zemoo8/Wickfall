@@ -1,0 +1,33 @@
+{
+ "sheet": "Prop_Shrine",
+ "cell": [
+  32,
+  32
+ ],
+ "pivot": [
+  16,
+  2
+ ],
+ "frames": [
+  {
+   "name": "shrine_0",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  }
+ ],
+ "clips": {
+  "shrine": [
+   "shrine_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "shrine",
+   "frames": [
+    "shrine_0"
+   ]
+  }
+ ]
+}

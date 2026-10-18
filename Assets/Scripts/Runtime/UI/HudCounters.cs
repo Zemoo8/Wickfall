@@ -12,6 +12,9 @@ namespace Wickfall.UI
         public Image[] dodgeIcons = new Image[4];
         public Image sootIcon;
         public Image lightCutIcon;
+        [Tooltip("Consumables carried (G19): candles and salves.")]
+        public TMP_Text itemsText;
+        int candles = -1, salves = -1;
 
         int shards = -1;
         float shardBump;
@@ -65,6 +68,13 @@ namespace Wickfall.UI
 
         void Update()
         {
+            var session = Meta.GameSession.Instance;
+            if (itemsText != null && session != null && (session.Save.candles != candles || session.Save.salves != salves))
+            {
+                candles = session.Save.candles;
+                salves = session.Save.salves;
+                itemsText.text = candles == 0 && salves == 0 ? "" : Loc.Format("hud.items", candles, salves);
+            }
             if (shardText == null)
                 return;
             shardBump = Mathf.MoveTowards(shardBump, 0f, Time.unscaledDeltaTime * 4f);

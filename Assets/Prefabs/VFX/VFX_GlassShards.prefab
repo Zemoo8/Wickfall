@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2872073480859010788}
   - component: {fileID: 7347005147484781010}
   - component: {fileID: 1177229891628688465}
-  - component: {fileID: 5245967235526889173}
+  - component: {fileID: 3379780309054910088}
   m_Layer: 0
   m_Name: VFX_GlassShards
   m_TagString: Untagged
@@ -121,7 +121,7 @@ MonoBehaviour:
   flashIntensity: 1.2
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &5245967235526889173
+--- !u!114 &3379780309054910088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

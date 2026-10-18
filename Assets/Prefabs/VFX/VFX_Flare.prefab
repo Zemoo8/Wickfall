@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6816501824570180414}
   - component: {fileID: 6713099477533927999}
   - component: {fileID: 5938090324902624240}
-  - component: {fileID: 169348438866800761}
+  - component: {fileID: 5493977498917530560}
   m_Layer: 0
   m_Name: VFX_Flare
   m_TagString: Untagged
@@ -206,7 +206,7 @@ MonoBehaviour:
   flashIntensity: 1.1
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &169348438866800761
+--- !u!114 &5493977498917530560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

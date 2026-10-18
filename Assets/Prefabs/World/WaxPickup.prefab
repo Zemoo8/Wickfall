@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2510433005405388470}
   - component: {fileID: 1007929032530445985}
-  - component: {fileID: 5380522150669337972}
+  - component: {fileID: 4459639474129087163}
   m_Layer: 0
   m_Name: WaxPickup
   m_TagString: Untagged
@@ -49,7 +49,7 @@ MonoBehaviour:
   sprite: {fileID: 876425734534031038}
   wax: 3
   shards: 0
---- !u!114 &5380522150669337972
+--- !u!114 &4459639474129087163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

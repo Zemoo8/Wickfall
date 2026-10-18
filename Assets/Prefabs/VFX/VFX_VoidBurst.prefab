@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6306865482942503577}
   - component: {fileID: 8285646170163885741}
   - component: {fileID: 555734831383539359}
-  - component: {fileID: 5049143643523537587}
+  - component: {fileID: 3983498016056509504}
   m_Layer: 0
   m_Name: VFX_VoidBurst
   m_TagString: Untagged
@@ -121,7 +121,7 @@ MonoBehaviour:
   flashIntensity: 1.2
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &5049143643523537587
+--- !u!114 &3983498016056509504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1235187347449227914}
   - component: {fileID: 6243620218662325136}
   - component: {fileID: 1073271778625940819}
-  - component: {fileID: 3076156274833471315}
+  - component: {fileID: 5643343577143188167}
   m_Layer: 0
   m_Name: VFX_GeyserBurst
   m_TagString: Untagged
@@ -121,7 +121,7 @@ MonoBehaviour:
   flashIntensity: 1.2
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &3076156274833471315
+--- !u!114 &5643343577143188167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

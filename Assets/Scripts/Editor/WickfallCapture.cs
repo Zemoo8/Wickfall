@@ -43,6 +43,43 @@ namespace Wickfall.EditorTools
             }
         }
 
+        [MenuItem("WICKFALL/Tools/Capture Region 1", priority = 11)]
+        public static void CaptureRegion1() => CaptureRegion(RegionId.TallowFields, new[]
+        {
+            // text coordinates of the level file (x, y down) and a name
+            (18, 46, "start"), (44, 43, "clearing"), (76, 46, "geysers"), (74, 59, "shrine"), (50, 13, "herd"),
+            (15, 9, "relic"), (95, 15, "brazier2"), (111, 33, "bell"),
+        });
+
+        public static void CaptureRegion(RegionId region, (int x, int y, string name)[] shots)
+        {
+            var core = EditorSceneManager.OpenScene(SceneFactory.PathOf(SceneNames.Core), OpenSceneMode.Single);
+            string folder = RegionFactory.Folder(region);
+            EditorSceneManager.OpenScene($"{folder}/{SceneNames.RegionBase(region)}.unity", OpenSceneMode.Additive);
+            foreach (string path in System.IO.Directory.GetFiles(folder, "*.unity"))
+                if (!path.Replace('\\', '/').EndsWith(SceneNames.RegionBase(region) + ".unity"))
+                    EditorSceneManager.OpenScene(path.Replace('\\', '/'), OpenSceneMode.Additive);
+            var director = Object.FindFirstObjectByType<World.RegionDirector>();
+            var level = World.LevelData.Parse(director.levelFile.text);
+            var player = Object.FindFirstObjectByType<PlayerController>(FindObjectsInactive.Include);
+            var cam = Camera.main;
+            string key = "r" + ((int)region + 1);
+            foreach (var (x, y, name) in shots)
+            {
+                Vector2 world = new Vector2(x + 0.5f, level.Height - 1 - y + 0.5f);
+                if (player != null)
+                    player.transform.position = world + new Vector2(0f, -1.5f);
+                Shoot(cam, world, 270f / 32f, $"{key}_{name}");
+            }
+            // the whole region from above, lit as if it were day (layout check)
+            var lights = Object.FindObjectsByType<Light2D>(FindObjectsSortMode.None);
+            var global = lights.FirstOrDefault(l => l.lightType == Light2D.LightType.Global);
+            float before = global != null ? global.intensity : 0f;
+            if (global != null) global.intensity = 0.9f;
+            Shoot(cam, new Vector2(level.Width / 2f, level.Height / 2f), level.Height / 2f + 1f, $"{key}_map", 1920, 1080);
+            if (global != null) global.intensity = before;
+        }
+
         public static void Shoot(Camera cam, Vector2 center, float orthoSize, string name, int width = 960, int height = 540)
         {
             Directory.CreateDirectory(Output);

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6552227885186836780}
   - component: {fileID: 4964008169539903770}
   - component: {fileID: 2040452837514448548}
-  - component: {fileID: 1687495410062598933}
+  - component: {fileID: 5663857664201238510}
   m_Layer: 0
   m_Name: VFX_LaserImpact
   m_TagString: Untagged
@@ -118,7 +118,7 @@ MonoBehaviour:
   flashIntensity: 1.1
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &1687495410062598933
+--- !u!114 &5663857664201238510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

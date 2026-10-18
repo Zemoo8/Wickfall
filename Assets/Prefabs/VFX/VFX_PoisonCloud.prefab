@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5072732600012436006}
   - component: {fileID: 7547399756324353676}
   - component: {fileID: 4909621531856103845}
-  - component: {fileID: 2438121752966217358}
+  - component: {fileID: 4520647246736987041}
   m_Layer: 0
   m_Name: VFX_PoisonCloud
   m_TagString: Untagged
@@ -206,7 +206,7 @@ MonoBehaviour:
   flashIntensity: 1.1
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &2438121752966217358
+--- !u!114 &4520647246736987041
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

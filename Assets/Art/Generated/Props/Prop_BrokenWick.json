@@ -1,0 +1,33 @@
+{
+ "sheet": "Prop_BrokenWick",
+ "cell": [
+  64,
+  160
+ ],
+ "pivot": [
+  32,
+  3
+ ],
+ "frames": [
+  {
+   "name": "wick_0",
+   "x": 0,
+   "y": 0,
+   "w": 64,
+   "h": 160
+  }
+ ],
+ "clips": {
+  "wick": [
+   "wick_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "wick",
+   "frames": [
+    "wick_0"
+   ]
+  }
+ ]
+}

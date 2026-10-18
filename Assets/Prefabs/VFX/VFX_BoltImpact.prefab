@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3356822706282090399}
   - component: {fileID: 8432468049749225483}
   - component: {fileID: 2095433543027247550}
-  - component: {fileID: 5507513102501601058}
+  - component: {fileID: 5055796056990040098}
   m_Layer: 0
   m_Name: VFX_BoltImpact
   m_TagString: Untagged
@@ -118,7 +118,7 @@ MonoBehaviour:
   flashIntensity: 1.1
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &5507513102501601058
+--- !u!114 &5055796056990040098
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -38,6 +38,9 @@ namespace Wickfall.EditorTools
             return rows[y][x] == '#';
         }
 
+        /// <summary>No symbol other than '#' is drawn as wall (gates are their own objects).</summary>
+        static bool IsSolidWallSymbol(char c) => false;
+
         public static bool IsVoid(string[] rows, int x, int y) =>
             y >= 0 && y < rows.Length && x >= 0 && x < rows[y].Length && rows[y][x] == ' ';
 
@@ -56,7 +59,15 @@ namespace Wickfall.EditorTools
         }
 
         public static Result Build(Transform parent, string name, string[] rows, RegionTiles tiles, Vector2Int origin,
-            Material groundMaterial = null, int seed = 1)
+            Material groundMaterial = null, int seed = 1) =>
+            Build(parent, name, rows, tiles, origin, null, groundMaterial, seed);
+
+        /// <summary>
+        /// Builds only the cells inside <paramref name="only"/> (world cells) when given: one room group.
+        /// Wall shapes still look at the whole map, so tiles join seamlessly across groups.
+        /// </summary>
+        public static Result Build(Transform parent, string name, string[] rows, RegionTiles tiles, Vector2Int origin,
+            RectInt? only, Material groundMaterial = null, int seed = 1)
         {
             int height = rows.Length;
             int width = 0;
@@ -89,7 +100,9 @@ namespace Wickfall.EditorTools
                     var cell = new Vector3Int(origin.x + x, origin.y + height - 1 - y, 0);
                     if (ch == ' ')
                         continue;
-                    if (ch == '#')
+                    if (only.HasValue && !only.Value.Contains(new Vector2Int(cell.x, cell.y)))
+                        continue;
+                    if (ch == '#' || IsSolidWallSymbol(ch))
                     {
                         if (IsVoid(rows, x, y + 1) || y + 1 >= height)
                         {

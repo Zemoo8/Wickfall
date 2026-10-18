@@ -71,7 +71,9 @@ namespace Wickfall.Meta
 
         void Update()
         {
-            if (GameInput.Instance.Pause.WasPressedThisFrame() && InGameplay && !respawning)
+            bool menuUsedPause = UI.UiKit.PauseConsumedFrame == Time.frameCount || UI.BrazierMenuView.IsOpen
+                                 || (UI.OptionsView.Instance != null && UI.OptionsView.Instance.IsOpen);
+            if (GameInput.Instance.Pause.WasPressedThisFrame() && InGameplay && !respawning && !menuUsedPause)
                 SetPaused(!Paused);
             if (InGameplay && !Paused)
                 Tracker.Tick(Time.deltaTime);
@@ -242,6 +244,46 @@ namespace Wickfall.Meta
             Save.shards -= amount;
             Events.ShardsChanged.Raise(Save.shards);
             return true;
+        }
+
+        /// <summary>G19 consumable: a wax candle gives wax back (C / right stick click).</summary>
+        public bool UseCandle()
+        {
+            if (Save.candles <= 0 || player == null || player.Wax.Current >= player.Wax.Max - 0.5f)
+            {
+                Events.PlayUi(SoundId.UiError);
+                return false;
+            }
+            Save.candles--;
+            var item = FindShopItem(ShopItemKind.WaxCandle);
+            player.Wax.Gain(item != null ? item.value : 25f);
+            Events.Play(SoundId.WaxPoolDrink, player.transform.position);
+            Combat.Vfx.Play(Combat.VfxId.RelightBurst, (Vector2)player.transform.position + new Vector2(0f, 1.2f));
+            Events.ProgressChanged.Raise();
+            return true;
+        }
+
+        /// <summary>G19 consumable: a soot salve clears soot (X / left stick click).</summary>
+        public bool UseSalve()
+        {
+            if (Save.salves <= 0 || player == null || !player.Status.Sooted)
+            {
+                Events.PlayUi(SoundId.UiError);
+                return false;
+            }
+            Save.salves--;
+            player.Status.ClearSoot();
+            Events.Play(SoundId.Interact, player.transform.position);
+            Events.ProgressChanged.Raise();
+            return true;
+        }
+
+        static ShopItemSO FindShopItem(ShopItemKind kind)
+        {
+            foreach (var item in Db.Data.shop)
+                if (item != null && item.kind == kind)
+                    return item;
+            return null;
         }
 
         public void CollectRelic(int index)

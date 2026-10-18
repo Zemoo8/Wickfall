@@ -97,7 +97,22 @@ def props():
         contact("props_" + name, Image.open(os.path.join(folder, name + ".png")), 6)
 
 
-GROUPS = {"player": player, "ui": ui, "vfx": vfx, "tiles": tiles, "props": props}
+def enemies():
+    import enemies as enemy_art
+    folder = os.path.join(OUT, "Enemies")
+    for name, img in enemy_art.build(folder):
+        contact("enemy_" + name, img, 8)
+
+
+def world():
+    import props_world
+    folder = os.path.join(OUT, "Props")
+    props_world.build(folder)
+    for name in ("Prop_Relics", "Prop_GreatBell", "Prop_BrokenWick", "Prop_Gate", "Prop_Shrine", "Prop_Stone", "Prop_Nest"):
+        contact("props_" + name, Image.open(os.path.join(folder, name + ".png")), 4)
+
+
+GROUPS = {"player": player, "ui": ui, "vfx": vfx, "tiles": tiles, "props": props, "enemies": enemies, "world": world}
 
 
 def main(args):

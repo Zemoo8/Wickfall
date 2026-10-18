@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1265347147463407865}
   - component: {fileID: 6935663563928752829}
   - component: {fileID: 3145284209624900910}
-  - component: {fileID: 5845593628618039548}
+  - component: {fileID: 6192544929340377187}
   m_Layer: 0
   m_Name: VFX_CrimsonStrike
   m_TagString: Untagged
@@ -204,7 +204,7 @@ MonoBehaviour:
   flashIntensity: 1.1
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &5845593628618039548
+--- !u!114 &6192544929340377187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

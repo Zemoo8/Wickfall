@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4117318607839403392}
   - component: {fileID: 3607585564361641974}
   - component: {fileID: 6351842523794530822}
-  - component: {fileID: 988611981902008978}
+  - component: {fileID: 3375228264663971490}
   m_Layer: 0
   m_Name: VFX_DeathPuff
   m_TagString: Untagged
@@ -121,7 +121,7 @@ MonoBehaviour:
   flashIntensity: 1.2
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &988611981902008978
+--- !u!114 &3375228264663971490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

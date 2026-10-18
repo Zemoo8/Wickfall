@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2223054204939126672}
   - component: {fileID: 1802387770313881659}
   - component: {fileID: 8978273664616598800}
-  - component: {fileID: 8526728167551070984}
+  - component: {fileID: 7156538375251318275}
   m_Layer: 0
   m_Name: VFX_SteamBurst
   m_TagString: Untagged
@@ -121,7 +121,7 @@ MonoBehaviour:
   flashIntensity: 1.2
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &8526728167551070984
+--- !u!114 &7156538375251318275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

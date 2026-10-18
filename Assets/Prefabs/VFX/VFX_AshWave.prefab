@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2777610813833912148}
   - component: {fileID: 8292790968817794058}
   - component: {fileID: 3624230310677697377}
-  - component: {fileID: 6423266421662715941}
+  - component: {fileID: 4821537072427030040}
   m_Layer: 0
   m_Name: VFX_AshWave
   m_TagString: Untagged
@@ -121,7 +121,7 @@ MonoBehaviour:
   flashIntensity: 1.2
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &6423266421662715941
+--- !u!114 &4821537072427030040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

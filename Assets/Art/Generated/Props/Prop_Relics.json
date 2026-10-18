@@ -1,0 +1,78 @@
+{
+ "sheet": "Prop_Relics",
+ "cell": [
+  16,
+  16
+ ],
+ "pivot": [
+  8,
+  0
+ ],
+ "frames": [
+  {
+   "name": "relic_0",
+   "x": 0,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "relic_1",
+   "x": 16,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "relic_2",
+   "x": 32,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "relic_3",
+   "x": 48,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "relic_4",
+   "x": 64,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "relic_5",
+   "x": 80,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  }
+ ],
+ "clips": {
+  "relic": [
+   "relic_0",
+   "relic_1",
+   "relic_2",
+   "relic_3",
+   "relic_4",
+   "relic_5"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "relic",
+   "frames": [
+    "relic_0",
+    "relic_1",
+    "relic_2",
+    "relic_3",
+    "relic_4",
+    "relic_5"
+   ]
+  }
+ ]
+}

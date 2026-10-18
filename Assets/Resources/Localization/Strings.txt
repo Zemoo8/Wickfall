@@ -131,3 +131,54 @@ ending.c	Passer la mèche à un autre	Pass the wick on to another
 lab.effigy	Effigie	Effigy
 lab.effigy.armored	Scorifiée : blanche ou verte	Slagborn: white or green
 lab.effigy.glass	Verre : cramoisie	Glass: crimson
+# ---- region 1, score, brazier, options
+card.relic	Relique de Braise	Ember Relic
+card.flame	Nouvelle flamme	New flame
+score.title	Score de région	Region score
+score.wax	Cire restante {0} % × 10	Wax left {0}% × 10
+score.time	Temps {0} (par {1})	Time {0} (par {1})
+score.relics	Reliques {0} × 500	Relics {0} × 500
+score.avoided	Ennemis évités {0} × 20	Enemies avoided {0} × 20
+score.deaths	Morts {0} × -150	Deaths {0} × -150
+score.total	Total {0}	Total {0}
+score.continue	[E] Continuer	[E] Continue
+brazier.title	Brasero	Brazier
+brazier.rested	Repos : la cire est remplie.	Rest: your wax is full.
+brazier.spent	Repos : déjà utilisé (un usage par repos).	Rest: already used (one use per rest).
+brazier.shards	Éclats de cire : {0}	Wax shards: {0}
+brazier.shop	Boutique	Shop
+brazier.loadout	Flammes	Flames
+brazier.leave	Partir	Leave
+brazier.full	Vous en avez assez.	You have enough.
+brazier.poor	Pas assez d'éclats.	Not enough shards.
+brazier.slotlocked	Emplacement verrouillé (relique).	Slot locked (relic).
+brazier.locked	verrouillé	locked
+hud.items	Bougies {0}  Baumes {1}	Candles {0}  Salves {1}
+options.master	Volume général	Master volume
+options.music	Musique	Music
+options.sfx	Effets	Effects
+options.ambience	Ambiance	Ambience
+options.display	Affichage	Display
+options.display.0	Plein écran	Fullscreen
+options.display.1	Fenêtre sans bordure	Borderless
+options.display.2	Fenêtré	Windowed
+options.pixel	Rendu	Rendering
+options.pixel.on	Pixel parfait	Pixel perfect
+options.pixel.off	Remplir l'écran	Fill screen
+options.vsync	Synchro verticale	V-sync
+options.on	Oui	On
+options.off	Non	Off
+options.movement	Déplacement	Movement
+options.movement.4	4 directions	4 directions
+options.movement.8	8 directions (regard en 4)	8 directions (4-way facing)
+options.trim	Tailler la mèche	Trim the wick
+options.trim.hold	Maintenir	Hold
+options.trim.toggle	Basculer	Toggle
+options.shake	Tremblement	Screen shake
+options.flash	Flashs	Flashes
+options.language	Langue	Language
+inscription.r1.0	La cire est la vie. Même immobile, elle fond.	Wax is life. Even standing still, it melts.
+inscription.r1.1	Chaque coup reçu rétrécit ce que l'on voit.	Every blow you take shrinks what you can see.
+inscription.r1.2	La terre gronde avant de cracher.	The ground rumbles before it spits.
+inscription.r1.3	Taille la mèche : moins de lumière, moins de regards.	Trim the wick: less light, fewer eyes.
+inscription.r1.4	La cloche ouvre la voie. Elle réveille aussi ce qui dort.	The bell opens the way. It also wakes what sleeps.

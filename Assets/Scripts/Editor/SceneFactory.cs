@@ -296,6 +296,22 @@ namespace Wickfall.EditorTools
             prompt.worldCamera = cam;
             prompt.canvasRect = (RectTransform)root.transform;
 
+            counters.itemsText = Text(Rect(hud, "Items", Vector2.one, Vector2.one, new Vector2(-8f, -22f), new Vector2(120f, 14f)), font, "", 12f,
+                TextAlignmentOptions.Right, new Color(0.64f, 0.6f, 0.55f));
+
+            // Menus and cards above the HUD (built at runtime by UiKit in one style).
+            var overlay = Stretch(root, "Overlay").gameObject;
+            var kit = overlay.AddComponent<UiKit>();
+            kit.font = font;
+            kit.sprites = sprites;
+            kit.overlay = (RectTransform)overlay.transform;
+            overlay.AddComponent<RegionTitleCard>();
+            overlay.AddComponent<ItemCard>();
+            overlay.AddComponent<ScoreScreen>();
+            overlay.AddComponent<BrazierMenuView>();
+            overlay.AddComponent<PauseMenuView>();
+            overlay.AddComponent<OptionsView>();
+
             flash = Img(Stretch(root, "Flash"), null, false);
             flash.color = new Color(1f, 1f, 1f, 0f);
             flash.enabled = false;
