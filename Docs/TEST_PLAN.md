@@ -28,4 +28,4 @@ Split PlayMode into batches (each run must stay under 10 minutes).
 
 Tests never touch the player's real save: they use their own temporary folder.
 
-Bot results go to `Logs/bot_runs.txt`. Gameplay videos come from `ZzRecordR1` … `ZzRecordR6` (on demand).
+Bot results go to `Logs/bot_runs.txt`. Gameplay videos come from `ZzRecordR1` … `ZzRecordR6` (on demand): the same bot in showcase mode (no optional fights, sneaks, dodges, narrates).

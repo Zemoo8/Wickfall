@@ -60,6 +60,8 @@ python Tools/font/make_font.py                                 # the pixel font
   check their first-step overlap).
 - A MonoBehaviour must live in a file of its own name, or prefabs save it as a missing script.
 - Level inscriptions carry their number (`Inscription3`); map scan order is not the intended order.
+- Recording with `Time.captureFramerate`: `Time.unscaledTime` stays wall-clock (recording runs ~2x slower than the
+  video); video time is `Time.frameCount / captureFramerate`. Videos over 29 MB: `Tools/shrink_video.sh` (upload limit 30 MB).
 
 ## Presentation commands
 - `SHOW PHASE N` / `SHOW EVERYTHING` / `PREPARE FOR NEXT SESSION` — see `PRESENTATION_PHASES.md`.

@@ -28,6 +28,19 @@ namespace Wickfall.Combat
 
         public UnityEngine.Rendering.Universal.Light2D glow;
 
+        static readonly System.Collections.Generic.List<Projectile> active = new System.Collections.Generic.List<Projectile>(32);
+        /// <summary>Projectiles in flight (the region bot reads them to dodge).</summary>
+        public static System.Collections.Generic.IReadOnlyList<Projectile> Active => active;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => active.Clear();
+
+        public Vector2 Velocity => velocity;
+        public bool FromEnemy => hit.Source == Team.Enemy;
+
+        void OnEnable() => active.Add(this);
+        void OnDisable() => active.Remove(this);
+
         public void Launch(in HitData data, Vector2 direction, float speed, float range)
         {
             hit = data;

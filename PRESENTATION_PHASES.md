@@ -13,15 +13,19 @@ In Unity: **`WICKFALL > Presentation > Phase N`** switches on only that stage's 
 | 7 Final Product | Everything polished, the menus, the endings | Mostly (polish still in progress) |
 | 8 Release (PC) | The Windows `.exe` | A working build exists; the final package is not done |
 
-**Videos (a bot plays, 1.5× speed, under 2 minutes each)** in `Builds/Videos/`:
+**Videos** in `Builds/Videos/` (a bot plays at 1.25× speed; a caption on top explains what is on screen, one idea at a time):
 
 | Stage | Clips |
 |---|---|
-| 4 Development | `Stage4_R1_TallowFields.mp4`, `Stage4_R2_Wickwood.mp4` |
-| 5 2D Animation | `Stage5_R3_SootFoundries.mp4`, `Stage5_R4_GlassCathedral.mp4` |
-| 6 Testing | `Stage6_R5_DeepHollow.mp4`, `Stage6_R6_Boss_and_EndingA.mp4` |
+| 4 Development | `Stage4_R1_TallowFields.mp4` (1:51), `Stage4_R2_Wickwood.mp4` (1:35) |
+| 5 2D Animation | `Stage5_R3_SootFoundries.mp4` (1:24), `Stage5_R4_GlassCathedral.mp4` (1:28) |
+| 6 Testing | `Stage6_R5_DeepHollow.mp4` (1:13), `Stage6_R6_Boss_and_EndingA.mp4` (1:08) |
 | 7–8 | show the stage 6 clips and run the `.exe` |
 
-Make them again (Unity closed): `powershell -File Tools/unity.ps1 -Tests PlayMode -Filter Wickfall.Tests.ZzRecordR1` (R1 … R6).
+The bot plays like a careful player: it sneaks past creatures with the wick trimmed, fights only what catches it (or guards a puzzle), and dodges. All six clips: regions cleared, 0 deaths.
+
+Make them again (Unity closed, one at a time, about 4–8 minutes each):
+`powershell -File Tools/unity.ps1 -Tests PlayMode -Filter Wickfall.Tests.ZzRecordR1` (R1 … R6), then
+`sh Tools/shrink_video.sh Builds/Videos/<clip>.mp4` if a clip is over 29 MB.
 
 **What to say at each phase:** the one-line answers in `Docs/HOW_IT_WORKS.md`.

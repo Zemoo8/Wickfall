@@ -79,12 +79,16 @@ namespace Wickfall.UI
             for (int i = 0; i < values.Length; i++)
             {
                 yield return new WaitForSecondsRealtime(0.35f);
+                if (root == null)
+                    yield break; // the screen went away with its scene (a test ending, a scene change)
                 shown[i].text = (values[i] >= 0 ? "+" : "") + values[i];
                 running += values[i];
                 total.text = Loc.Format("score.total", running);
                 Events.PlayUi(SoundId.ScoreTally);
             }
             yield return new WaitForSecondsRealtime(0.5f);
+            if (root == null)
+                yield break;
             total.text = Loc.Format("score.total", r.Score);
             rank.text = Loc.Get("rank." + r.Rank.ToString().ToLowerInvariant());
             Events.PlayUi(SoundId.RankStamp);
@@ -98,6 +102,8 @@ namespace Wickfall.UI
                     break;
                 yield return null;
             }
+            if (root == null)
+                yield break;
             Events.PlayUi(SoundId.UiConfirm);
             Destroy(root.gameObject);
         }
