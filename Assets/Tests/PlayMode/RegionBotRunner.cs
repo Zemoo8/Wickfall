@@ -21,7 +21,7 @@ namespace Wickfall.Tests
         }
 
         public static IEnumerator Play(PlayerController player, GameSession session, string label, Run run, float realSeconds = 420f,
-            System.Collections.Generic.IList<string> route = null)
+            System.Collections.Generic.IList<string> route = null, float speed = 4f, System.Action perFrame = null)
         {
             float waited = 0f;
             while ((RegionDirector.Instance == null || RoomLoader.Instance == null || !RoomLoader.Instance.Settled) && waited < 10f)
@@ -34,13 +34,14 @@ namespace Wickfall.Tests
             var bot = player.gameObject.AddComponent<RegionBot>();
             bot.Begin(player, RegionDirector.Instance.Level, route);
             run.Bot = bot;
-            Time.timeScale = 4f;
+            Time.timeScale = speed;
             float real = 0f;
             float nextLog = 15f;
             var director = RegionDirector.Instance;
             while (!bot.Done && !bot.Failed && !director.Completed && real < realSeconds)
             {
                 real += Time.unscaledDeltaTime;
+                perFrame?.Invoke();
                 if (real >= nextLog)
                 {
                     nextLog += 15f;

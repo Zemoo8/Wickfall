@@ -129,6 +129,7 @@ namespace Wickfall.EditorTools
             var volume = volumeGo.AddComponent<Volume>();
             volume.isGlobal = true;
             volume.sharedProfile = EditorAssets.EnsureVolumeProfile(EditorPaths.GlobalVolume);
+            volumeGo.AddComponent<Wickfall.Lighting.ExposureBrightness>();
             volumeGo.AddComponent<PresentationGate>().feature = Feature.PostProcessing;
 
             // UI
@@ -183,7 +184,10 @@ namespace Wickfall.EditorTools
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = order;
             canvas.pixelPerfect = true;
-            go.AddComponent<CanvasScaler>();
+            // one canvas unit per sprite pixel: SetNativeSize on a 16-PPU sprite would otherwise make it 100/16 too big
+            // (the scaler only copies it to the canvas on its next update, too late for the images built here)
+            go.AddComponent<CanvasScaler>().referencePixelsPerUnit = ArtImportRules.PixelsPerUnit;
+            canvas.referencePixelsPerUnit = ArtImportRules.PixelsPerUnit;
             go.AddComponent<PixelCanvasScaler>();
             go.AddComponent<GraphicRaycaster>();
             return canvas;

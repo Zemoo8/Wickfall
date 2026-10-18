@@ -88,6 +88,7 @@ namespace Wickfall.EditorTools
             light.intensity = intensity;
             light.color = color;
             light.targetSortingLayers = AllSortingLayers();
+            go.AddComponent<Wickfall.Lighting.AmbientBrightness>().baseIntensity = intensity; // the Brightness option (G69)
             return light;
         }
 

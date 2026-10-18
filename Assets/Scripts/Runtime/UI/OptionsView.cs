@@ -76,6 +76,7 @@ namespace Wickfall.UI
                 s.trimToggle = !s.trimToggle;
                 ApplyToPlayer(s);
             });
+            Row("options.brightness", () => Percent(s.brightness), () => s.brightness = Next(Volumes, s.brightness));
             Row("options.shake", () => Percent(s.screenShake), () => s.screenShake = Next(Intensities, s.screenShake));
             Row("options.flash", () => Percent(s.flashIntensity), () => s.flashIntensity = Next(Intensities, s.flashIntensity));
             Row("options.language", () => Loc.IsFrench ? "Français" : "English", () =>

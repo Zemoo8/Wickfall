@@ -133,6 +133,7 @@ namespace Wickfall.Meta
         public bool trimToggle;
         public int movementMode;       // MovementMode
         public float screenShake = 1f;
+        public float brightness = 0.6f;  // G69: 0 = darkest (the PDF's raw ambient), 1 = brightest
         public float flashIntensity = 1f;
         public int textScale = 1;      // 1 normal, 2 large
         public string bindingOverrides = "";
