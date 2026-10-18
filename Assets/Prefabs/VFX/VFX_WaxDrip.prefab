@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1634751983292785446}
   - component: {fileID: 6496720302558927282}
   - component: {fileID: 5125940777155753259}
-  - component: {fileID: 6368572875446514954}
+  - component: {fileID: 4425211881528133379}
   m_Layer: 0
   m_Name: VFX_WaxDrip
   m_TagString: Untagged
@@ -121,7 +121,7 @@ MonoBehaviour:
   flashIntensity: 1.2
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &6368572875446514954
+--- !u!114 &4425211881528133379
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,6 +130,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 302961908530275378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3562107d62f7edf4396ce96073c04234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.PooledObject

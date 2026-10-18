@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3352270988561227569}
   - component: {fileID: 1021944287425011325}
   - component: {fileID: 4320898146347354656}
-  - component: {fileID: 537291836963527625}
+  - component: {fileID: 3495050760054143836}
   m_Layer: 0
   m_Name: Bolt
   m_TagString: Untagged
@@ -126,7 +126,7 @@ MonoBehaviour:
   spin: 0
   impactVfx: {fileID: 5944283181971091327, guid: bab7be1e080d8da47a00e0a2ae510209, type: 3}
   glow: {fileID: 4247075555817730696}
---- !u!114 &537291836963527625
+--- !u!114 &3495050760054143836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2677463263352202169}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3562107d62f7edf4396ce96073c04234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.PooledObject
 --- !u!1 &8393758711805372214

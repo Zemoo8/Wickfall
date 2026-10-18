@@ -200,6 +200,21 @@ namespace Wickfall.Tests
         }
 
         [UnityTest]
+        public IEnumerator Interact_PressedAtTheEndOfASwing_IsBuffered()
+        {
+            var brazier = Object.FindFirstObjectByType<Brazier>();
+            Player.Wax.SetCurrent(40f);
+            Player.Teleport(brazier.RespawnPosition);
+            yield return Wait(0.2f);
+            Input.PressAttack();
+            yield return WaitUntil(() => Player.AttackProgress >= 0.7f, 1f);
+            Assert.AreEqual("Attack", Player.StateName, "still swinging");
+            Input.PressInteract();
+            yield return Wait(0.4f);
+            Assert.Greater(Player.Wax.Current, 99f, "the rest happens once the swing ends");
+        }
+
+        [UnityTest]
         public IEnumerator Geyser_Telegraphs1Point2Seconds_ThenHitsFor10()
         {
             var geyser = Object.FindObjectsByType<WaxGeyser>(FindObjectsSortMode.None).OrderBy(g => g.phaseOffset).First();

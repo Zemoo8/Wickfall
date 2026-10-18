@@ -22,6 +22,12 @@ namespace Wickfall.EditorTools
         public static void EnsureAll()
         {
             EnsureEnemy<DriplingBrain>("Dripling", EnemyKind.Dripling, "Enemy_Dripling");
+            EnsureEnemy<HuskBrain>("Husk", EnemyKind.Husk, "Enemy_Husk");
+            EnsureEnemy<LurkerBrain>("Lurker", EnemyKind.Lurker, "Enemy_Lurker");
+            EnsureBloom();
+            EnsureVine();
+            EnsureNest("SwarmNestHusk", "Husk");
+            EnsureNest("SwarmNestLurker", "Lurker");
             EnsureCirelle();
             EnsureBrokenWick();
             EnsureBell();
@@ -116,6 +122,54 @@ namespace Wickfall.EditorTools
                 EditorAssets.PointLight(EditorAssets.Child(root, "Glow", new Vector3(0f, 0.6f, 0f)), lightRadius, 0.5f, Color.white, false);
 
             return EditorAssets.SavePrefab(root, EnemyPath(kind));
+        }
+
+        static void EnsureBloom()
+        {
+            string sheet = ArtFactory.Sheet("Enemies", "Enemy_Bloom");
+            var pulse = SpriteSheets.Clip(sheet, "pulse");
+            var root = new GameObject("LightEaterBloom");
+            EditorAssets.SetLayer(root, Layers.Enemy);
+            root.AddComponent<SortingGroup>().sortingLayerName = Layers.SortEntities;
+            var body = root.AddComponent<Damageable>();
+            body.team = Team.Enemy;
+            body.kind = EnemyKind.LightEaterBloom;
+            body.knockbackResistance = 1f;
+            var solid = root.AddComponent<CircleCollider2D>();
+            solid.radius = 0.35f;
+            solid.offset = new Vector2(0f, 0.3f);
+            var hurt = EditorAssets.Child(root, "Hurtbox", new Vector3(0f, 0.8f, 0f));
+            EditorAssets.SetLayer(hurt, Layers.Enemy);
+            var hc = hurt.AddComponent<CircleCollider2D>();
+            hc.isTrigger = true;
+            hc.radius = 0.6f;
+            hurt.AddComponent<Hurtbox>();
+            var visual = EditorAssets.Child(root, "Visual");
+            var sr = EditorAssets.Sprite(visual, pulse.FirstOrDefault(), EditorAssets.Lit, Layers.SortEntities);
+            var anim = visual.AddComponent<SpriteAnimator>();
+            anim.target = sr;
+            var bloom = root.AddComponent<LightEaterBloom>();
+            bloom.sprite = sr;
+            bloom.animator = anim;
+            bloom.pulse = pulse;
+            bloom.feed = SpriteSheets.Clip(sheet, "feed");
+            bloom.type = AssetDatabase.LoadAssetAtPath<EnemyTypeSO>($"{EditorPaths.Enemies}/Enemy_LightEaterBloom.asset");
+            bloom.hazard = AssetDatabase.LoadAssetAtPath<HazardSO>($"{EditorPaths.Hazards}/Hazard_LightEaterBloom.asset");
+            bloom.pickupPrefab = AssetDatabase.LoadAssetAtPath<WaxPickup>(PrefabFactory.PickupPath);
+            // the pale core gives off a little cold light: a lure in the dark forest
+            bloom.core = EditorAssets.PointLight(EditorAssets.Child(root, "Core", new Vector3(0f, 1f, 0f)), 1.6f, 0.4f, new Color(0.93f, 0.95f, 0.88f), false);
+            EditorAssets.SavePrefab(root, EnemyPath("LightEaterBloom"));
+        }
+
+        static void EnsureVine()
+        {
+            var root = new GameObject("Vine");
+            EditorAssets.SetLayer(root, Layers.Interactable);
+            var box = root.AddComponent<BoxCollider2D>();
+            box.isTrigger = true;
+            box.size = new Vector2(1.4f, 5f);
+            root.AddComponent<Vine>().promptOffset = new Vector2(0f, 1.4f);
+            EditorAssets.SavePrefab(root, WorldPath("Vine"));
         }
 
         static void EnsureCirelle()

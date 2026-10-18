@@ -1,0 +1,119 @@
+{
+ "sheet": "Enemy_Bloom",
+ "cell": [
+  32,
+  32
+ ],
+ "pivot": [
+  16,
+  2
+ ],
+ "frames": [
+  {
+   "name": "pulse_0",
+   "x": 0,
+   "y": 32,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "pulse_1",
+   "x": 32,
+   "y": 32,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "pulse_2",
+   "x": 64,
+   "y": 32,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "pulse_3",
+   "x": 96,
+   "y": 32,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "feed_0",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "feed_1",
+   "x": 32,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "feed_2",
+   "x": 64,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "feed_3",
+   "x": 96,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  }
+ ],
+ "clips": {
+  "pulse": [
+   "pulse_0",
+   "pulse_1",
+   "pulse_2",
+   "pulse_3"
+  ],
+  "feed": [
+   "feed_0",
+   "feed_1",
+   "feed_2",
+   "feed_3"
+  ]
+ },
+ "fps": {
+  "pulse": 4,
+  "feed": 10
+ },
+ "clipList": [
+  {
+   "name": "pulse",
+   "frames": [
+    "pulse_0",
+    "pulse_1",
+    "pulse_2",
+    "pulse_3"
+   ]
+  },
+  {
+   "name": "feed",
+   "frames": [
+    "feed_0",
+    "feed_1",
+    "feed_2",
+    "feed_3"
+   ]
+  }
+ ],
+ "fpsList": [
+  {
+   "name": "pulse",
+   "x": 4.0,
+   "y": 0.0
+  },
+  {
+   "name": "feed",
+   "x": 10.0,
+   "y": 0.0
+  }
+ ]
+}

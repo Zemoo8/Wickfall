@@ -29,6 +29,9 @@ namespace Wickfall.World
         readonly HashSet<string> busy = new HashSet<string>();
         float next;
 
+        /// <summary>Raised once a group's scene has finished loading, with the cells it covers.</summary>
+        public event Action<RectInt> GroupLoaded;
+
         public static RoomLoader Instance { get; private set; }
         public int LoadedCount => loaded.Count;
         public bool IsLoaded(string scene) => loaded.Contains(scene);
@@ -77,13 +80,13 @@ namespace Wickfall.World
                 float d = Distance(focus, g.cells);
                 bool isLoaded = loaded.Contains(g.scene);
                 if (!isLoaded && d <= loadDistance && !busy.Contains(g.scene))
-                    Load(g.scene);
+                    Load(g.scene, g.cells);
                 else if (isLoaded && d >= unloadDistance && !busy.Contains(g.scene))
                     Unload(g.scene);
             }
         }
 
-        void Load(string scene)
+        void Load(string scene, RectInt cells)
         {
             if (!Application.CanStreamedLevelBeLoaded(scene))
                 return;
@@ -91,6 +94,7 @@ namespace Wickfall.World
             if (existing.isLoaded)
             {
                 loaded.Add(scene);
+                GroupLoaded?.Invoke(cells);
                 return;
             }
             busy.Add(scene);
@@ -99,6 +103,7 @@ namespace Wickfall.World
             {
                 busy.Remove(scene);
                 loaded.Add(scene);
+                GroupLoaded?.Invoke(cells);
             };
         }
 

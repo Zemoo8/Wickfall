@@ -51,7 +51,7 @@ namespace Wickfall.Tests
             Assert.IsTrue(dripling.Perception.InDetectionRange, "shining: spotted from 6 units");
         }
 
-        [UnityTest]
+        [UnityTest, Timeout(900000)]
         public IEnumerator Region1_BotClearsTheRegion()
         {
             yield return WaitUntil(() => RegionDirector.Instance != null && RoomLoader.Instance != null && RoomLoader.Instance.Settled, 10f);

@@ -182,3 +182,10 @@ inscription.r1.1	Chaque coup reçu rétrécit ce que l'on voit.	Every blow you t
 inscription.r1.2	La terre gronde avant de cracher.	The ground rumbles before it spits.
 inscription.r1.3	Taille la mèche : moins de lumière, moins de regards.	Trim the wick: less light, fewer eyes.
 inscription.r1.4	La cloche ouvre la voie. Elle réveille aussi ce qui dort.	The bell opens the way. It also wakes what sleeps.
+# ---- region 2
+vine.locked	Les vignes-mèches glissent sous la cire. Il faudrait une prise.	The wick-vines slip under the wax. You would need a grip.
+inscription.r2.0	Sous la canopée, l'ombre vous cache.	Under the canopy, darkness hides you.
+inscription.r2.1	Les fleurs boivent la lumière.	The flowers drink the light.
+inscription.r2.2	Ce qui rôde ne bouge que si vous brillez.	What prowls only moves while you shine.
+inscription.r2.3	Seules les mains qui accrochent montent aux vignes.	Only gripping hands climb the vines.
+inscription.r2.4	Au-dessus des racines, la cloche attend.	Above the roots, the bell waits.

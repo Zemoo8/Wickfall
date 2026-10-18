@@ -54,6 +54,7 @@ namespace Wickfall.EditorTools
             EnsureVfx();
             EnsureFont();
             EnsureTiles("tallow");
+            EnsureTiles("wickwood");
             AssetDatabase.SaveAssets();
         }
 

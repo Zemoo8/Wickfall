@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8f5214f6544f54faf052e194f0f3ef, type: 3}
+  m_Name: canopy_anim
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.World.AnimatedTile
+  frames:
+  - {fileID: -1963051881, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: -724252042, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: -1223974311, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: -1138048733, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: -752340652, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: -1876423532, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: -1123766513, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: 1471945815, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: 653049188, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: 1832056717, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: -1944343592, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: 63648940, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: 1721948214, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: -1170806777, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: -370699150, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  - {fileID: -1894306657, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
+  fps: 2
+  randomStart: 1
+  collider: 0

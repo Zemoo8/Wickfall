@@ -344,6 +344,78 @@ def region_sheets(style: Style, out, face_detail=None, decor=None, specials=None
     return sheet.save(out)
 
 
+# ---- Region 2: Bois-Mèche (A22) ----------------------------------------------------------------
+
+WICKWOOD = Style(
+    "wickwood",
+    floor=["k1", "k2", "k2", "o0"],
+    floor_accents=[("o1", 0.03), ("k3", 0.02)],
+    top=["k1", "k2", "o0"],
+    top_rim=("o1", "k0"),
+    face=["k1", "o0", "o1"],
+    seed=2,
+)
+
+
+def wickwood_face_detail(cv, rnd, variant):
+    """Bark: vertical grain and a knot."""
+    for _ in range(4):
+        x = rnd.randrange(1, 15)
+        for y in range(5, 15):
+            if rnd.random() < 0.8:
+                cv.set(x, y, "k1")
+    kx, ky = rnd.randrange(4, 12), rnd.randrange(7, 12)
+    cv.set(kx, ky, "k0"); cv.set(kx + 1, ky, "o1"); cv.set(kx, ky + 1, "o1")
+
+
+def roots(variant):
+    cv = Canvas(16, 16)
+    rnd = random.Random(90 + variant)
+    x, y = rnd.randrange(0, 4), rnd.randrange(4, 12)
+    for _ in range(18):
+        cv.set(x, y, "o0" if rnd.random() < 0.7 else "o1")
+        x += 1
+        y += rnd.choice((-1, 0, 0, 1))
+        if not (0 <= x < 16 and 0 <= y < 16):
+            break
+    return cv
+
+
+def mushrooms(variant):
+    cv = Canvas(16, 16)
+    rnd = random.Random(120 + variant)
+    for _ in range(2 + variant):
+        x, y = rnd.randrange(3, 13), rnd.randrange(6, 14)
+        cv.set(x, y, "b1"); cv.set(x + 1, y, "b0"); cv.set(x, y + 1, "o1")
+    return cv
+
+
+def vine(part):
+    """Climbable wick-vine (1 x 3: top, middle, bottom), braided wick strands on the bark."""
+    cv = Canvas(16, 16)
+    for y in range(16):
+        for (x0, phase) in ((5, 0), (9, 2)):
+            x = x0 + (1 if (y + phase) % 4 < 2 else 0)
+            cv.set(x, y, "b2" if (y + phase) % 4 == 0 else "o2")
+            cv.set(x + 1, y, "o1")
+        if y % 5 == 2:
+            cv.set(7, y, "b1"); cv.set(8, y, "b1")
+    if part == "top":
+        for x in range(4, 12):
+            cv.set(x, 0, "o1")
+    cv.outline("k0")
+    return cv
+
+
+def build_wickwood(out):
+    return region_sheets(
+        WICKWOOD, out, wickwood_face_detail,
+        decor=[("roots", [roots(i) for i in range(3)]), ("mushrooms", [mushrooms(i) for i in range(2)])],
+        specials=[("vine_top", [vine("top")]),
+                  ("vine_mid", [vine("mid")]), ("vine_bottom", [vine("bottom")])],
+    )
+
+
 def build_tallow(out):
     return region_sheets(
         TALLOW, out, tallow_face_detail,

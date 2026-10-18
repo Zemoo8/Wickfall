@@ -42,6 +42,7 @@ namespace Wickfall.Player
         float attackPressedAt = -10f;
         float artPressedAt = -10f;
         float dodgePressedAt = -10f;
+        float interactPressedAt = -10f;
         Vector2 bufferedAim;
         bool bufferedHasAim;
         Vector2 desiredVelocity;
@@ -131,6 +132,7 @@ namespace Wickfall.Player
             if (intent.AttackPressed) { attackPressedAt = now; StoreAim(); }
             if (intent.ArtPressed) { artPressedAt = now; StoreAim(); }
             if (intent.DodgePressed) dodgePressedAt = now;
+            if (intent.InteractPressed) interactPressedAt = now;
 
             bool canTrim = !IsExtinguished && !IsInteracting && !ControlsLocked;
             Dim.Request(canTrim && intent.TrimHeld);
@@ -265,6 +267,10 @@ namespace Wickfall.Player
                 fsm.Change(dodgeState);
                 return true;
             }
+            // Interact is buffered like the other actions (pressed at the end of a swing, it still
+            // happens); when several are waiting, the most recent press wins.
+            if (InteractWaiting && interactPressedAt >= attackPressedAt && interactPressedAt >= artPressedAt)
+                return StartInteraction();
             if (Buffered(artPressedAt))
             {
                 artPressedAt = -10f;
@@ -285,19 +291,25 @@ namespace Wickfall.Player
                     return true;
                 }
             }
-            if (intent.InteractPressed && Interactor.Current != null)
-            {
-                var target = Interactor.Current;
-                Events.Play(SoundId.Interact, transform.position, 0.7f);
-                if (target.HoldsPlayer)
-                {
-                    interactState.Target = target;
-                    fsm.Change(interactState);
-                }
-                target.Interact(this);
-                return target.HoldsPlayer;
-            }
+            if (InteractWaiting)
+                return StartInteraction();
             return false;
+        }
+
+        bool InteractWaiting => Buffered(interactPressedAt) && Interactor.Current != null;
+
+        bool StartInteraction()
+        {
+            interactPressedAt = -10f;
+            var target = Interactor.Current;
+            Events.Play(SoundId.Interact, transform.position, 0.7f);
+            if (target.HoldsPlayer)
+            {
+                interactState.Target = target;
+                fsm.Change(interactState);
+            }
+            target.Interact(this);
+            return target.HoldsPlayer;
         }
 
         Vector2 AimDirection()

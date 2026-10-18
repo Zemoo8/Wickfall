@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1554186270237131713}
   - component: {fileID: 8961572990892589396}
   - component: {fileID: 525406414308035962}
-  - component: {fileID: 3314849479309554921}
+  - component: {fileID: 8902408939028252113}
   m_Layer: 0
   m_Name: ArtBolt
   m_TagString: Untagged
@@ -126,7 +126,7 @@ MonoBehaviour:
   spin: 0
   impactVfx: {fileID: 5944283181971091327, guid: bab7be1e080d8da47a00e0a2ae510209, type: 3}
   glow: {fileID: 8754391767123866250}
---- !u!114 &3314849479309554921
+--- !u!114 &8902408939028252113
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 661852884108310433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3562107d62f7edf4396ce96073c04234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.PooledObject
 --- !u!1 &6592024402308850764

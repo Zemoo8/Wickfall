@@ -27,6 +27,7 @@ namespace Wickfall.EditorTools
         public static void EnsureAll()
         {
             Build(RegionId.TallowFields, "tallow");
+            Build(RegionId.Wickwood, "wickwood");
         }
 
         public static void Build(RegionId region, string tileKey)
@@ -40,6 +41,7 @@ namespace Wickfall.EditorTools
             }
             var level = LevelData.Parse(levelAsset.text);
             var tiles = AssetDatabase.LoadAssetAtPath<RegionTiles>($"Assets/Data/Tiles/{tileKey}/RegionTiles_{tileKey}.asset");
+            LevelBuilder.WallLikeChars = new HashSet<char>(level.Legend.Where(p => LevelData.WallKinds.Contains(p.Value)).Select(p => p.Key));
             var data = Db.Region(region);
             EditorPaths.EnsureFolder(Folder(region));
             string key = PdfTables.RegionKey(region);
@@ -65,6 +67,8 @@ namespace Wickfall.EditorTools
             var startGo = new GameObject("PlayerStart");
             startGo.transform.position = LevelData.CellCenter(start.cell);
             profile.playerStart = startGo.transform;
+
+            BuildCanopyLayer(region, level);
 
             var loader = new GameObject("RoomLoader").AddComponent<RoomLoader>();
             loader.groups = level.Groups.Select(g => new RoomLoader.RoomGroup { scene = GroupScene(region, g.Name), cells = g.Cells }).ToArray();
@@ -143,12 +147,16 @@ namespace Wickfall.EditorTools
                             break;
                         }
                         case "SwarmNest":
+                        case "SwarmNestHusk":
+                        case "SwarmNestLurker":
                         {
-                            var nest = Place(WorldPrefabs.WorldPath("SwarmNest"), c, entities).GetComponent<SwarmNest>();
+                            var nest = Place(WorldPrefabs.WorldPath(kind), c, entities).GetComponent<SwarmNest>();
                             nest.gateId = key;
                             nest.id = id;
                             break;
                         }
+                        case "Vine":
+                            break; // built per vertical run by BuildVines
                         case "DarkZone":
                             darkCells.Add(c);
                             break;
@@ -164,6 +172,8 @@ namespace Wickfall.EditorTools
                                 var go = Place(path, c, entities);
                                 if (go.TryGetComponent(out EnemyBrain brain))
                                     brain.entityId = id;
+                                if (go.TryGetComponent(out LightEaterBloom bloom))
+                                    bloom.entityId = id;
                             }
                             else
                             {
@@ -186,9 +196,123 @@ namespace Wickfall.EditorTools
                 }
                 if (darkCells.Count > 0)
                     SceneFactoryDark(entities, darkCells);
+                BuildVines(level, tiles, group.Cells, built, entities);
+                BuildCanopyShade(level, group.Cells, entities);
                 EditorSceneManager.SaveScene(gscene, groupPath);
             }
+            LevelBuilder.WallLikeChars = new HashSet<char>();
             Debug.Log($"[WICKFALL Setup] Built region {region}: {level.Groups.Count} room groups.");
+        }
+
+        /// <summary>Each vertical run of Vine cells is one climbable vine: overlay tiles + a Vine at its foot.</summary>
+        static void BuildVines(LevelData level, RegionTiles tiles, RectInt groupCells, LevelBuilder.Result built, GameObject parent)
+        {
+            var vineCells = level.Entities().Where(e => e.kind == "Vine").Select(e => e.cell).ToHashSet();
+            if (vineCells.Count == 0)
+                return;
+            var top = tiles.Special("vine_top").tile;
+            var mid = tiles.Special("vine_mid").tile;
+            var bottom = tiles.Special("vine_bottom").tile;
+
+            // The vines draw over the wall faces, on their own tilemap.
+            var overlay = new GameObject("Vines");
+            overlay.transform.SetParent(built.Root.transform, false);
+            var map = overlay.AddComponent<UnityEngine.Tilemaps.Tilemap>();
+            var mapRenderer = overlay.AddComponent<UnityEngine.Tilemaps.TilemapRenderer>();
+            mapRenderer.sortingLayerName = Layers.SortEntities;
+            mapRenderer.sortingOrder = 50;
+            mapRenderer.sharedMaterial = EditorAssets.LitDefault;
+
+            foreach (var cell in vineCells)
+            {
+                if (vineCells.Contains(cell + Vector2Int.up))
+                    continue; // only start from the top cell of each run
+                int length = 1;
+                while (vineCells.Contains(cell + Vector2Int.down * length))
+                    length++;
+                var foot = cell + Vector2Int.down * (length - 1);
+                if (!groupCells.Contains(foot))
+                    continue;
+                for (int i = 0; i < length; i++)
+                {
+                    var c = cell + Vector2Int.down * i;
+                    map.SetTile(new Vector3Int(c.x, c.y, 0), i == 0 ? top : i == length - 1 ? bottom : mid);
+                }
+                var go = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(WorldPrefabs.WorldPath("Vine")), parent.scene);
+                go.transform.SetParent(parent.transform, true);
+                go.transform.position = LevelData.CellCenter(foot) + Vector2.down;
+                var vine = go.GetComponent<Vine>();
+                vine.bottom = LevelData.CellCenter(foot + Vector2Int.down);
+                vine.top = LevelData.CellCenter(cell + Vector2Int.up);
+                var trigger = go.GetComponent<BoxCollider2D>();
+                trigger.size = new Vector2(1.4f, length + 2.4f);
+                trigger.offset = new Vector2(0f, (length + 1) * 0.5f);
+            }
+        }
+
+        /// <summary>The canopy's leaf image (rendered by Tools/levels from the @canopy layer), over the whole map.</summary>
+        static void BuildCanopyLayer(RegionId region, LevelData level)
+        {
+            string path = $"Assets/Art/Levels/{SceneNames.RegionBase(region)}_Canopy.png";
+            if (!File.Exists(path))
+                return;
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate); // the image is regenerated with the level
+            var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+            if (sprite == null || level.Canopy.Length == 0)
+                return;
+            var go = new GameObject("Canopy");
+            go.transform.position = new Vector3(level.Width / 2f, level.Height / 2f, 0f);
+            var sr = EditorAssets.Sprite(go, sprite, EditorAssets.Lit, Layers.SortOverhead);
+            var canopy = go.AddComponent<Canopy>();
+            canopy.leaves = sr;
+            canopy.rows = level.Canopy;
+            canopy.levelHeight = level.Height;
+        }
+
+        /// <summary>
+        /// Under the canopy (PDF §2.2): a shade (subtractive "negative" light) and a dark zone (detection
+        /// halved, PDF §2.3) per horizontal run of canopy cells in the group.
+        /// </summary>
+        static void BuildCanopyShade(LevelData level, RectInt groupCells, GameObject parent)
+        {
+            var cells = new List<Vector2Int>();
+            for (int y = groupCells.yMin; y < groupCells.yMax; y++)
+                for (int x = groupCells.xMin; x < groupCells.xMax; x++)
+                    if (level.HasCanopy(x, y) && level.IsWalkable(x, y))
+                        cells.Add(new Vector2Int(x, y));
+            if (cells.Count == 0)
+                return;
+
+            // shade and hiding per horizontal run
+            foreach (var row in cells.GroupBy(c => c.y))
+            {
+                var xs = row.Select(c => c.x).OrderBy(x => x).ToList();
+                int start = 0;
+                for (int i = 1; i <= xs.Count; i++)
+                {
+                    if (i < xs.Count && xs[i] == xs[i - 1] + 1)
+                        continue;
+                    float x0 = xs[start], x1 = xs[i - 1] + 1;
+                    var run = new GameObject("CanopyShade");
+                    run.transform.SetParent(parent.transform, true);
+                    run.transform.position = new Vector2((x0 + x1) / 2f, row.Key + 0.5f);
+                    EditorAssets.SetLayer(run, Layers.Zone);
+                    var box = run.AddComponent<BoxCollider2D>();
+                    box.isTrigger = true;
+                    box.size = new Vector2(x1 - x0, 1f);
+                    run.AddComponent<DarkZone>();
+                    var shade = run.AddComponent<Light2D>();
+                    shade.lightType = Light2D.LightType.Freeform;
+                    float hw = (x1 - x0) / 2f;
+                    shade.SetShapePath(new[] { new Vector3(-hw, -0.5f), new Vector3(hw, -0.5f), new Vector3(hw, 0.5f), new Vector3(-hw, 0.5f) });
+                    shade.blendStyleIndex = WickfallSetup.NegativeBlendStyle;
+                    shade.intensity = 0.05f;
+                    shade.falloffIntensity = 0.5f;
+                    // the leaves are above the shade: only what lies beneath the canopy is darkened
+                    shade.targetSortingLayers = EditorAssets.AllSortingLayers().Where(id => id != SortingLayer.NameToID(Layers.SortOverhead)).ToArray();
+                    start = i;
+                }
+            }
         }
 
         static void SceneFactoryDark(GameObject parent, List<Vector2> cells)

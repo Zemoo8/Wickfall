@@ -28,6 +28,7 @@ namespace Wickfall.DevTools
         float stepTime;
         float actedAt;
         bool interacted;
+        Interactable interactedWith;
         readonly Vector2[] path = new Vector2[256];
         int pathCount, pathIndex;
         Vector2 pathTarget;
@@ -85,7 +86,8 @@ namespace Wickfall.DevTools
         void Fail(string reason)
         {
             Failed = true;
-            FailReason = $"step {step} '{CurrentStep}': {reason}";
+            var cell = LevelData.CellOf(player.transform.position);
+            FailReason = $"step {step} '{CurrentStep}': {reason} (at text {cell.x} {level.Height - 1 - cell.y}, state {player.StateName})";
             input.Move = Vector2.zero;
             Debug.LogWarning("[WICKFALL Bot] " + FailReason);
         }
@@ -158,7 +160,8 @@ namespace Wickfall.DevTools
                 case "take":
                 case "ring":
                 case "drink":
-                    if (Interact(target, command == "drink" ? 2.2f : 0.6f))
+                case "climb":
+                    if (Interact(target, command == "drink" ? 2.2f : command == "climb" ? 2.6f : 0.6f, command == "take" || command == "ring"))
                     {
                         if (command == "rest")
                             resumeStep = step + 1;
@@ -176,7 +179,8 @@ namespace Wickfall.DevTools
             }
         }
 
-        bool Interact(Vector2 target, float wait)
+        /// <param name="oneShot">The target can only be used once: if it still can be after the wait, the press was lost; press again.</param>
+        bool Interact(Vector2 target, float wait, bool oneShot = false)
         {
             if (!interacted)
             {
@@ -192,10 +196,18 @@ namespace Wickfall.DevTools
                 }
                 input.PressInteract();
                 interacted = true;
+                interactedWith = current;
                 actedAt = Time.time;
                 return false;
             }
-            return Time.time - actedAt >= wait;
+            if (Time.time - actedAt < wait)
+                return false;
+            if (oneShot && interactedWith != null && interactedWith.CanInteract(player))
+            {
+                interacted = false;
+                return false;
+            }
+            return true;
         }
 
         bool MoveTo(Vector2 target, float tolerance)

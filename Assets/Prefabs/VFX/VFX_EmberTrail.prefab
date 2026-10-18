@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8257176732882596936}
   - component: {fileID: 6103364909890399381}
   - component: {fileID: 2726067494671907639}
-  - component: {fileID: 4449857397462790222}
+  - component: {fileID: 2346157786027126642}
   m_Layer: 0
   m_Name: VFX_EmberTrail
   m_TagString: Untagged
@@ -121,7 +121,7 @@ MonoBehaviour:
   flashIntensity: 1.2
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &4449857397462790222
+--- !u!114 &2346157786027126642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,6 +130,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2977120512714587769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3562107d62f7edf4396ce96073c04234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.PooledObject

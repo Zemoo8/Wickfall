@@ -51,6 +51,12 @@ namespace Wickfall.EditorTools
             (15, 9, "relic"), (95, 15, "brazier2"), (111, 33, "bell"),
         });
 
+        public static void CaptureRegion2() => CaptureRegion(RegionId.Wickwood, new[]
+        {
+            (14, 62, "start"), (50, 60, "blooms"), (84, 58, "husks"), (54, 46, "lurkers"), (17, 44, "relic"),
+            (84, 37, "vine"), (92, 25, "north"), (110, 22, "shrine"), (41, 14, "bell"),
+        });
+
         public static void CaptureRegion(RegionId region, (int x, int y, string name)[] shots)
         {
             var core = EditorSceneManager.OpenScene(SceneFactory.PathOf(SceneNames.Core), OpenSceneMode.Single);
@@ -82,6 +88,8 @@ namespace Wickfall.EditorTools
 
         public static void Shoot(Camera cam, Vector2 center, float orthoSize, string name, int width = 960, int height = 540)
         {
+            foreach (var canopy in Object.FindObjectsByType<Wickfall.Lighting.Canopy>(FindObjectsSortMode.None))
+                canopy.Snap(center);
             Directory.CreateDirectory(Output);
             var pixel = cam.GetComponent<PixelPerfectCamera>();
             bool pixelWasOn = pixel != null && pixel.enabled;

@@ -42,8 +42,11 @@ namespace Wickfall.EditorTools
             settings.spriteGenerateFallbackPhysicsShape = false;
             importer.SetTextureSettings(settings);
 
-            if (File.Exists(Path.ChangeExtension(assetPath, ".json")))
-                importer.spriteImportMode = SpriteImportMode.Multiple;
+            // A JSON beside the image means a sliced sheet; anything else is one sprite (never let the
+            // importer auto-slice a large image into islands).
+            importer.spriteImportMode = File.Exists(Path.ChangeExtension(assetPath, ".json"))
+                ? SpriteImportMode.Multiple
+                : SpriteImportMode.Single;
         }
     }
 

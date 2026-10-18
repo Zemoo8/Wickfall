@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6816501824570180414}
   - component: {fileID: 6713099477533927999}
   - component: {fileID: 5938090324902624240}
-  - component: {fileID: 5493977498917530560}
+  - component: {fileID: 5506299794311017325}
   m_Layer: 0
   m_Name: VFX_Flare
   m_TagString: Untagged
@@ -206,7 +206,7 @@ MonoBehaviour:
   flashIntensity: 1.1
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &5493977498917530560
+--- !u!114 &5506299794311017325
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,6 +215,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3905879676304821390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3562107d62f7edf4396ce96073c04234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.PooledObject

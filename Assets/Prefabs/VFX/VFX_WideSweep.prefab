@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 674988964845339877}
   - component: {fileID: 3707177400664416063}
   - component: {fileID: 3208056554028722793}
-  - component: {fileID: 4643945185252682337}
+  - component: {fileID: 6422750989566463075}
   m_Layer: 0
   m_Name: VFX_WideSweep
   m_TagString: Untagged
@@ -206,7 +206,7 @@ MonoBehaviour:
   flashIntensity: 1.1
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &4643945185252682337
+--- !u!114 &6422750989566463075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,6 +215,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 820655178183580359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3562107d62f7edf4396ce96073c04234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.PooledObject

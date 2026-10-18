@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3622943787491196228}
   - component: {fileID: 9068876699938565295}
   - component: {fileID: 5416003885919384106}
-  - component: {fileID: 3565968648689003504}
+  - component: {fileID: 2892723064631851674}
   m_Layer: 0
   m_Name: VFX_DustPuff
   m_TagString: Untagged
@@ -119,7 +119,7 @@ MonoBehaviour:
   flashIntensity: 1.2
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &3565968648689003504
+--- !u!114 &2892723064631851674
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,6 +128,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 4672874847699195557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3562107d62f7edf4396ce96073c04234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.PooledObject

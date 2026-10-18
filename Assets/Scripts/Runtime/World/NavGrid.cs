@@ -72,6 +72,39 @@ namespace Wickfall.World
                 walkable[cell.y * width + cell.x] = value;
         }
 
+        static readonly Collider2D[] PropBuffer = new Collider2D[8];
+
+        /// <summary>
+        /// Marks walkable cells in `cells` unwalkable where a solid (non-trigger) collider on `mask` stands
+        /// in the cell's middle. Gates are skipped: they open and close their cells themselves.
+        /// </summary>
+        public int BlockSolidProps(RectInt cells, int mask)
+        {
+            int blockedCount = 0;
+            var size = new Vector2(0.6f, 0.6f);
+            var filter = new ContactFilter2D { useTriggers = false, useLayerMask = true, layerMask = mask };
+            for (int y = Mathf.Max(0, cells.yMin); y < Mathf.Min(height, cells.yMax); y++)
+            {
+                for (int x = Mathf.Max(0, cells.xMin); x < Mathf.Min(width, cells.xMax); x++)
+                {
+                    if (!walkable[y * width + x])
+                        continue;
+                    int count = Physics2D.OverlapBox(new Vector2(x + 0.5f, y + 0.5f), size, 0f, filter, PropBuffer);
+                    for (int i = 0; i < count; i++)
+                    {
+                        var c = PropBuffer[i];
+                        PropBuffer[i] = null;
+                        if (c == null || c.isTrigger || c.GetComponentInParent<Gate>() != null || c.GetComponent<CompositeCollider2D>() != null)
+                            continue;
+                        walkable[y * width + x] = false;
+                        blockedCount++;
+                        break;
+                    }
+                }
+            }
+            return blockedCount;
+        }
+
         /// <summary>The walkable cell nearest to a point (searching outwards a few rings).</summary>
         public bool TryNearestWalkable(Vector2 world, out Vector2Int cell, int maxRing = 4)
         {

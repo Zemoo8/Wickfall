@@ -32,5 +32,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Regions/R1/R1_TallowFields_West.unity
     guid: 501aa230ce7ecd842a72a24dd60522c6
+  - enabled: 1
+    path: Assets/Scenes/Regions/R2/R2_Wickwood.unity
+    guid: cb21bbe0f73c65f49bcf550a4794cd72
+  - enabled: 1
+    path: Assets/Scenes/Regions/R2/R2_Wickwood_Grove.unity
+    guid: ddd9be44d1c71f14c9f89466a65748ab
+  - enabled: 1
+    path: Assets/Scenes/Regions/R2/R2_Wickwood_SouthEast.unity
+    guid: 071eee66fe13a1e4eaf38af1ec1e23d2
+  - enabled: 1
+    path: Assets/Scenes/Regions/R2/R2_Wickwood_SouthWest.unity
+    guid: 9c9d23b6c8aa90649a27ec42f1d23597
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

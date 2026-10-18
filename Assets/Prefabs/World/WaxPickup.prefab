@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2510433005405388470}
   - component: {fileID: 1007929032530445985}
-  - component: {fileID: 4459639474129087163}
+  - component: {fileID: 4797551105445695270}
   m_Layer: 0
   m_Name: WaxPickup
   m_TagString: Untagged
@@ -49,7 +49,7 @@ MonoBehaviour:
   sprite: {fileID: 876425734534031038}
   wax: 3
   shards: 0
---- !u!114 &4459639474129087163
+--- !u!114 &4797551105445695270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1723962900285736310}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3562107d62f7edf4396ce96073c04234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.PooledObject
 --- !u!1 &3605901105803854301

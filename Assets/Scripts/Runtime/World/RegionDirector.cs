@@ -33,11 +33,36 @@ namespace Wickfall.World
             }
         }
 
+        void Start()
+        {
+            if (RoomLoader.Instance != null)
+                RoomLoader.Instance.GroupLoaded += OnGroupLoaded;
+        }
+
         void OnDestroy()
         {
+            if (RoomLoader.Instance != null)
+                RoomLoader.Instance.GroupLoaded -= OnGroupLoaded;
             if (Instance == this)
                 Instance = null;
             Nav?.Clear();
+        }
+
+        void OnGroupLoaded(RectInt cells)
+        {
+            if (Nav != null && isActiveAndEnabled)
+                StartCoroutine(BlockPropsNextFrame(cells));
+        }
+
+        /// <summary>
+        /// Props with solid bodies (bell posts, braziers, inscriptions, machines...) make the cells they
+        /// stand in unwalkable, so bots and creatures path around them instead of into them.
+        /// </summary>
+        IEnumerator BlockPropsNextFrame(RectInt cells)
+        {
+            yield return null; // the group's objects have run Awake/OnEnable and are in the physics scene
+            Physics2D.SyncTransforms();
+            Nav.BlockSolidProps(cells, LayerMask.GetMask(Layers.Wall)); // not Breakable: broken props free their cell
         }
 
         /// <summary>Called by the exit: score, save, then on to the next region.</summary>

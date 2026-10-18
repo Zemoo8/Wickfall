@@ -31,15 +31,18 @@ namespace Wickfall.EditorTools
             public Vector2Int Origin;
         }
 
+        /// <summary>Extra symbols drawn and collided as wall (set by the region factory from the legend, e.g. vines).</summary>
+        public static HashSet<char> WallLikeChars = new HashSet<char>();
+
         public static bool IsWall(string[] rows, int x, int y)
         {
             if (y < 0 || y >= rows.Length || x < 0 || x >= rows[y].Length)
                 return true;
-            return rows[y][x] == '#';
+            char c = rows[y][x];
+            return c == '#' || WallLikeChars.Contains(c);
         }
 
-        /// <summary>No symbol other than '#' is drawn as wall (gates are their own objects).</summary>
-        static bool IsSolidWallSymbol(char c) => false;
+        static bool IsSolidWallSymbol(char c) => WallLikeChars.Contains(c);
 
         public static bool IsVoid(string[] rows, int x, int y) =>
             y >= 0 && y < rows.Length && x >= 0 && x < rows[y].Length && rows[y][x] == ' ';

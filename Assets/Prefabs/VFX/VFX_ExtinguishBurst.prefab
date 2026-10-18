@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4531838521514426440}
   - component: {fileID: 87364830558282452}
   - component: {fileID: 2857852863368243316}
-  - component: {fileID: 2278934620292354820}
+  - component: {fileID: 635365867787547118}
   m_Layer: 0
   m_Name: VFX_ExtinguishBurst
   m_TagString: Untagged
@@ -206,7 +206,7 @@ MonoBehaviour:
   flashIntensity: 1.1
   drift: {x: 0, y: 0}
   fadeOut: 1
---- !u!114 &2278934620292354820
+--- !u!114 &635365867787547118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,6 +215,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2744979950408974077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 3562107d62f7edf4396ce96073c04234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.PooledObject

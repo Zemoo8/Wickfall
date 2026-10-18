@@ -84,6 +84,7 @@ def tiles():
     folder = os.path.join(OUT, "Tiles")
     img = tile_art.build_tallow(folder)
     contact("tiles_tallow", img, 4)
+    contact("tiles_wickwood", tile_art.build_wickwood(folder), 4)
     room = tile_art.render_map(tile_art.TALLOW, tile_art.TEST_ROOM, tile_art.tallow_face_detail,
                                [tile_art.wax_grass(0, 0), tile_art.wax_grass(0, 1), tile_art.wax_cracks(0)])
     contact("tiles_tallow_room", room, 3)

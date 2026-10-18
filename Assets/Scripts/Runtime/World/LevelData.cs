@@ -20,6 +20,8 @@ namespace Wickfall.World
         }
 
         public string[] Rows = new string[0];
+        /// <summary>Optional overhead layer, same size as the map: 'c' = canopy above this cell.</summary>
+        public string[] Canopy = new string[0];
         public int Width;
         public int Height;
         public readonly Dictionary<char, string> Legend = new Dictionary<char, string>();
@@ -31,6 +33,7 @@ namespace Wickfall.World
         {
             var data = new LevelData();
             var rows = new List<string>();
+            var canopy = new List<string>();
             string section = "";
             foreach (var raw in text.Split('\n'))
             {
@@ -40,12 +43,15 @@ namespace Wickfall.World
                     section = line.Trim().Substring(1);
                     continue;
                 }
-                if (section != "map" && (line.TrimStart().StartsWith("#") || line.Trim().Length == 0))
+                if (section != "map" && section != "canopy" && (line.TrimStart().StartsWith("#") || line.Trim().Length == 0))
                     continue;
                 switch (section)
                 {
                     case "map":
                         rows.Add(line);
+                        break;
+                    case "canopy":
+                        canopy.Add(line);
                         break;
                     case "legend":
                     {
@@ -89,7 +95,18 @@ namespace Wickfall.World
             for (int i = 0; i < rows.Count; i++)
                 rows[i] = rows[i].PadRight(data.Width, ' ');
             data.Rows = rows.ToArray();
+            while (canopy.Count > data.Height)
+                canopy.RemoveAt(canopy.Count - 1);
+            for (int i = 0; i < canopy.Count; i++)
+                canopy[i] = canopy[i].PadRight(data.Width, ' ');
+            data.Canopy = canopy.ToArray();
             return data;
+        }
+
+        public bool HasCanopy(int cellX, int cellY)
+        {
+            int row = Height - 1 - cellY;
+            return row >= 0 && row < Canopy.Length && cellX >= 0 && cellX < Width && Canopy[row][cellX] == 'c';
         }
 
         /// <summary>Character at a world cell (' ' outside the map).</summary>
@@ -113,8 +130,24 @@ namespace Wickfall.World
             return !Legend.TryGetValue(c, out string kind) || !SolidKinds.Contains(kind);
         }
 
-        /// <summary>Entity kinds that block movement (navigation treats their cell as a wall).</summary>
-        public static readonly HashSet<string> SolidKinds = new HashSet<string> { "BrokenWick", "Pillar", "Pedestal", "Statue" };
+        /// <summary>
+        /// Entity kinds that block movement (navigation treats their cell as a wall). Every prefab with a
+        /// solid body belongs here, or bots and creatures path straight into it.
+        /// </summary>
+        public static readonly HashSet<string> SolidKinds = new HashSet<string>
+        {
+            "BrokenWick", "Solid", "Pillar", "Pedestal", "Statue", "Vine", "Furnace", "Mirror", "Emitter", "Foyer",
+            "Brazier", "Inscription", "FlameShrine", "LightEaterBloom",
+        };
+
+        /// <summary>Kinds drawn and collided as wall (a vine is a cliff face with wick-vines on it).</summary>
+        public static readonly HashSet<string> WallKinds = new HashSet<string> { "Vine" };
+
+        public bool IsWallLike(int cellX, int cellY)
+        {
+            char c = At(cellX, cellY);
+            return c == '#' || (Legend.TryGetValue(c, out string kind) && WallKinds.Contains(kind));
+        }
 
         public string KindAt(int cellX, int cellY) => Legend.TryGetValue(At(cellX, cellY), out string kind) ? kind : null;
 
