@@ -16,7 +16,7 @@ A 2D top-down action-RPG in pixel art, Unity 6000.2.7f2, URP 2D, Windows 64-bit 
 
 ## The user
 First-year student; the professor reviews in 8 stages and works in French. Short, plain English
-replies (status, done, needs, next). Talking points in French. Code and docs in English.
+replies (status, done, needs, next). Code and docs in English. What to say to the teacher: English, short (user, 2026-10-18); `Docs/HOW_IT_WORKS.md` stays one short page.
 The user said (2026-10-17): don't ask, take the recommended option, they review afterwards.
 Never spend money/credits, never push, never delete their work without asking.
 
