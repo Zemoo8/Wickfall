@@ -1,0 +1,33 @@
+{
+ "sheet": "Prop_Effigy",
+ "cell": [
+  24,
+  32
+ ],
+ "pivot": [
+  12,
+  1
+ ],
+ "frames": [
+  {
+   "name": "effigy_0",
+   "x": 0,
+   "y": 0,
+   "w": 24,
+   "h": 32
+  }
+ ],
+ "clips": {
+  "effigy": [
+   "effigy_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "effigy",
+   "frames": [
+    "effigy_0"
+   ]
+  }
+ ]
+}

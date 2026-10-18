@@ -1,0 +1,137 @@
+{
+ "sheet": "Player_Flame",
+ "cell": [
+  16,
+  20
+ ],
+ "pivot": [
+  8,
+  0
+ ],
+ "frames": [
+  {
+   "name": "flame_0",
+   "x": 0,
+   "y": 20,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_1",
+   "x": 16,
+   "y": 20,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_2",
+   "x": 32,
+   "y": 20,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_3",
+   "x": 48,
+   "y": 20,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_4",
+   "x": 64,
+   "y": 20,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_5",
+   "x": 80,
+   "y": 20,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_dim_0",
+   "x": 0,
+   "y": 0,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_dim_1",
+   "x": 16,
+   "y": 0,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_dim_2",
+   "x": 32,
+   "y": 0,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_dim_3",
+   "x": 48,
+   "y": 0,
+   "w": 16,
+   "h": 20
+  }
+ ],
+ "clips": {
+  "flame": [
+   "flame_0",
+   "flame_1",
+   "flame_2",
+   "flame_3",
+   "flame_4",
+   "flame_5"
+  ],
+  "flame_dim": [
+   "flame_dim_0",
+   "flame_dim_1",
+   "flame_dim_2",
+   "flame_dim_3"
+  ]
+ },
+ "fps": {
+  "flame": 12,
+  "flame_dim": 8
+ },
+ "clipList": [
+  {
+   "name": "flame",
+   "frames": [
+    "flame_0",
+    "flame_1",
+    "flame_2",
+    "flame_3",
+    "flame_4",
+    "flame_5"
+   ]
+  },
+  {
+   "name": "flame_dim",
+   "frames": [
+    "flame_dim_0",
+    "flame_dim_1",
+    "flame_dim_2",
+    "flame_dim_3"
+   ]
+  }
+ ],
+ "fpsList": [
+  {
+   "name": "flame",
+   "x": 12.0,
+   "y": 0.0
+  },
+  {
+   "name": "flame_dim",
+   "x": 8.0,
+   "y": 0.0
+  }
+ ]
+}

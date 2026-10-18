@@ -1,0 +1,52 @@
+{
+ "sheet": "VFX_AlertMark",
+ "cell": [
+  8,
+  12
+ ],
+ "pivot": [
+  4,
+  0
+ ],
+ "frames": [
+  {
+   "name": "fx_0",
+   "x": 0,
+   "y": 0,
+   "w": 8,
+   "h": 12
+  },
+  {
+   "name": "fx_1",
+   "x": 8,
+   "y": 0,
+   "w": 8,
+   "h": 12
+  }
+ ],
+ "clips": {
+  "fx": [
+   "fx_0",
+   "fx_1"
+  ]
+ },
+ "fps": {
+  "fx": 6
+ },
+ "clipList": [
+  {
+   "name": "fx",
+   "frames": [
+    "fx_0",
+    "fx_1"
+   ]
+  }
+ ],
+ "fpsList": [
+  {
+   "name": "fx",
+   "x": 6.0,
+   "y": 0.0
+  }
+ ]
+}

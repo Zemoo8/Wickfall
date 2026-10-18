@@ -1,0 +1,78 @@
+{
+ "sheet": "HUD_FlameIcons",
+ "cell": [
+  16,
+  16
+ ],
+ "pivot": [
+  8,
+  8
+ ],
+ "frames": [
+  {
+   "name": "icon_0",
+   "x": 0,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "icon_1",
+   "x": 16,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "icon_2",
+   "x": 32,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "icon_3",
+   "x": 48,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "icon_4",
+   "x": 64,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "icon_5",
+   "x": 80,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  }
+ ],
+ "clips": {
+  "icon": [
+   "icon_0",
+   "icon_1",
+   "icon_2",
+   "icon_3",
+   "icon_4",
+   "icon_5"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "icon",
+   "frames": [
+    "icon_0",
+    "icon_1",
+    "icon_2",
+    "icon_3",
+    "icon_4",
+    "icon_5"
+   ]
+  }
+ ]
+}

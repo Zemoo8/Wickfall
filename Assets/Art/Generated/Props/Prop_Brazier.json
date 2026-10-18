@@ -1,0 +1,85 @@
+{
+ "sheet": "Prop_Brazier",
+ "cell": [
+  32,
+  32
+ ],
+ "pivot": [
+  16,
+  2
+ ],
+ "frames": [
+  {
+   "name": "bowl_0",
+   "x": 0,
+   "y": 32,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "bowl_1",
+   "x": 32,
+   "y": 32,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "fire_0",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "fire_1",
+   "x": 32,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "fire_2",
+   "x": 64,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "fire_3",
+   "x": 96,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  }
+ ],
+ "clips": {
+  "bowl": [
+   "bowl_0",
+   "bowl_1"
+  ],
+  "fire": [
+   "fire_0",
+   "fire_1",
+   "fire_2",
+   "fire_3"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "bowl",
+   "frames": [
+    "bowl_0",
+    "bowl_1"
+   ]
+  },
+  {
+   "name": "fire",
+   "frames": [
+    "fire_0",
+    "fire_1",
+    "fire_2",
+    "fire_3"
+   ]
+  }
+ ]
+}

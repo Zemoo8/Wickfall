@@ -23,6 +23,8 @@ namespace Wickfall
 
         [Header("Flames and combat")]
         public FlameEventChannel flameSwitched;
+        [Tooltip("Flame wheel: -2 closed, -1 open with nothing selected, 0..4 the highlighted slot.")]
+        public IntEventChannel flameWheel;
         public FlareEventChannel flare;
         public PlayerActionEventChannel playerActed;
         public DodgeEventChannel dodgeChanged;
@@ -51,6 +53,9 @@ namespace Wickfall
         public FeedbackEventChannel feedback;
         public BoolEventChannel gamePaused;
         public VoidEventChannel languageChanged;
+        public VoidEventChannel settingsChanged;
+        [Tooltip("A content scene finished loading (menu, region, showcase).")]
+        public VoidEventChannel sceneReady;
 
         /// <summary>Every channel field, in declaration order (editor setup, dev overlay, tests).</summary>
         public static IEnumerable<FieldInfo> ChannelFields()
@@ -132,6 +137,7 @@ namespace Wickfall
         public static VoidEventChannel PlayerExtinguished => Hub.playerExtinguished;
         public static VoidEventChannel PlayerRespawned => Hub.playerRespawned;
         public static FlameEventChannel FlameSwitched => Hub.flameSwitched;
+        public static IntEventChannel FlameWheel => Hub.flameWheel;
         public static FlareEventChannel Flare => Hub.flare;
         public static PlayerActionEventChannel PlayerActed => Hub.playerActed;
         public static DodgeEventChannel DodgeChanged => Hub.dodgeChanged;
@@ -154,6 +160,8 @@ namespace Wickfall
         public static FeedbackEventChannel Feedback => Hub.feedback;
         public static BoolEventChannel GamePaused => Hub.gamePaused;
         public static VoidEventChannel LanguageChanged => Hub.languageChanged;
+        public static VoidEventChannel SettingsChanged => Hub.settingsChanged;
+        public static VoidEventChannel SceneReady => Hub.sceneReady;
 
         // Shorthands for the most common sends.
         public static void Play(SoundId id, Vector2 position, float volume = 1f, float pitch = 1f) =>

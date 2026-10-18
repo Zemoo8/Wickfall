@@ -1,0 +1,33 @@
+{
+ "sheet": "Prop_WaxDrop",
+ "cell": [
+  8,
+  6
+ ],
+ "pivot": [
+  4,
+  3
+ ],
+ "frames": [
+  {
+   "name": "drop_0",
+   "x": 0,
+   "y": 0,
+   "w": 8,
+   "h": 6
+  }
+ ],
+ "clips": {
+  "drop": [
+   "drop_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "drop",
+   "frames": [
+    "drop_0"
+   ]
+  }
+ ]
+}

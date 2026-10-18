@@ -1,0 +1,42 @@
+{
+ "sheet": "Prop_WaxPool",
+ "cell": [
+  32,
+  32
+ ],
+ "pivot": [
+  16,
+  10
+ ],
+ "frames": [
+  {
+   "name": "pool_0",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "pool_1",
+   "x": 32,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  }
+ ],
+ "clips": {
+  "pool": [
+   "pool_0",
+   "pool_1"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "pool",
+   "frames": [
+    "pool_0",
+    "pool_1"
+   ]
+  }
+ ]
+}

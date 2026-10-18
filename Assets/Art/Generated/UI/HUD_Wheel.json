@@ -1,0 +1,33 @@
+{
+ "sheet": "HUD_Wheel",
+ "cell": [
+  96,
+  96
+ ],
+ "pivot": [
+  48,
+  48
+ ],
+ "frames": [
+  {
+   "name": "ring_0",
+   "x": 0,
+   "y": 0,
+   "w": 96,
+   "h": 96
+  }
+ ],
+ "clips": {
+  "ring": [
+   "ring_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "ring",
+   "frames": [
+    "ring_0"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 342fe407cf52b7c4397ded2894ed59da, type: 3}
+  m_Name: RegionTiles_tallow
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.World.RegionTiles
+  key: tallow
+  floors:
+  - {fileID: 11400000, guid: 392a63e4953040c419ca6c8c78aa87df, type: 2}
+  - {fileID: 11400000, guid: 5d1a1790de6fa4b4287d4444dbb7f3d7, type: 2}
+  - {fileID: 11400000, guid: 0f6f3601c3c6b41438c6c1587829864d, type: 2}
+  - {fileID: 11400000, guid: 07d63afaf7e4eef44a3b0bb61e87a812, type: 2}
+  tops:
+  - mask: 0
+    tile: {fileID: 11400000, guid: 96041c9653e4c8b4999a591d2428d436, type: 2}
+  - mask: 1
+    tile: {fileID: 11400000, guid: 0835442f00da2ae439877bd17d79c340, type: 2}
+  - mask: 4
+    tile: {fileID: 11400000, guid: 3311cbb6d4bec764ea2e468049895a23, type: 2}
+  - mask: 5
+    tile: {fileID: 11400000, guid: 19d20892a37050e4cb6a2d63c4da401b, type: 2}
+  - mask: 7
+    tile: {fileID: 11400000, guid: 869b8055577ab9c4da1b31e27e6ed2da, type: 2}
+  - mask: 16
+    tile: {fileID: 11400000, guid: 92df98bfc25901246b263be462f1dd00, type: 2}
+  - mask: 17
+    tile: {fileID: 11400000, guid: ffa6e1ead7a37fd4d8dfc1437f61f6a7, type: 2}
+  - mask: 20
+    tile: {fileID: 11400000, guid: 94eec51536b0b4f4a837ccd5412bd2a4, type: 2}
+  - mask: 21
+    tile: {fileID: 11400000, guid: 13ec9d131b25cdc43bb33520f7e612c4, type: 2}
+  - mask: 23
+    tile: {fileID: 11400000, guid: 0397ab1ac58df9b42b552be6857d89ce, type: 2}
+  - mask: 28
+    tile: {fileID: 11400000, guid: e9d36e3ebd82cd6469e91e838640fa49, type: 2}
+  - mask: 29
+    tile: {fileID: 11400000, guid: 615b0a7d2cdd14f48a20702458d12a50, type: 2}
+  - mask: 31
+    tile: {fileID: 11400000, guid: 3a82d7655b0c07a4a9ede560bf5144da, type: 2}
+  - mask: 64
+    tile: {fileID: 11400000, guid: 694256a1360cb71498ef1cfa1b3b4b41, type: 2}
+  - mask: 65
+    tile: {fileID: 11400000, guid: 96d3a9f5860938343853aef9dd012998, type: 2}
+  - mask: 68
+    tile: {fileID: 11400000, guid: 3be15e884271efa4f9c2c9aba388759e, type: 2}
+  - mask: 69
+    tile: {fileID: 11400000, guid: ef65640f10d8081439359c37238dad96, type: 2}
+  - mask: 71
+    tile: {fileID: 11400000, guid: bdb8c917841355443b071b4a3ee1225e, type: 2}
+  - mask: 80
+    tile: {fileID: 11400000, guid: 4f8eb86314aac26488492375abecd035, type: 2}
+  - mask: 81
+    tile: {fileID: 11400000, guid: 0cba14cc3a918b84d9752d5f894cc07b, type: 2}
+  - mask: 84
+    tile: {fileID: 11400000, guid: 3c40847dcc8cc2e43a2a259a920c4ac3, type: 2}
+  - mask: 85
+    tile: {fileID: 11400000, guid: 0808cacc389ee0644a67c0f1202d4093, type: 2}
+  - mask: 87
+    tile: {fileID: 11400000, guid: c05195e107ced114caa57ba130c61fb8, type: 2}
+  - mask: 92
+    tile: {fileID: 11400000, guid: 4644c96845d12414bacb9b57ea098f3f, type: 2}
+  - mask: 93
+    tile: {fileID: 11400000, guid: 5eb098b184b09a84ba4d5e48076fe461, type: 2}
+  - mask: 95
+    tile: {fileID: 11400000, guid: 61b78e3c5ee7ee34d97f2e23705ccd5f, type: 2}
+  - mask: 112
+    tile: {fileID: 11400000, guid: 0bb13b3732ff5eb4ea3446ae4392b1c4, type: 2}
+  - mask: 113
+    tile: {fileID: 11400000, guid: eb772c72fd0881b4791e0eeb85bc8e64, type: 2}
+  - mask: 116
+    tile: {fileID: 11400000, guid: e7c3acc2f3899844596f7c108468d9cb, type: 2}
+  - mask: 117
+    tile: {fileID: 11400000, guid: 3e2d11c5a8500b34aae6b37695ef7585, type: 2}
+  - mask: 119
+    tile: {fileID: 11400000, guid: fa1904c039ffc854990856b82f2673c2, type: 2}
+  - mask: 124
+    tile: {fileID: 11400000, guid: 8fe7d1849288eb34fb285d60b723ba78, type: 2}
+  - mask: 125
+    tile: {fileID: 11400000, guid: e668737a45f7aac4082777f02f1460e2, type: 2}
+  - mask: 127
+    tile: {fileID: 11400000, guid: a6729f751bf80084f97ab53e71bf5244, type: 2}
+  - mask: 193
+    tile: {fileID: 11400000, guid: c8a769ba7360dc54fab3318c0220469a, type: 2}
+  - mask: 197
+    tile: {fileID: 11400000, guid: 7aeae9dec63b4ae4381f6cdce5c61a66, type: 2}
+  - mask: 199
+    tile: {fileID: 11400000, guid: 886bc3458a3c01b4985bcae0398d2848, type: 2}
+  - mask: 209
+    tile: {fileID: 11400000, guid: abbecdd44ecadee4481a1cf387874fc0, type: 2}
+  - mask: 213
+    tile: {fileID: 11400000, guid: 2293b665b41fdba45860cecafd1d3405, type: 2}
+  - mask: 215
+    tile: {fileID: 11400000, guid: 447a0a055eb43664ebc5b156c23a37e2, type: 2}
+  - mask: 221
+    tile: {fileID: 11400000, guid: 649d1227aa7dd4847b2f0e3af7b91234, type: 2}
+  - mask: 223
+    tile: {fileID: 11400000, guid: 8a4c32d6522d3574a8f0a13a22a22a18, type: 2}
+  - mask: 241
+    tile: {fileID: 11400000, guid: 757b2c877eadc35418a4a12bab0f2e70, type: 2}
+  - mask: 245
+    tile: {fileID: 11400000, guid: a13dd4c64f31f8d43b5a2afb0bf85caa, type: 2}
+  - mask: 247
+    tile: {fileID: 11400000, guid: 8ec7b86dbf5395642bf1b247cde5efc9, type: 2}
+  - mask: 253
+    tile: {fileID: 11400000, guid: 460ecd3f406c682478e8cd1be5e5d9d0, type: 2}
+  - mask: 255
+    tile: {fileID: 11400000, guid: 25b1703b66c408444bee59c36a16b7cb, type: 2}
+  faces:
+  - {fileID: 11400000, guid: 26e037f37ca1b3f4f9f41f5c2310b9f0, type: 2}
+  - {fileID: 11400000, guid: bae588d115189a54baa3d122322f29f4, type: 2}
+  - {fileID: 11400000, guid: a7c4488ab090d684c8a07137c83ff25c, type: 2}
+  - {fileID: 11400000, guid: 0b3568e556c6dfd4bb9d998564f4efa4, type: 2}
+  - {fileID: 11400000, guid: 45a039d9ea1362248a347267761edec9, type: 2}
+  - {fileID: 11400000, guid: 1e51d33226470364bb463c55c56feb87, type: 2}
+  - {fileID: 11400000, guid: 3d793c69cda9ed24486fca8ed06234bf, type: 2}
+  - {fileID: 11400000, guid: 71700a03823f9fe409e2d8aa4efbec63, type: 2}
+  shadow: {fileID: 11400000, guid: 09ed09f101e31c04f8f04a80070b2704, type: 2}
+  decor:
+  - {fileID: 11400000, guid: 1069195f671277249ac479a0de80f952, type: 2}
+  - {fileID: 11400000, guid: e25f75662ab70f148ac2bd719010ea43, type: 2}
+  - {fileID: 11400000, guid: 07b118aaa2e9fa8458bd4534408dea57, type: 2}
+  specials:
+  - name: geyser_dormant
+    tile: {fileID: 11400000, guid: 1b0ea3d2f4aa9a84ab23ba8d48b3b393, type: 2}
+    frames:
+    - {fileID: 1334775074, guid: eadf363d3f16a644698d0b60635ab764, type: 3}
+  - name: geyser_warning
+    tile: {fileID: 11400000, guid: 61c8988852ab6174ea918bc185506385, type: 2}
+    frames:
+    - {fileID: -634296930, guid: eadf363d3f16a644698d0b60635ab764, type: 3}
+    - {fileID: -2077095244, guid: eadf363d3f16a644698d0b60635ab764, type: 3}
+  - name: geyser_erupt
+    tile: {fileID: 11400000, guid: 7f6a0e5581366fb43945601fdea113d7, type: 2}
+    frames:
+    - {fileID: 725051058, guid: eadf363d3f16a644698d0b60635ab764, type: 3}
+    - {fileID: -181266420, guid: eadf363d3f16a644698d0b60635ab764, type: 3}

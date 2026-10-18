@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71aa242c8e388624e9b77cb07ed5c238, type: 3}
+  m_Name: HudSprites
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.UI.HudSprites
+  candleStates:
+  - {fileID: 1825158779, guid: bfb45a2931270bc409c9092026fa83a9, type: 3}
+  - {fileID: -441164085, guid: bfb45a2931270bc409c9092026fa83a9, type: 3}
+  - {fileID: 1370551773, guid: bfb45a2931270bc409c9092026fa83a9, type: 3}
+  - {fileID: 1311335670, guid: bfb45a2931270bc409c9092026fa83a9, type: 3}
+  - {fileID: -1644579955, guid: bfb45a2931270bc409c9092026fa83a9, type: 3}
+  - {fileID: 1368880563, guid: bfb45a2931270bc409c9092026fa83a9, type: 3}
+  - {fileID: -50363895, guid: bfb45a2931270bc409c9092026fa83a9, type: 3}
+  - {fileID: 1105013091, guid: bfb45a2931270bc409c9092026fa83a9, type: 3}
+  candleTops:
+  - 57
+  - 51
+  - 45
+  - 38
+  - 32
+  - 26
+  - 20
+  - 14
+  flameAmber:
+  - {fileID: 247250479, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -1246907723, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -30057344, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -410663932, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -522380875, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -49984142, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  flameBlue:
+  - {fileID: 1589797731, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -1557090578, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: 1783695982, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -658239569, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -580892334, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -606746700, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  flameGreen:
+  - {fileID: -1997856053, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: 92481148, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: 592840399, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -1631743366, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: 338336987, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: 1464391136, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  flameWhite:
+  - {fileID: 1134888410, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -814397271, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: 172469622, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -1814174193, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: 1481758788, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -2063669988, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  flameCrimson:
+  - {fileID: -248621040, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -179492270, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -574314149, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: 942918580, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: -1954508315, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  - {fileID: 115467042, guid: b046dddafa8dccf4a96e1c72abb9bf5b, type: 3}
+  flameIcons:
+  - {fileID: 1508723836, guid: eaa08fc6728f13f478859fb9941fc199, type: 3}
+  - {fileID: -1270950795, guid: eaa08fc6728f13f478859fb9941fc199, type: 3}
+  - {fileID: -53764419, guid: eaa08fc6728f13f478859fb9941fc199, type: 3}
+  - {fileID: 85704351, guid: eaa08fc6728f13f478859fb9941fc199, type: 3}
+  - {fileID: 528983388, guid: eaa08fc6728f13f478859fb9941fc199, type: 3}
+  flameIconLocked: {fileID: 1173281432, guid: eaa08fc6728f13f478859fb9941fc199, type: 3}
+  wheelRing: {fileID: 1769778820, guid: af13a628518507a4e8b44f6101e03510, type: 3}
+  wheelSocket: {fileID: 502640417, guid: 514bb884835445340afd34c59bd516ae, type: 3}
+  wheelSocketSelected: {fileID: 851855797, guid: 514bb884835445340afd34c59bd516ae, type: 3}
+  shardIcon: {fileID: -1979866679, guid: 514bb884835445340afd34c59bd516ae, type: 3}
+  dodgeFull: {fileID: -328614223, guid: 514bb884835445340afd34c59bd516ae, type: 3}
+  dodgeEmpty: {fileID: 1134914667, guid: 514bb884835445340afd34c59bd516ae, type: 3}
+  sootIcon: {fileID: -669245553, guid: 514bb884835445340afd34c59bd516ae, type: 3}
+  lightCutIcon: {fileID: -7153185, guid: 514bb884835445340afd34c59bd516ae, type: 3}
+  panelFrame: {fileID: -385120536, guid: ddd7cdf82da86d9459a1855cc63ce220, type: 3}
+  keyCap: {fileID: -793427108, guid: 514bb884835445340afd34c59bd516ae, type: 3}
+  relicIconsSheet: {fileID: 0}
+  relicIcons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

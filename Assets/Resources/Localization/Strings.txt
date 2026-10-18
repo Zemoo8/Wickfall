@@ -1,0 +1,133 @@
+# WICKFALL strings: key<TAB>français<TAB>English. French is the default language.
+# Names follow the PDF glossary: French names in French, the PDF's English art-prompt names in English.
+game.title	WICKFALL	WICKFALL
+game.tagline	On ne peut pas être fort et caché en même temps.	You cannot be strong and hidden at the same time.
+game.rule	Une seule ressource : la cire = vie = lumière = risque.	One resource: wax = life = light = risk.
+# ---- menus
+menu.continue	Continuer	Continue
+menu.newgame	Nouvelle partie	New game
+menu.lightlab	Laboratoire de lumière	Light Lab
+menu.options	Options	Options
+menu.language	Langue	Language
+menu.quit	Quitter	Quit
+menu.resume	Reprendre	Resume
+menu.regionselect	Rejouer une région	Region select
+menu.endings	Fins débloquées	Endings
+menu.credits	Crédits	Credits
+menu.back	Retour	Back
+menu.mainmenu	Menu principal	Main menu
+menu.paused	Pause	Paused
+# ---- prompts
+prompt.interact	Utiliser	Use
+prompt.rest	Se reposer	Rest
+prompt.light	Allumer le brasero	Light the brazier
+prompt.drink	Boire la cire	Drink the wax
+prompt.relic	Prendre la relique	Take the relic
+prompt.flame	Recueillir la flamme	Gather the flame
+prompt.bell	Sonner la cloche	Ring the bell
+prompt.rotate	Tourner le cristal	Turn the crystal
+prompt.read	Lire	Read
+prompt.climb	Grimper	Climb
+prompt.pact	Écouter la voix	Listen to the voice
+prompt.gate	Ouvrir la grille	Open the gate
+# ---- HUD
+hud.blocked	BLOQUÉ	BLOCKED
+hud.wax	Cire	Wax
+hud.shards	Éclats de cire	Wax shards
+hud.dodge	Esquive	Dodge
+hud.trimmed	Mèche taillée	Wick trimmed
+hud.sooted	Suie	Soot
+hud.lightcut	Lumière coupée	Light cut
+# ---- flames (PDF §2.1)
+flame.amber	Ambre	Amber
+flame.amber.role	Équilibrée, arc de mêlée	Balanced, melee arc
+flame.blue	Bleue	Blue
+flame.blue.role	À distance, ralentit	Ranged, slows
+flame.green	Verte	Green
+flame.green.role	Poison, touche les groupes	Poison, hits groups
+flame.white	Blanche	White
+flame.white.role	Anti-Creux, énorme lumière	Anti-Hollow, huge light
+flame.crimson	Cramoisie	Crimson
+flame.crimson.role	Plus de dégâts à faible cire	More damage at low wax
+art.amber	Balayage d'ambre	Amber Sweep
+art.blue	Trait gelé	Frost Bolt
+art.green	Éclosion vénéneuse	Venom Bloom
+art.white	Pulsation radieuse	Radiant Pulse
+art.crimson	Frappe cramoisie	Crimson Strike
+# ---- regions (PDF §2.2)
+region.tallow	Champs de Suif	Tallow Fields
+region.tallow.env	Plaine de cire, lumière ambiante faible	A wax plain in low ambient light
+region.wickwood	Bois-Mèche	Wickwood
+region.wickwood.env	Forêt noire, canopée qui bloque la lumière	A black forest whose canopy blocks the light
+region.foundries	Fonderies de Suie	Soot Foundries
+region.foundries.env	Usine, convoyeurs, fours qui vacillent	A factory of conveyors and flickering furnaces
+region.cathedral	Cathédrale de Verre	Glass Cathedral
+region.cathedral.env	Miroirs noirs, faisceaux à orienter	Black mirrors and beams to aim
+region.hollow	Creux Profond	Deep Hollow
+region.hollow.env	Aucune lumière : seul ce que vous éclairez existe	No light: only what you light exists
+region.hearth	Chambre du Foyer	Hearth Chamber
+region.hearth.env	Cathédrale de cendre, Foyer en lumière négative	An ash cathedral; the Hearth shines with negative light
+# ---- creatures (PDF §2.2)
+enemy.dripling	Dripling	Dripling
+enemy.waxfly	Cirelle	Waxfly
+enemy.husk	Carcasse	Husk
+enemy.lurker	Rôdeur	Lurker
+enemy.lighteaterbloom	Fleur mange-lumière	Light-Eater Bloom
+enemy.slagborn	Scorifié	Slagborn
+enemy.bellows	Soufflet	Bellows
+enemy.reflection	Reflet	Reflection
+enemy.unlit	Éteint	The Unlit
+enemy.hollowking	Roi Creux	Hollow King
+# ---- hazards
+hazard.waxgeyser	Geyser de cire	Wax geyser
+hazard.lighteaterbloom	Fleur mange-lumière	Light-Eater Bloom
+hazard.press	Presse	Press
+hazard.steamjet	Jet de vapeur	Steam jet
+hazard.conveyor	Convoyeur	Conveyor
+hazard.soot	Suie	Soot
+hazard.laser	Laser	Laser
+hazard.glassfloor	Sol de verre	Glass floor
+hazard.ash	Cendre	Ash
+# ---- relics (PDF §2.4; 4 and 5 are proposals G04)
+relic.0	Plume de braise	Ember Feather
+relic.0.desc	Une esquive en plus.	One more dodge.
+relic.1	Croc de braise	Ember Hook
+relic.1.desc	Accroche au mur : grimpez aux vignes-mèches.	Wall grip: climb the wick-vines.
+relic.2	Braise pleine	Brimming Ember
+relic.2.desc	+20 de cire maximale.	+20 maximum wax.
+relic.3	Anneau aux cinq braises	Five-Socket Ring
+relic.3.desc	Un emplacement de flamme en plus.	One more flame slot.
+relic.4	Mèche de réserve	Spare Wick
+relic.4.desc	Une fois par repos, votre flamme se rallume au lieu de s'éteindre.	Once per rest, your flame relights instead of going out.
+relic.5	Braise du Foyer	Hearth Ember
+relic.5.desc	Les arts de flamme coûtent 25 % de cire en moins.	Flame arts cost 25% less wax.
+# ---- pacts (PDF §2.4; pact 0 is the PDF's example)
+pact.0	Pacte de la cire	Pact of Wax
+pact.0.desc	+30 de cire maximale, mais perte de cire x1,5.	+30 maximum wax, but wax loss x1.5.
+pact.1	Pacte de la lame	Pact of the Blade
+pact.1.desc	Dégâts x1,3, mais -20 de cire maximale.	Damage x1.3, but -20 maximum wax.
+pact.2	Pacte de l'ombre	Pact of Shadow
+pact.2.desc	Détection x0,75, mais rayon de lumière x0,8.	Detection x0.75, but light radius x0.8.
+pact.3	Pacte de l'éclat	Pact of the Shard
+pact.3.desc	Éclats x1,5, mais chaque coup reçu coûte 4 de cire de plus.	Shards x1.5, but every hit costs 4 more wax.
+# ---- shop (G19)
+shop.candle	Bougie de cire	Wax candle
+shop.candle.desc	Rend 25 de cire.	Restores 25 wax.
+shop.salve	Baume de suie	Soot salve
+shop.salve.desc	Retire la suie.	Clears soot.
+shop.dmg	Flamme aiguisée	Honed flame
+shop.dmg.desc	Dégâts de la flamme +15 %.	Flame damage +15%.
+shop.art	Art économe	Thrifty art
+shop.art.desc	L'art de la flamme coûte 15 % de cire en moins.	The flame's art costs 15% less wax.
+# ---- ranks and endings (PDF)
+rank.cendre	Cendre	Ash
+rank.braise	Braise	Ember
+rank.flamme	Flamme	Flame
+rank.brasier	Brasier	Blaze
+ending.a	Rallumer le Foyer et mourir	Relight the Hearth and die
+ending.b	Garder la flamme et rester seul	Keep the flame and stay alone
+ending.c	Passer la mèche à un autre	Pass the wick on to another
+# ---- Light Lab
+lab.effigy	Effigie	Effigy
+lab.effigy.armored	Scorifiée : blanche ou verte	Slagborn: white or green
+lab.effigy.glass	Verre : cramoisie	Glass: crimson

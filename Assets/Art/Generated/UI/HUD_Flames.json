@@ -1,0 +1,322 @@
+{
+ "sheet": "HUD_Flames",
+ "cell": [
+  16,
+  20
+ ],
+ "pivot": [
+  8,
+  0
+ ],
+ "frames": [
+  {
+   "name": "flame_amber_0",
+   "x": 0,
+   "y": 80,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_amber_1",
+   "x": 16,
+   "y": 80,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_amber_2",
+   "x": 32,
+   "y": 80,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_amber_3",
+   "x": 48,
+   "y": 80,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_amber_4",
+   "x": 64,
+   "y": 80,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_amber_5",
+   "x": 80,
+   "y": 80,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_blue_0",
+   "x": 0,
+   "y": 60,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_blue_1",
+   "x": 16,
+   "y": 60,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_blue_2",
+   "x": 32,
+   "y": 60,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_blue_3",
+   "x": 48,
+   "y": 60,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_blue_4",
+   "x": 64,
+   "y": 60,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_blue_5",
+   "x": 80,
+   "y": 60,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_green_0",
+   "x": 0,
+   "y": 40,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_green_1",
+   "x": 16,
+   "y": 40,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_green_2",
+   "x": 32,
+   "y": 40,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_green_3",
+   "x": 48,
+   "y": 40,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_green_4",
+   "x": 64,
+   "y": 40,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_green_5",
+   "x": 80,
+   "y": 40,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_white_0",
+   "x": 0,
+   "y": 20,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_white_1",
+   "x": 16,
+   "y": 20,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_white_2",
+   "x": 32,
+   "y": 20,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_white_3",
+   "x": 48,
+   "y": 20,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_white_4",
+   "x": 64,
+   "y": 20,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_white_5",
+   "x": 80,
+   "y": 20,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_crimson_0",
+   "x": 0,
+   "y": 0,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_crimson_1",
+   "x": 16,
+   "y": 0,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_crimson_2",
+   "x": 32,
+   "y": 0,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_crimson_3",
+   "x": 48,
+   "y": 0,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_crimson_4",
+   "x": 64,
+   "y": 0,
+   "w": 16,
+   "h": 20
+  },
+  {
+   "name": "flame_crimson_5",
+   "x": 80,
+   "y": 0,
+   "w": 16,
+   "h": 20
+  }
+ ],
+ "clips": {
+  "flame_amber": [
+   "flame_amber_0",
+   "flame_amber_1",
+   "flame_amber_2",
+   "flame_amber_3",
+   "flame_amber_4",
+   "flame_amber_5"
+  ],
+  "flame_blue": [
+   "flame_blue_0",
+   "flame_blue_1",
+   "flame_blue_2",
+   "flame_blue_3",
+   "flame_blue_4",
+   "flame_blue_5"
+  ],
+  "flame_green": [
+   "flame_green_0",
+   "flame_green_1",
+   "flame_green_2",
+   "flame_green_3",
+   "flame_green_4",
+   "flame_green_5"
+  ],
+  "flame_white": [
+   "flame_white_0",
+   "flame_white_1",
+   "flame_white_2",
+   "flame_white_3",
+   "flame_white_4",
+   "flame_white_5"
+  ],
+  "flame_crimson": [
+   "flame_crimson_0",
+   "flame_crimson_1",
+   "flame_crimson_2",
+   "flame_crimson_3",
+   "flame_crimson_4",
+   "flame_crimson_5"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "flame_amber",
+   "frames": [
+    "flame_amber_0",
+    "flame_amber_1",
+    "flame_amber_2",
+    "flame_amber_3",
+    "flame_amber_4",
+    "flame_amber_5"
+   ]
+  },
+  {
+   "name": "flame_blue",
+   "frames": [
+    "flame_blue_0",
+    "flame_blue_1",
+    "flame_blue_2",
+    "flame_blue_3",
+    "flame_blue_4",
+    "flame_blue_5"
+   ]
+  },
+  {
+   "name": "flame_green",
+   "frames": [
+    "flame_green_0",
+    "flame_green_1",
+    "flame_green_2",
+    "flame_green_3",
+    "flame_green_4",
+    "flame_green_5"
+   ]
+  },
+  {
+   "name": "flame_white",
+   "frames": [
+    "flame_white_0",
+    "flame_white_1",
+    "flame_white_2",
+    "flame_white_3",
+    "flame_white_4",
+    "flame_white_5"
+   ]
+  },
+  {
+   "name": "flame_crimson",
+   "frames": [
+    "flame_crimson_0",
+    "flame_crimson_1",
+    "flame_crimson_2",
+    "flame_crimson_3",
+    "flame_crimson_4",
+    "flame_crimson_5"
+   ]
+  }
+ ]
+}

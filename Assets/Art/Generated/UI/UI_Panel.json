@@ -1,0 +1,46 @@
+{
+ "sheet": "UI_Panel",
+ "cell": [
+  48,
+  48
+ ],
+ "pivot": [
+  24,
+  24
+ ],
+ "frames": [
+  {
+   "name": "panel_0",
+   "x": 0,
+   "y": 0,
+   "w": 48,
+   "h": 48
+  }
+ ],
+ "clips": {
+  "panel": [
+   "panel_0"
+  ]
+ },
+ "border": {
+  "all": [
+   16,
+   16
+  ]
+ },
+ "clipList": [
+  {
+   "name": "panel",
+   "frames": [
+    "panel_0"
+   ]
+  }
+ ],
+ "borderList": [
+  {
+   "name": "all",
+   "x": 16,
+   "y": 16
+  }
+ ]
+}

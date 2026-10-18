@@ -19,6 +19,7 @@ MonoBehaviour:
   playerExtinguished: {fileID: 11400000, guid: 00023f058a871e24690c7ac90ab0942e, type: 2}
   playerRespawned: {fileID: 11400000, guid: 384a4f0f3b19a534ba9f61100d333e6f, type: 2}
   flameSwitched: {fileID: 11400000, guid: 032113e6879fcd74d813e0e0697ff19e, type: 2}
+  flameWheel: {fileID: 11400000, guid: 9faf3058995425b4eb673a140ddca95d, type: 2}
   flare: {fileID: 11400000, guid: 034de86c221286146bd389b926ebb6a5, type: 2}
   playerActed: {fileID: 11400000, guid: 950dd3ab8989c4b4abc660b629f93984, type: 2}
   dodgeChanged: {fileID: 11400000, guid: 845e122ba8ab19645ac048c0f1066d93, type: 2}
@@ -41,3 +42,5 @@ MonoBehaviour:
   feedback: {fileID: 11400000, guid: 1664b37388976c94eb050be99cb18697, type: 2}
   gamePaused: {fileID: 11400000, guid: 08d0793a0c6c2044aa4a0f0dfb6e4362, type: 2}
   languageChanged: {fileID: 11400000, guid: 5280f9a7ab6366442acf8cab887d04a3, type: 2}
+  settingsChanged: {fileID: 11400000, guid: ed12787de2094e444a1b0f968ef7bd3d, type: 2}
+  sceneReady: {fileID: 11400000, guid: 27131b55377757d4dac1211a2e302ed8, type: 2}

@@ -227,7 +227,10 @@ namespace Wickfall.EditorTools
         static void SetupPhysics()
         {
             Physics2D.gravity = Vector2.zero;      // top-down
-            Physics2D.queriesHitTriggers = false;  // sight lines and attacks ignore trigger zones
+            // Must stay true: in Unity 6.2 a false value hides triggers even from queries whose
+            // ContactFilter2D asks for them (hurtboxes, interactables). Every query uses explicit
+            // layer masks instead; sight lines only test walls, canopy and glass (no triggers there).
+            Physics2D.queriesHitTriggers = true;
             Physics2D.queriesStartInColliders = false;
             Physics2D.autoSyncTransforms = false;
             Physics2D.velocityIterations = 8;

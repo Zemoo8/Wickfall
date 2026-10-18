@@ -6,7 +6,14 @@ namespace Wickfall.Presentation
     [DefaultExecutionOrder(-900)]
     public sealed class PresentationGate : MonoBehaviour
     {
-        public Feature feature;
+        // Stored as a raw long: Unity cannot serialize a 64-bit enum field.
+        [SerializeField] long featureBits;
+
+        public Feature feature
+        {
+            get => (Feature)featureBits;
+            set => featureBits = (long)value;
+        }
 
         void Awake()
         {
