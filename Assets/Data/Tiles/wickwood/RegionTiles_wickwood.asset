@@ -127,25 +127,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4486d6bf39020d247b212ae1300470b5, type: 2}
   - {fileID: 11400000, guid: 846dec1421799ad478425a8fc73c2116, type: 2}
   specials:
-  - name: canopy
-    tile: {fileID: 11400000, guid: 29223e323615f2e49b5515d58438302d, type: 2}
-    frames:
-    - {fileID: -1963051881, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: -724252042, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: -1223974311, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: -1138048733, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: -752340652, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: -1876423532, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: -1123766513, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: 1471945815, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: 653049188, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: 1832056717, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: -1944343592, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: 63648940, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: 1721948214, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: -1170806777, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: -370699150, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
-    - {fileID: -1894306657, guid: 97408de4f7a0bd74c8f5f2b030a222b7, type: 3}
   - name: vine_top
     tile: {fileID: 11400000, guid: 50056c523ffa1a545a8d261c7f49c1a2, type: 2}
     frames:

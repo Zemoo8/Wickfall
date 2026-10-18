@@ -44,5 +44,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Regions/R2/R2_Wickwood_SouthWest.unity
     guid: 9c9d23b6c8aa90649a27ec42f1d23597
+  - enabled: 1
+    path: Assets/Scenes/Regions/R3/R3_SootFoundries.unity
+    guid: 234e1a7d46bc6724cb33f241d772d247
+  - enabled: 1
+    path: Assets/Scenes/Regions/R3/R3_SootFoundries_Center.unity
+    guid: d4a094ce5ec904f40a3e73c1d62ae734
+  - enabled: 1
+    path: Assets/Scenes/Regions/R3/R3_SootFoundries_East.unity
+    guid: 27113506df1f95d41a0ed530c29f4a23
+  - enabled: 1
+    path: Assets/Scenes/Regions/R3/R3_SootFoundries_West.unity
+    guid: 84d3290d31bbbae40b8cb1a8187399cc
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

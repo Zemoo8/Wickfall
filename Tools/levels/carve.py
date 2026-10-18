@@ -95,6 +95,10 @@ class Level:
         if kind:
             self.legend[symbol] = kind
 
+    def inscription(self, x, y, n):
+        """Inscription number n (its text is inscription.rR.n): the digit is the symbol, so the order is explicit."""
+        self.put(x, y, str(n), f"Inscription{n}")
+
     def group(self, name, x0, x1):
         """A room group spanning columns x0..x1 (all rows). Stored in world cells (y up)."""
         self.groups.append((name, x0, 0, x1 - x0 + 1, self.h))
@@ -185,8 +189,8 @@ class Level:
                     draw.rectangle([x * 16, y * 16, x * 16 + 15, y * 16 + 15], fill=(10, 30, 10, 120))
         for y, row in enumerate(self.grid):
             for x, c in enumerate(row):
-                if c in colors:
-                    col = colors[c]
+                if c in colors or c.isdigit():
+                    col = colors.get(c, (180, 180, 255))  # digits are numbered inscriptions
                     draw.rectangle([x * 16 + 3, y * 16 + 3, x * 16 + 12, y * 16 + 12], fill=col, outline=(14, 13, 12))
         small = img.resize((img.width // 2, img.height // 2), Image.NEAREST)
         path = os.path.join(ROOT, "ArtSource", "Previews", filename)

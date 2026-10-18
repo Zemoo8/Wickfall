@@ -189,3 +189,9 @@ inscription.r2.1	Les fleurs boivent la lumière.	The flowers drink the light.
 inscription.r2.2	Ce qui rôde ne bouge que si vous brillez.	What prowls only moves while you shine.
 inscription.r2.3	Seules les mains qui accrochent montent aux vignes.	Only gripping hands climb the vines.
 inscription.r2.4	Au-dessus des racines, la cloche attend.	Above the roots, the bell waits.
+# ---- region 3
+inscription.r3.0	Les presses frappent en rythme : passe entre deux coups.	The presses strike in rhythm: slip between two blows.
+inscription.r3.1	La vapeur pousse, le tapis emporte.	Steam pushes, the belt carries.
+inscription.r3.2	La suie colle à la mèche : elle ronge la cire et la lumière.	Soot clings to the wick: it eats wax and light.
+inscription.r3.3	Seules les flammes blanche et verte mordent le métal.	Only the white and green flames bite the metal.
+inscription.r3.4	La cloche réveille la forge.	The bell wakes the forge.

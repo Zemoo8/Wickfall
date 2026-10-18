@@ -28,6 +28,9 @@ namespace Wickfall.EditorTools
             EnsureVine();
             EnsureNest("SwarmNestHusk", "Husk");
             EnsureNest("SwarmNestLurker", "Lurker");
+            FoundryPrefabs.EnsureAll();
+            EnsureNest("SwarmNestSlagborn", "Slagborn");
+            EnsureNest("SwarmNestBellows", "Bellows");
             EnsureCirelle();
             EnsureBrokenWick();
             EnsureBell();

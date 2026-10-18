@@ -120,6 +120,23 @@ namespace Wickfall.Enemies
             return count == 0;
         }
 
+        Vector2 push;
+        Vector2 lastPush;
+        int pushStep = -1;
+
+        /// <summary>An outside push for this physics step (conveyors, steam), added on top of its own walk.</summary>
+        public void AddPush(Vector2 velocity)
+        {
+            if (pushStep != stepCount)
+            {
+                push = Vector2.zero;
+                pushStep = stepCount;
+            }
+            push += velocity;
+        }
+
+        int stepCount;
+
         public void Teleport(Vector2 position)
         {
             rb.position = position;
@@ -136,8 +153,11 @@ namespace Wickfall.Enemies
                 body.PendingKnockback = Vector2.zero;
             }
             Vector2 target = Frozen ? Vector2.zero : desired;
-            Vector2 velocity = Vector2.MoveTowards(rb.linearVelocity - knockback, target, acceleration * Time.fixedDeltaTime);
-            rb.linearVelocity = velocity + knockback;
+            Vector2 outside = pushStep == stepCount ? push : Vector2.zero;
+            Vector2 velocity = Vector2.MoveTowards(rb.linearVelocity - knockback - lastPush, target, acceleration * Time.fixedDeltaTime);
+            rb.linearVelocity = velocity + knockback + outside;
+            lastPush = outside;
+            stepCount++;
             knockback = Vector2.MoveTowards(knockback, Vector2.zero, 30f * Time.fixedDeltaTime);
         }
     }

@@ -1,0 +1,60 @@
+{
+ "sheet": "Prop_Furnace",
+ "cell": [
+  32,
+  40
+ ],
+ "pivot": [
+  16,
+  2
+ ],
+ "frames": [
+  {
+   "name": "burn_0",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "burn_1",
+   "x": 32,
+   "y": 0,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "burn_2",
+   "x": 64,
+   "y": 0,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "burn_3",
+   "x": 96,
+   "y": 0,
+   "w": 32,
+   "h": 40
+  }
+ ],
+ "clips": {
+  "burn": [
+   "burn_0",
+   "burn_1",
+   "burn_2",
+   "burn_3"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "burn",
+   "frames": [
+    "burn_0",
+    "burn_1",
+    "burn_2",
+    "burn_3"
+   ]
+  }
+ ]
+}

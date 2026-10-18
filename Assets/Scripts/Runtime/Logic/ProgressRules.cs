@@ -27,5 +27,33 @@ namespace Wickfall
         /// <summary>G03: the flame each region hands out, in PDF order (amber is the starting flame).</summary>
         public static bool IsFlameAvailable(SaveData save, FlameId flame) =>
             save != null && save.HasFlame(flame);
+
+        /// <summary>G03: Blue in R1, Green in R2, White in R3 (Crimson is given on entering R4).</summary>
+        public static bool TryRegionFlame(RegionId region, out FlameId flame)
+        {
+            switch (region)
+            {
+                case RegionId.TallowFields: flame = FlameId.Blue; return true;
+                case RegionId.Wickwood: flame = FlameId.Green; return true;
+                case RegionId.SootFoundries: flame = FlameId.White; return true;
+                default: flame = FlameId.Amber; return false;
+            }
+        }
+
+        /// <summary>
+        /// G47: entering a region guarantees Amber, the flames of every region before it, and Crimson
+        /// from R4 on, so a skipped shrine never locks a player out (G03: no puzzle may need a flame you
+        /// cannot have yet). Returns a flame bit mask.
+        /// </summary>
+        public static int FlamesGuaranteedOnEntering(RegionId region)
+        {
+            int mask = 1 << (int)FlameId.Amber;
+            for (var r = RegionId.TallowFields; r < region; r++)
+                if (TryRegionFlame(r, out var flame))
+                    mask |= 1 << (int)flame;
+            if (region >= RegionId.GlassCathedral)
+                mask |= 1 << (int)FlameId.Crimson;
+            return mask;
+        }
     }
 }

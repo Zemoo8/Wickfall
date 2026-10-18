@@ -15,7 +15,7 @@ L = Level("R1 Champs de Suif", 128, 64, seed=11)
 K = {
     "P": "PlayerStart", "B": "Brazier", "W": "WaxPool", "G": "Geyser", "m": "Dripling", "f": "Cirelle",
     "R": "Relic", "F": "FlameShrine", "K": "BrokenWick", "k": "Solid", "L": "GreatBell", "H": "Gate",
-    "E": "Exit", "I": "Inscription", "n": "SwarmNest",
+    "E": "Exit", "n": "SwarmNest",
 }
 
 # 1. Waking meadow by the Broken Wick (west)
@@ -69,24 +69,24 @@ for x in (10, 12, 13):
     L.put(x, 40, "k", K["k"])
 for x in (10, 11, 12, 13):
     L.put(x, 41, "k", K["k"])
-L.put(23, 46, "I", K["I"])              # 0: wax is life; standing still is losing
+L.inscription(23, 46, 0)              # 0: wax is life; standing still is losing
 L.put(25, 52, "W", K["W"])
 for (x, y) in [(12, 50), (21, 54), (26, 40), (8, 46), (15, 37)]:
     L.put(x, y, "f", K["f"])
 
-L.put(38, 40, "I", K["I"])              # 1: every hit shrinks what you can see
+L.inscription(38, 40, 1)              # 1: every hit shrinks what you can see
 L.put(47, 41, "m", K["m"])
 L.put(50, 47, "m", K["m"])
 L.put(56, 44, "B", K["B"])              # brazier 1
 
-L.put(65, 39, "I", K["I"])              # 2: the ground rumbles before it spits
+L.inscription(65, 39, 2)              # 2: the ground rumbles before it spits
 for (x, y) in [(66, 44), (72, 39), (73, 45), (79, 47), (83, 40), (88, 46), (82, 54), (68, 53), (89, 51)]:
     L.put(x, y, "G", K["G"])
 L.put(74, 61, "F", K["F"])
 L.put(70, 60, "m", K["m"])
 L.put(78, 60, "m", K["m"])
 
-L.put(42, 24, "I", K["I"])              # 3: trim the wick to pass unseen
+L.inscription(42, 24, 3)              # 3: trim the wick to pass unseen
 for (x, y) in [(38, 12), (50, 9), (60, 14), (47, 19), (34, 17), (66, 9), (56, 21)]:
     L.put(x, y, "m", K["m"])
 for (x, y) in [(28, 12), (22, 10), (19, 13), (13, 13)]:
@@ -99,7 +99,7 @@ for (x, y) in [(90, 9), (100, 10), (92, 19)]:
     L.put(x, y, "f", K["f"])
 
 L.put(111, 33, "L", K["L"])             # the Great Bell
-L.put(108, 36, "I", K["I"])             # 4: the bell opens the way and wakes what sleeps
+L.inscription(108, 36, 4)             # 4: the bell opens the way and wakes what sleeps
 for x in (110, 111, 112):
     L.put(x, 25, "H", K["H"])           # gate across the plaza's north wall
 for y in (25, 26):

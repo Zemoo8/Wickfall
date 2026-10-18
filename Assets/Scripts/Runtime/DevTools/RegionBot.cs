@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using Wickfall.Enemies;
@@ -33,6 +34,8 @@ namespace Wickfall.DevTools
         int pathCount, pathIndex;
         Vector2 pathTarget;
         float repath;
+        float nextFlameSwitch;
+        readonly HashSet<int> doneOnce = new HashSet<int>(); // take/ring steps already done (skipped after a death)
 
         public int Step => step;
         public int StepCount => steps != null ? steps.Length : 0;
@@ -94,6 +97,8 @@ namespace Wickfall.DevTools
 
         void Next()
         {
+            if (steps != null && step < steps.Length && (steps[step].StartsWith("take") || steps[step].StartsWith("ring")))
+                doneOnce.Add(step);
             step++;
             stepTime = 0f;
             interacted = false;
@@ -120,6 +125,11 @@ namespace Wickfall.DevTools
                 return;
             }
 
+            if (doneOnce.Contains(step))
+            {
+                Next(); // a relic, a flame or the bell cannot be taken twice
+                return;
+            }
             var parts = steps[step].Split(' ');
             string command = parts[0];
             switch (command)
@@ -210,6 +220,28 @@ namespace Wickfall.DevTools
             return true;
         }
 
+        /// <summary>
+        /// Like a person at a press: never step under one that is about to slam or still lifting; if
+        /// already beneath it, keep going.
+        /// </summary>
+        bool PressBlocks(Vector2 position, Vector2 waypoint)
+        {
+            var presses = Press.All;
+            for (int i = 0; i < presses.Count; i++)
+            {
+                var p = presses[i];
+                Vector2 at = p.transform.position;
+                float now = Vector2.Distance(position, at);
+                if (now > 3f || now < 1.35f)
+                    continue; // far away, or already under it: move on
+                if (Vector2.Distance(waypoint, at) >= now)
+                    continue; // not heading toward it
+                if (p.IsDownOrRising || p.SecondsUntilSlam < 1.05f)
+                    return true;
+            }
+            return false;
+        }
+
         bool MoveTo(Vector2 target, float tolerance)
         {
             Vector2 position = player.transform.position;
@@ -237,6 +269,11 @@ namespace Wickfall.DevTools
             while (pathIndex < pathCount - 1 && (path[pathIndex] - position).sqrMagnitude < 0.2f)
                 pathIndex++;
             Vector2 waypoint = pathIndex >= pathCount - 1 ? target : path[pathIndex];
+            if (PressBlocks(position, waypoint))
+            {
+                input.Move = Vector2.zero;
+                return false;
+            }
             Vector2 d = waypoint - position;
             input.Move = d.sqrMagnitude > 0.0001f ? d.normalized : Vector2.zero;
             return false;
@@ -276,6 +313,22 @@ namespace Wickfall.DevTools
             }
             if (best == null)
                 return false;
+
+            // Like a person: pick a flame that can hurt it (Slagborn need white or green, PDF §2.3).
+            var tags = best.type != null ? best.type.tags : DamageTags.None;
+            if (!CombatMath.CanHurt(tags, true, player.Flames.Current) && Time.time >= nextFlameSwitch)
+            {
+                for (int s = 0; s < player.Flames.Slots; s++)
+                {
+                    int f = player.Flames.Loadout[s];
+                    if (f >= 0 && CombatMath.CanHurt(tags, true, (FlameId)f))
+                    {
+                        input.SelectSlot(s);
+                        nextFlameSwitch = Time.time + 1.5f;
+                        return true;
+                    }
+                }
+            }
 
             Vector2 enemy = best.transform.position;
             float distance = Mathf.Sqrt(bestDistance);

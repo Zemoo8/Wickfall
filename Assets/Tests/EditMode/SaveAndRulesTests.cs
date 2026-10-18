@@ -176,6 +176,18 @@ namespace Wickfall.Tests
         }
 
         [Test]
+        public void EnteringARegion_GuaranteesTheFlamesOfEarlierRegions()
+        {
+            int Mask(params FlameId[] flames) { int m = 0; foreach (var f in flames) m |= 1 << (int)f; return m; }
+            Assert.AreEqual(Mask(FlameId.Amber), ProgressRules.FlamesGuaranteedOnEntering(RegionId.TallowFields));
+            Assert.AreEqual(Mask(FlameId.Amber, FlameId.Blue), ProgressRules.FlamesGuaranteedOnEntering(RegionId.Wickwood));
+            Assert.AreEqual(Mask(FlameId.Amber, FlameId.Blue, FlameId.Green), ProgressRules.FlamesGuaranteedOnEntering(RegionId.SootFoundries),
+                "R3's Slagborn need green (PDF): R2's flame is guaranteed");
+            Assert.AreEqual(Mask(FlameId.Amber, FlameId.Blue, FlameId.Green, FlameId.White, FlameId.Crimson),
+                ProgressRules.FlamesGuaranteedOnEntering(RegionId.GlassCathedral), "G03: crimson on entering R4");
+        }
+
+        [Test]
         public void StateMachine_ChangesWithoutNesting()
         {
             var owner = new Owner();

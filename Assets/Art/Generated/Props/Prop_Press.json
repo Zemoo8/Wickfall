@@ -1,0 +1,42 @@
+{
+ "sheet": "Prop_Press",
+ "cell": [
+  32,
+  48
+ ],
+ "pivot": [
+  16,
+  4
+ ],
+ "frames": [
+  {
+   "name": "head_0",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 48
+  },
+  {
+   "name": "head_1",
+   "x": 32,
+   "y": 0,
+   "w": 32,
+   "h": 48
+  }
+ ],
+ "clips": {
+  "head": [
+   "head_0",
+   "head_1"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "head",
+   "frames": [
+    "head_0",
+    "head_1"
+   ]
+  }
+ ]
+}

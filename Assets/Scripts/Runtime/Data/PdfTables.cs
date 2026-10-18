@@ -299,7 +299,7 @@ namespace Wickfall
                     h.lightEffectSeconds = 3f; h.telegraphSeconds = 0.35f; h.period = 4f; h.radius = 1.6f;
                     break;
                 case HazardKind.Press: // 35 dégâts
-                    h.damage = 35f; h.telegraphSeconds = 0.9f; h.period = 2.8f; h.activeSeconds = 0.25f; h.radius = 0.9f;
+                    h.damage = 35f; h.telegraphSeconds = 0.9f; h.period = 2.8f; h.activeSeconds = 0.25f; h.radius = 1.1f; // a press blocks a 2-3 wide lane
                     break;
                 case HazardKind.SteamJet:
                     h.damage = 6f; h.telegraphSeconds = 0.6f; h.period = 3.2f; h.activeSeconds = 1.1f; h.radius = 0.7f; h.pushSpeed = 5f;

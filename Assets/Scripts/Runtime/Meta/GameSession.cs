@@ -101,6 +101,13 @@ namespace Wickfall.Meta
             {
                 Region = profile.region;
                 Save.region = (int)profile.region;
+                if (!profile.sandbox)
+                {
+                    int missing = ProgressRules.FlamesGuaranteedOnEntering(profile.region) & ~Save.flamesUnlockedMask;
+                    for (int f = 0; f < WickfallCounts.Flames; f++)
+                        if ((missing & (1 << f)) != 0)
+                            UnlockFlame((FlameId)f);
+                }
                 Events.RegionEntered.Raise(profile.region);
                 Tracker.Begin(profile.region);
             }
@@ -301,7 +308,17 @@ namespace Wickfall.Meta
         {
             Save.flamesUnlockedMask |= 1 << (int)flame;
             if (player != null)
+            {
                 player.Flames.Unlock(flame);
+                for (int i = 0; i < Save.loadout.Length; i++)
+                    Save.loadout[i] = player.Flames.Loadout[i];
+            }
+            else if (System.Array.IndexOf(Save.loadout, (int)flame) < 0)
+            {
+                int free = System.Array.IndexOf(Save.loadout, -1);
+                if (free >= 0 && free < PlayerModifiers.Compute(Save, Db.Data).FlameSlots)
+                    Save.loadout[free] = (int)flame;
+            }
             Events.ProgressChanged.Raise();
         }
 

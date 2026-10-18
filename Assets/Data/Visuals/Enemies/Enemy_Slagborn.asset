@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c952da3910c92846b22ebc8d3f3166d, type: 3}
+  m_Name: Enemy_Slagborn
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.Enemies.EnemySpriteSet
+  idle:
+    frames:
+    - {fileID: -1161096395, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: -1436385811, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    fps: 2
+    loop: 1
+  move:
+    frames:
+    - {fileID: -1854239372, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: 401449893, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: 124085541, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: 138489182, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: -327656838, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: 60472568, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    fps: 6
+    loop: 1
+  windup:
+    frames:
+    - {fileID: -570783849, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: -1213306394, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    fps: 3
+    loop: 1
+  attack:
+    frames:
+    - {fileID: 192010225, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: -1860283579, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: -397286773, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: -1926306471, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    fps: 9
+    loop: 0
+  hurt:
+    frames: []
+    fps: 8
+    loop: 0
+  death:
+    frames:
+    - {fileID: 525711017, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: -813058679, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: -1157637901, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: -1256926121, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    - {fileID: 359559926, guid: fdf46817b694fa84092d9c62fe5b331e, type: 3}
+    fps: 7
+    loop: 0
+  special:
+    frames: []
+    fps: 8
+    loop: 1
+  special2:
+    frames: []
+    fps: 8
+    loop: 1
+  alertHeight: 3.4

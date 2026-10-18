@@ -127,17 +127,19 @@ namespace Wickfall.World
             char c = At(cellX, cellY);
             if (c == '#' || c == ' ')
                 return false;
-            return !Legend.TryGetValue(c, out string kind) || !SolidKinds.Contains(kind);
+            return !Legend.TryGetValue(c, out string kind) || !IsSolidKind(kind);
         }
 
         /// <summary>
         /// Entity kinds that block movement (navigation treats their cell as a wall). Every prefab with a
         /// solid body belongs here, or bots and creatures path straight into it.
         /// </summary>
+        public static bool IsSolidKind(string kind) => SolidKinds.Contains(kind) || kind.StartsWith("Inscription");
+
         public static readonly HashSet<string> SolidKinds = new HashSet<string>
         {
             "BrokenWick", "Solid", "Pillar", "Pedestal", "Statue", "Vine", "Furnace", "Mirror", "Emitter", "Foyer",
-            "Brazier", "Inscription", "FlameShrine", "LightEaterBloom",
+            "Brazier", "FlameShrine", "LightEaterBloom",
         };
 
         /// <summary>Kinds drawn and collided as wall (a vine is a cliff face with wick-vines on it).</summary>

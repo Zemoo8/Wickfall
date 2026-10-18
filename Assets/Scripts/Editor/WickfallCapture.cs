@@ -57,6 +57,12 @@ namespace Wickfall.EditorTools
             (84, 37, "vine"), (92, 25, "north"), (110, 22, "shrine"), (41, 14, "bell"),
         });
 
+        public static void CaptureRegion3() => CaptureRegion(RegionId.SootFoundries, new[]
+        {
+            (12, 56, "start"), (36, 55, "presses"), (62, 52, "belts"), (94, 51, "gallery"), (90, 21, "foundry"),
+            (116, 20, "shrine"), (42, 20, "relic"), (22, 18, "bell"),
+        });
+
         public static void CaptureRegion(RegionId region, (int x, int y, string name)[] shots)
         {
             var core = EditorSceneManager.OpenScene(SceneFactory.PathOf(SceneNames.Core), OpenSceneMode.Single);

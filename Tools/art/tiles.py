@@ -416,6 +416,95 @@ def build_wickwood(out):
     )
 
 
+# ---- Region 3: Fonderies de Suie (A23) ---------------------------------------------------------
+
+FOUNDRY = Style(
+    "foundry",
+    floor=["k1", "k2", "k2", "k3"],
+    floor_accents=[("o0", 0.03), ("k0", 0.04)],
+    top=["k1", "k2", "k3"],
+    top_rim=("o1", "k0"),
+    face=["k1", "k2", "o0"],
+    seed=3,
+)
+
+
+def foundry_face_detail(cv, rnd, variant):
+    """Riveted iron plates with a rust streak."""
+    for x in range(0, 16, 8):
+        for y in range(5, 15):
+            cv.set(x, y, "k0")
+    for (x, y) in ((2, 6), (6, 6), (10, 6), (14, 6), (2, 13), (10, 13)):
+        cv.set(x, y, "b0")
+    sx = rnd.randrange(2, 14)
+    for y in range(7, 15):
+        if rnd.random() < 0.75:
+            cv.set(sx, y, "o0")
+
+
+def grating(variant):
+    """Rusted metal grating laid over the floor (decor)."""
+    cv = Canvas(16, 16)
+    for y in range(2, 14):
+        for x in range(2, 14):
+            if x % 3 == 0 or y % 3 == 0:
+                cv.set(x, y, "k0" if (x + y + variant) % 7 else "o0")
+    return cv
+
+
+def oil_stain(variant):
+    cv = Canvas(16, 16)
+    rnd = random.Random(700 + variant)
+    cx, cy = rnd.randrange(5, 11), rnd.randrange(5, 11)
+    for y in range(16):
+        for x in range(16):
+            if (x - cx) ** 2 + ((y - cy) * 1.4) ** 2 < 10 + rnd.random() * 4:
+                cv.set(x, y, "k0")
+    return cv
+
+
+def conveyor(direction, frame):
+    """A conveyor belt (A23: 4 frames, horizontal and vertical); chevrons travel the way it pushes."""
+    cv = Canvas(16, 16)
+    horizontal = direction in ("e", "w")
+    sign = 1  # drawn east or south; west and north are mirrored below
+    for y in range(16):
+        for x in range(16):
+            u, v = (x, y) if horizontal else (y, x)     # u along the belt, v across it
+            if v < 2 or v > 13:
+                cv.set(x, y, "k3" if v in (1, 14) else "k0")   # side rails
+                continue
+            cv.set(x, y, "k1" if (u + v) % 4 else "k2")
+            # chevrons every 8 px pointing the way the belt moves (apex ahead), 2 px per frame
+            w = (u - sign * frame * 2) % 8
+            d = abs(v + 0.5 - 8)
+            if w == (4 - round(d * 0.6)) % 8 and d < 5:
+                cv.set(x, y, "o1")
+    if direction in ("w", "n"):
+        cv = cv.mirrored() if horizontal else _flip_v(cv)
+    return cv
+
+
+def _flip_v(cv):
+    out = Canvas(cv.w, cv.h)
+    for y in range(cv.h):
+        for x in range(cv.w):
+            if cv.get(x, y):
+                out.px[cv.h - 1 - y][x] = cv.px[y][x]
+    return out
+
+
+def build_foundry(out):
+    specials = []
+    for d in ("e", "w", "n", "s"):
+        specials.append(("conveyor_" + d, [conveyor(d, f) for f in range(4)]))
+    return region_sheets(
+        FOUNDRY, out, foundry_face_detail,
+        decor=[("grating", [grating(i) for i in range(2)]), ("oil", [oil_stain(i) for i in range(2)])],
+        specials=specials,
+    )
+
+
 def build_tallow(out):
     return region_sheets(
         TALLOW, out, tallow_face_detail,

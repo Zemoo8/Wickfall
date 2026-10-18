@@ -28,6 +28,7 @@ namespace Wickfall.EditorTools
         {
             Build(RegionId.TallowFields, "tallow");
             Build(RegionId.Wickwood, "wickwood");
+            Build(RegionId.SootFoundries, "foundry");
         }
 
         public static void Build(RegionId region, string tileKey)
@@ -99,6 +100,15 @@ namespace Wickfall.EditorTools
                         continue;
                     Vector2 c = marker.Center;
                     string id = $"{key}/{kind}/{marker.Cell.x}_{marker.Cell.y}";
+                    if (kind.StartsWith("Inscription"))
+                    {
+                        // "Inscription3" carries its number; a bare "Inscription" falls back to map order.
+                        int n = kind.Length > "Inscription".Length
+                            ? int.Parse(kind.Substring("Inscription".Length))
+                            : inscriptionOrder.IndexOf(marker.Cell);
+                        Place(WorldPrefabs.WorldPath("Inscription"), c, entities).GetComponent<Inscription>().textKey = $"inscription.r{(int)region + 1}.{n}";
+                        continue;
+                    }
                     switch (kind)
                     {
                         case "PlayerStart":
@@ -140,15 +150,11 @@ namespace Wickfall.EditorTools
                         case "Exit":
                             Place(WorldPrefabs.WorldPath("RegionExit"), c, entities);
                             break;
-                        case "Inscription":
-                        {
-                            int n = inscriptionOrder.IndexOf(marker.Cell);
-                            Place(WorldPrefabs.WorldPath("Inscription"), c, entities).GetComponent<Inscription>().textKey = $"inscription.r{(int)region + 1}.{n}";
-                            break;
-                        }
                         case "SwarmNest":
                         case "SwarmNestHusk":
                         case "SwarmNestLurker":
+                        case "SwarmNestSlagborn":
+                        case "SwarmNestBellows":
                         {
                             var nest = Place(WorldPrefabs.WorldPath(kind), c, entities).GetComponent<SwarmNest>();
                             nest.gateId = key;
@@ -156,7 +162,28 @@ namespace Wickfall.EditorTools
                             break;
                         }
                         case "Vine":
-                            break; // built per vertical run by BuildVines
+                        case "ConveyorE":
+                        case "ConveyorW":
+                        case "ConveyorN":
+                        case "ConveyorS":
+                            break; // built per run by BuildVines / BuildConveyors
+                        case "Press":
+                            Place(WorldPrefabs.WorldPath("Press"), c, entities).GetComponent<Press>().phaseOffset = PhaseFor(marker.Cell, 2.8f);
+                            break;
+                        case "SteamJetN":
+                        case "SteamJetS":
+                        case "SteamJetE":
+                        case "SteamJetW":
+                        {
+                            var jet = Place(WorldPrefabs.WorldPath("SteamJet"), c, entities).GetComponent<SteamJet>();
+                            jet.direction = DirectionOf(kind[kind.Length - 1]);
+                            jet.length = 5;
+                            jet.phaseOffset = PhaseFor(marker.Cell, 3.2f);
+                            break;
+                        }
+                        case "Furnace":
+                            Place(WorldPrefabs.WorldPath("Furnace"), c + new Vector2(0f, -0.4f), entities);
+                            break;
                         case "DarkZone":
                             darkCells.Add(c);
                             break;
@@ -197,11 +224,60 @@ namespace Wickfall.EditorTools
                 if (darkCells.Count > 0)
                     SceneFactoryDark(entities, darkCells);
                 BuildVines(level, tiles, group.Cells, built, entities);
+                BuildConveyors(level, tiles, group.Cells, built, entities);
                 BuildCanopyShade(level, group.Cells, entities);
                 EditorSceneManager.SaveScene(gscene, groupPath);
             }
             LevelBuilder.WallLikeChars = new HashSet<char>();
             Debug.Log($"[WICKFALL Setup] Built region {region}: {level.Groups.Count} room groups.");
+        }
+
+        static Vector2 DirectionOf(char letter) =>
+            letter == 'N' ? Vector2.up : letter == 'S' ? Vector2.down : letter == 'E' ? Vector2.right : Vector2.left;
+
+        /// <summary>A stable phase offset per cell, so neighbouring cyclic hazards do not fire together.</summary>
+        static float PhaseFor(Vector2Int cell, float period) => ((cell.x * 37 + cell.y * 17) % 7) / 7f * period;
+
+        /// <summary>
+        /// Each straight run of conveyor cells (same direction, along that direction) becomes one belt:
+        /// animated belt tiles plus a Conveyor that pushes whoever stands on it.
+        /// </summary>
+        static void BuildConveyors(LevelData level, RegionTiles tiles, RectInt groupCells, LevelBuilder.Result built, GameObject parent)
+        {
+            var cells = level.Entities().Where(e => e.kind.StartsWith("Conveyor")).ToDictionary(e => e.cell, e => e.kind[e.kind.Length - 1]);
+            if (cells.Count == 0)
+                return;
+            foreach (var pair in cells)
+            {
+                var cell = pair.Key;
+                char d = pair.Value;
+                var along = (d == 'E' || d == 'W') ? Vector2Int.right : Vector2Int.up;
+                if (cells.TryGetValue(cell - along, out char before) && before == d)
+                    continue; // only start from the first cell of each run
+                int length = 1;
+                while (cells.TryGetValue(cell + along * length, out char next) && next == d)
+                    length++;
+                if (!groupCells.Contains(cell))
+                    continue;
+                var tile = tiles.Special("conveyor_" + char.ToLowerInvariant(d)).tile;
+                for (int i = 0; i < length; i++)
+                {
+                    var p = cell + along * i;
+                    built.Decor.SetTile(new Vector3Int(p.x, p.y, 0), tile);
+                }
+                var go = new GameObject("Conveyor" + d);
+                go.transform.SetParent(parent.transform, false);
+                Vector2 start = cell;
+                Vector2 size = along == Vector2Int.right ? new Vector2(length, 1f) : new Vector2(1f, length);
+                go.transform.position = start + size * 0.5f;
+                EditorAssets.SetLayer(go, Layers.Zone);
+                var box = go.AddComponent<BoxCollider2D>();
+                box.isTrigger = true;
+                box.size = size;
+                var conveyor = go.AddComponent<Conveyor>();
+                conveyor.direction = DirectionOf(d);
+                conveyor.hazard = AssetDatabase.LoadAssetAtPath<HazardSO>(EditorPaths.Hazards + "/Hazard_Conveyor.asset");
+            }
         }
 
         /// <summary>Each vertical run of Vine cells is one climbable vine: overlay tiles + a Vine at its foot.</summary>

@@ -17,7 +17,7 @@ namespace Wickfall.Player
         int ashZones;
         float ashMultiplier = 1f;
         Vector2 push;
-        int pushFrame = -1;
+        float pushTime = -1f;
         bool wasSooted, wasCut;
 
         public bool Sooted => Time.time < sootUntil;
@@ -37,8 +37,12 @@ namespace Wickfall.Player
             }
         }
 
-        /// <summary>Pushes this physics step (conveyors, steam). Cleared every frame.</summary>
-        public Vector2 ExternalVelocity => pushFrame == Time.frameCount || pushFrame == Time.frameCount - 1 ? push : Vector2.zero;
+        /// <summary>
+        /// Pushes from conveyors and steam, kept for this physics step and the next (so it never matters
+        /// whose FixedUpdate runs first). Timed in physics steps, not frames: several frames can pass
+        /// between two steps.
+        /// </summary>
+        public Vector2 ExternalVelocity => Time.fixedTime - pushTime <= Time.fixedDeltaTime * 1.01f ? push : Vector2.zero;
 
         public void ApplySoot(float seconds)
         {
@@ -80,10 +84,10 @@ namespace Wickfall.Player
 
         public void AddPush(Vector2 velocity)
         {
-            if (pushFrame != Time.frameCount)
+            if (pushTime != Time.fixedTime)
             {
                 push = Vector2.zero;
-                pushFrame = Time.frameCount;
+                pushTime = Time.fixedTime;
             }
             push += velocity;
         }

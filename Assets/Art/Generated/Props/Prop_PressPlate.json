@@ -1,0 +1,33 @@
+{
+ "sheet": "Prop_PressPlate",
+ "cell": [
+  32,
+  32
+ ],
+ "pivot": [
+  16,
+  16
+ ],
+ "frames": [
+  {
+   "name": "plate_0",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  }
+ ],
+ "clips": {
+  "plate": [
+   "plate_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "plate",
+   "frames": [
+    "plate_0"
+   ]
+  }
+ ]
+}

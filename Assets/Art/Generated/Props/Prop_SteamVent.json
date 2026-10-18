@@ -1,0 +1,83 @@
+{
+ "sheet": "Prop_SteamVent",
+ "cell": [
+  16,
+  16
+ ],
+ "pivot": [
+  8,
+  8
+ ],
+ "frames": [
+  {
+   "name": "idle_0",
+   "x": 0,
+   "y": 32,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "warn_0",
+   "x": 0,
+   "y": 16,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "warn_1",
+   "x": 16,
+   "y": 16,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "vent_0",
+   "x": 0,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "vent_1",
+   "x": 16,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  }
+ ],
+ "clips": {
+  "idle": [
+   "idle_0"
+  ],
+  "warn": [
+   "warn_0",
+   "warn_1"
+  ],
+  "vent": [
+   "vent_0",
+   "vent_1"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "idle",
+   "frames": [
+    "idle_0"
+   ]
+  },
+  {
+   "name": "warn",
+   "frames": [
+    "warn_0",
+    "warn_1"
+   ]
+  },
+  {
+   "name": "vent",
+   "frames": [
+    "vent_0",
+    "vent_1"
+   ]
+  }
+ ]
+}

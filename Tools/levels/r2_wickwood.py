@@ -84,15 +84,15 @@ L.legend["v"] = K["v"]
 # ---- entities -----------------------------------------------------------------------------------------
 L.put(8, 64, "P", K["P"])
 L.put(14, 61, "B", K["B"])
-L.put(12, 63, "I", K["I"])                   # 0: under the canopy, darkness hides you
+L.inscription(12, 63, 0)                   # 0: under the canopy, darkness hides you
 for (x, y) in [(18, 66), (26, 64), (6, 60)]:
     L.put(x, y, "f", K["f"])
-L.put(38, 61, "I", K["I"])                   # 1: the flowers drink the light
+L.inscription(38, 61, 1)                   # 1: the flowers drink the light
 for x in (42, 50, 58, 64):
     L.put(x, 58, "b", K["b"])
 for (x, y) in [(78, 54), (88, 61), (92, 56), (81, 58)]:
     L.put(x, y, "h", K["h"])
-L.put(46, 49, "I", K["I"])                   # 2: what prowls only moves when you shine
+L.inscription(46, 49, 2)                   # 2: what prowls only moves when you shine
 for (x, y) in [(50, 44), (58, 47), (62, 42)]:
     L.put(x, y, "l", K["l"])
 L.put(12, 44, "R", K["R"])
@@ -101,7 +101,7 @@ L.put(16, 48, "b", K["b"])
 L.put(25, 46, "h", K["h"])
 L.put(87, 41, "B", K["B"])
 L.put(80, 41, "W", K["W"])
-L.put(81, 40, "I", K["I"])                   # 3: only gripping hands hold the wick-vines
+L.inscription(81, 40, 3)                   # 3: only gripping hands hold the wick-vines
 for (x, y) in [(78, 26), (95, 25), (100, 30)]:
     L.put(x, y, "l", K["l"])
 for (x, y) in [(86, 22), (99, 24)]:
@@ -109,7 +109,7 @@ for (x, y) in [(86, 22), (99, 24)]:
 L.put(106, 24, "b", K["b"])
 L.put(111, 21, "F", K["F"])
 L.put(43, 16, "L", K["L"])
-L.put(38, 19, "I", K["I"])                   # 4: above the roots, the bell waits
+L.inscription(38, 19, 4)                   # 4: above the roots, the bell waits
 for x in (40, 41, 42):
     for y in (6, 7):
         L.grid[y][x] = "H"
