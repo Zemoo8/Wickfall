@@ -195,3 +195,17 @@ inscription.r3.1	La vapeur pousse, le tapis emporte.	Steam pushes, the belt carr
 inscription.r3.2	La suie colle à la mèche : elle ronge la cire et la lumière.	Soot clings to the wick: it eats wax and light.
 inscription.r3.3	Seules les flammes blanche et verte mordent le métal.	Only the white and green flames bite the metal.
 inscription.r3.4	La cloche réveille la forge.	The bell wakes the forge.
+# ---- region 4
+inscription.r4.0	Le verre noir renvoie la lumière. Tourne le cristal.	Black glass sends the light back. Turn the crystal.
+inscription.r4.1	Les rayons brûlent : attends qu'ils se taisent.	The rays burn: wait until they fall silent.
+inscription.r4.2	Seule la cramoisie brise le verre noir.	Only crimson breaks black glass.
+inscription.r4.3	Le verre porte qui ne brûle pas rouge.	Glass carries whoever does not burn red.
+inscription.r4.4	Chaque pétale de la Rose veut sa propre flamme.	Each petal of the Rose wants its own flame.
+inscription.r4.5	La cloche répond à la Rose.	The bell answers the Rose.
+# ---- region 5
+inscription.r5.0	Ici, seule ta flamme dessine le monde.	Here, only your flame draws the world.
+inscription.r5.1	Tes gouttes de cire te ramènent.	Your wax drops lead you back.
+inscription.r5.2	Les Éteints vont vers la lumière la plus forte.	The Unlit go to the strongest light.
+inscription.r5.3	Le blanc brûle le creux.	White burns the hollow.
+inscription.r5.4	Le cœur bat plus vite quand la cire baisse.	The heart beats faster as the wax runs low.
+inscription.r5.5	La cloche sonne aussi pour les éteints.	The bell rings for the unlit too.

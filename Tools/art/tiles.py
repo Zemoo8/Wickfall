@@ -505,6 +505,100 @@ def build_foundry(out):
     )
 
 
+# ---- Region 4: Cathédrale de Verre (A24) and Region 5: Creux Profond (A25) -----------------------
+
+CATHEDRAL = Style(
+    "cathedral",
+    floor=["k0", "k1", "k1", "k2"],
+    floor_accents=[("b0", 0.02), ("k3", 0.03)],
+    top=["k0", "k1", "k2"],
+    top_rim=("b1", "k0"),
+    face=["k0", "k1", "k2"],
+    seed=4,
+)
+
+
+def cathedral_face_detail(cv, rnd, variant):
+    """Tall black-mirror panels with pale highlights."""
+    for x in (1, 8):
+        for y in range(5, 15):
+            cv.set(x, y, "k0")
+    for y in range(6, 14, 2):
+        cv.set(3 + (y // 2) % 3, y, "b1")
+    cv.set(11, 7, "b2")
+    cv.set(12, 6, "b1")
+
+
+def crystal_edge(variant):
+    """Crystal growths along the floor's edges (decor)."""
+    cv = Canvas(16, 16)
+    rnd = random.Random(800 + variant)
+    for _ in range(2 + variant):
+        x, y = rnd.randrange(3, 13), rnd.randrange(6, 14)
+        for k in range(3):
+            cv.set(x, y - k, "b1" if k < 2 else "b3")
+        cv.set(x + 1, y, "k3")
+    return cv
+
+
+def glass_glint(variant):
+    cv = Canvas(16, 16)
+    for i in range(4 + variant * 2):
+        cv.set(3 + i, 12 - i, "k3")
+    return cv
+
+
+HOLLOW = Style(
+    "hollow",
+    floor=["k0", "k0", "k0", "k1"],
+    floor_accents=[("k1", 0.02)],
+    top=["k0", "k0", "k1"],
+    top_rim=("k2", "k0"),
+    face=["k0", "k0", "k1"],
+    seed=5,
+)
+
+
+def hollow_face_detail(cv, rnd, variant):
+    """Almost nothing: a faint seam."""
+    for y in range(6, 15, 3):
+        cv.set(rnd.randrange(2, 14), y, "k1")
+
+
+def faint_outline(variant):
+    """A25: only faint tile outlines on pure black (what the LightReveal shader shows)."""
+    cv = Canvas(16, 16)
+    for i in range(16):
+        if (i + variant) % 3:
+            cv.set(i, 0, "k1")
+            cv.set(0, i, "k1")
+    return cv
+
+
+def bone_crack(variant):
+    """A25: faint bone-white cracks, the only variation."""
+    cv = Canvas(16, 16)
+    rnd = random.Random(900 + variant)
+    x, y = rnd.randrange(2, 6), rnd.randrange(4, 12)
+    for _ in range(10):
+        cv.set(x, y, "b0" if rnd.random() < 0.35 else "k2")
+        x += 1
+        y += rnd.choice((-1, 0, 1))
+        if not (0 <= x < 16 and 0 <= y < 16):
+            break
+    return cv
+
+
+def build_cathedral(out):
+    return region_sheets(CATHEDRAL, out, cathedral_face_detail,
+                         decor=[("crystals", [crystal_edge(i) for i in range(2)]), ("glint", [glass_glint(i) for i in range(2)])])
+
+
+def build_hollow(out):
+    return region_sheets(HOLLOW, out, hollow_face_detail,
+                         decor=[("outline", [faint_outline(i) for i in range(3)]), ("crack", [bone_crack(i) for i in range(3)])])
+
+
 def build_tallow(out):
     return region_sheets(
         TALLOW, out, tallow_face_detail,

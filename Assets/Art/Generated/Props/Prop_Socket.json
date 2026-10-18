@@ -1,0 +1,42 @@
+{
+ "sheet": "Prop_Socket",
+ "cell": [
+  16,
+  16
+ ],
+ "pivot": [
+  8,
+  8
+ ],
+ "frames": [
+  {
+   "name": "socket_0",
+   "x": 0,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "socket_1",
+   "x": 16,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  }
+ ],
+ "clips": {
+  "socket": [
+   "socket_0",
+   "socket_1"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "socket",
+   "frames": [
+    "socket_0",
+    "socket_1"
+   ]
+  }
+ ]
+}

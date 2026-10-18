@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c952da3910c92846b22ebc8d3f3166d, type: 3}
+  m_Name: Enemy_Unlit
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.Enemies.EnemySpriteSet
+  idle:
+    frames:
+    - {fileID: -1641960157, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    - {fileID: 763554637, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    - {fileID: 1468191856, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    fps: 3
+    loop: 1
+  move:
+    frames:
+    - {fileID: -1785031015, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    - {fileID: -202271806, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    - {fileID: -1959280495, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    - {fileID: -1955946044, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    - {fileID: 2071055811, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    - {fileID: 2121815922, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    fps: 6
+    loop: 1
+  windup:
+    frames: []
+    fps: 8
+    loop: 1
+  attack:
+    frames: []
+    fps: 8
+    loop: 0
+  hurt:
+    frames: []
+    fps: 8
+    loop: 0
+  death:
+    frames:
+    - {fileID: -1032567382, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    - {fileID: -1065299643, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    - {fileID: -1568114149, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    - {fileID: -1292593140, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    - {fileID: 778895006, guid: 6b834df7fa652374bbf85423cd402b5d, type: 3}
+    fps: 8
+    loop: 0
+  special:
+    frames: []
+    fps: 8
+    loop: 1
+  special2:
+    frames: []
+    fps: 8
+    loop: 1
+  alertHeight: 2.4

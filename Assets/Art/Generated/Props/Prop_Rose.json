@@ -1,0 +1,33 @@
+{
+ "sheet": "Prop_Rose",
+ "cell": [
+  80,
+  80
+ ],
+ "pivot": [
+  40,
+  40
+ ],
+ "frames": [
+  {
+   "name": "frame_0",
+   "x": 0,
+   "y": 0,
+   "w": 80,
+   "h": 80
+  }
+ ],
+ "clips": {
+  "frame": [
+   "frame_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "frame",
+   "frames": [
+    "frame_0"
+   ]
+  }
+ ]
+}

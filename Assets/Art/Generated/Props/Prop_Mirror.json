@@ -1,0 +1,42 @@
+{
+ "sheet": "Prop_Mirror",
+ "cell": [
+  32,
+  32
+ ],
+ "pivot": [
+  16,
+  2
+ ],
+ "frames": [
+  {
+   "name": "mirror_0",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "mirror_1",
+   "x": 32,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  }
+ ],
+ "clips": {
+  "mirror": [
+   "mirror_0",
+   "mirror_1"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "mirror",
+   "frames": [
+    "mirror_0",
+    "mirror_1"
+   ]
+  }
+ ]
+}

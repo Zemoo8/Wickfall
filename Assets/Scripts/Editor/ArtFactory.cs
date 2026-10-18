@@ -56,6 +56,8 @@ namespace Wickfall.EditorTools
             EnsureTiles("tallow");
             EnsureTiles("wickwood");
             EnsureTiles("foundry");
+            EnsureTiles("cathedral");
+            EnsureTiles("hollow");
             AssetDatabase.SaveAssets();
         }
 

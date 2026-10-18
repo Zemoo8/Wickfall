@@ -56,5 +56,23 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Regions/R3/R3_SootFoundries_West.unity
     guid: 84d3290d31bbbae40b8cb1a8187399cc
+  - enabled: 1
+    path: Assets/Scenes/Regions/R4/R4_GlassCathedral.unity
+    guid: e43ab94a2957d4444b61aac8a81fdf45
+  - enabled: 1
+    path: Assets/Scenes/Regions/R4/R4_GlassCathedral_East.unity
+    guid: b42d5ce7480453d4c95cba1efc2887f6
+  - enabled: 1
+    path: Assets/Scenes/Regions/R4/R4_GlassCathedral_West.unity
+    guid: c877ab5f4ff4aee46983b51437824aca
+  - enabled: 1
+    path: Assets/Scenes/Regions/R5/R5_DeepHollow.unity
+    guid: 681f464ca30a0a64d94f4c960dd28e15
+  - enabled: 1
+    path: Assets/Scenes/Regions/R5/R5_DeepHollow_East.unity
+    guid: 864f6adb2e1ac1b419134cfc921c07ac
+  - enabled: 1
+    path: Assets/Scenes/Regions/R5/R5_DeepHollow_West.unity
+    guid: 076624b0c72d5a74baac98d2bf8c592e
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

@@ -86,6 +86,8 @@ def tiles():
     contact("tiles_tallow", img, 4)
     contact("tiles_wickwood", tile_art.build_wickwood(folder), 4)
     contact("tiles_foundry", tile_art.build_foundry(folder), 4)
+    contact("tiles_cathedral", tile_art.build_cathedral(folder), 4)
+    contact("tiles_hollow", tile_art.build_hollow(folder), 4)
     room = tile_art.render_map(tile_art.TALLOW, tile_art.TEST_ROOM, tile_art.tallow_face_detail,
                                [tile_art.wax_grass(0, 0), tile_art.wax_grass(0, 1), tile_art.wax_cracks(0)])
     contact("tiles_tallow_room", room, 3)
@@ -109,6 +111,10 @@ def enemies():
         contact("enemy_" + name, img, 6)
     name, img = foundry.build_vfx(os.path.join(OUT, "VFX"))
     contact("vfx_" + name, img, 12)
+    import cathedral
+    for name, img in cathedral.build_enemies(folder):
+        contact("enemy_" + name, img, 6)
+    cathedral.build_vfx(os.path.join(OUT, "VFX"))
 
 
 def world():
@@ -117,6 +123,9 @@ def world():
     props_world.build(folder)
     import foundry
     for name in foundry.build_props(folder):
+        contact("props_" + name, Image.open(os.path.join(folder, name + ".png")), 4)
+    import cathedral
+    for name in cathedral.build_props(folder):
         contact("props_" + name, Image.open(os.path.join(folder, name + ".png")), 4)
     for name in ("Prop_Relics", "Prop_GreatBell", "Prop_BrokenWick", "Prop_Gate", "Prop_Shrine", "Prop_Stone", "Prop_Nest"):
         contact("props_" + name, Image.open(os.path.join(folder, name + ".png")), 4)

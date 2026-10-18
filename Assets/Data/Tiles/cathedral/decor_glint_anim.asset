@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8f5214f6544f54faf052e194f0f3ef, type: 3}
+  m_Name: decor_glint_anim
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.World.AnimatedTile
+  frames:
+  - {fileID: 1425931798, guid: 2725c018a82302348a1095138e868850, type: 3}
+  - {fileID: 1809545605, guid: 2725c018a82302348a1095138e868850, type: 3}
+  fps: 2
+  randomStart: 1
+  collider: 0

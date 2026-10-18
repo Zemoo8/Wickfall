@@ -1,0 +1,186 @@
+{
+ "sheet": "Enemy_Unlit",
+ "cell": [
+  32,
+  32
+ ],
+ "pivot": [
+  16,
+  2
+ ],
+ "frames": [
+  {
+   "name": "move_0",
+   "x": 0,
+   "y": 64,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "move_1",
+   "x": 32,
+   "y": 64,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "move_2",
+   "x": 64,
+   "y": 64,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "move_3",
+   "x": 96,
+   "y": 64,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "move_4",
+   "x": 128,
+   "y": 64,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "move_5",
+   "x": 160,
+   "y": 64,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "idle_0",
+   "x": 0,
+   "y": 32,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "idle_1",
+   "x": 32,
+   "y": 32,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "idle_2",
+   "x": 64,
+   "y": 32,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "death_0",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "death_1",
+   "x": 32,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "death_2",
+   "x": 64,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "death_3",
+   "x": 96,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  },
+  {
+   "name": "death_4",
+   "x": 128,
+   "y": 0,
+   "w": 32,
+   "h": 32
+  }
+ ],
+ "clips": {
+  "move": [
+   "move_0",
+   "move_1",
+   "move_2",
+   "move_3",
+   "move_4",
+   "move_5"
+  ],
+  "idle": [
+   "idle_0",
+   "idle_1",
+   "idle_2"
+  ],
+  "death": [
+   "death_0",
+   "death_1",
+   "death_2",
+   "death_3",
+   "death_4"
+  ]
+ },
+ "fps": {
+  "move": 6,
+  "idle": 3,
+  "death": 8
+ },
+ "clipList": [
+  {
+   "name": "move",
+   "frames": [
+    "move_0",
+    "move_1",
+    "move_2",
+    "move_3",
+    "move_4",
+    "move_5"
+   ]
+  },
+  {
+   "name": "idle",
+   "frames": [
+    "idle_0",
+    "idle_1",
+    "idle_2"
+   ]
+  },
+  {
+   "name": "death",
+   "frames": [
+    "death_0",
+    "death_1",
+    "death_2",
+    "death_3",
+    "death_4"
+   ]
+  }
+ ],
+ "fpsList": [
+  {
+   "name": "move",
+   "x": 6.0,
+   "y": 0.0
+  },
+  {
+   "name": "idle",
+   "x": 3.0,
+   "y": 0.0
+  },
+  {
+   "name": "death",
+   "x": 8.0,
+   "y": 0.0
+  }
+ ]
+}

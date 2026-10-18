@@ -1,0 +1,297 @@
+{
+ "sheet": "Enemy_Reflection",
+ "cell": [
+  32,
+  40
+ ],
+ "pivot": [
+  16,
+  2
+ ],
+ "frames": [
+  {
+   "name": "idle_0",
+   "x": 0,
+   "y": 200,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "idle_1",
+   "x": 32,
+   "y": 200,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "idle_2",
+   "x": 64,
+   "y": 200,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "idle_3",
+   "x": 96,
+   "y": 200,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "move_0",
+   "x": 0,
+   "y": 160,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "move_1",
+   "x": 32,
+   "y": 160,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "move_2",
+   "x": 64,
+   "y": 160,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "move_3",
+   "x": 96,
+   "y": 160,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "move_4",
+   "x": 128,
+   "y": 160,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "move_5",
+   "x": 160,
+   "y": 160,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "windup_0",
+   "x": 0,
+   "y": 120,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "windup_1",
+   "x": 32,
+   "y": 120,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "attack_0",
+   "x": 0,
+   "y": 80,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "attack_1",
+   "x": 32,
+   "y": 80,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "attack_2",
+   "x": 64,
+   "y": 80,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "hurt_0",
+   "x": 0,
+   "y": 40,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "hurt_1",
+   "x": 32,
+   "y": 40,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "death_0",
+   "x": 0,
+   "y": 0,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "death_1",
+   "x": 32,
+   "y": 0,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "death_2",
+   "x": 64,
+   "y": 0,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "death_3",
+   "x": 96,
+   "y": 0,
+   "w": 32,
+   "h": 40
+  },
+  {
+   "name": "death_4",
+   "x": 128,
+   "y": 0,
+   "w": 32,
+   "h": 40
+  }
+ ],
+ "clips": {
+  "idle": [
+   "idle_0",
+   "idle_1",
+   "idle_2",
+   "idle_3"
+  ],
+  "move": [
+   "move_0",
+   "move_1",
+   "move_2",
+   "move_3",
+   "move_4",
+   "move_5"
+  ],
+  "windup": [
+   "windup_0",
+   "windup_1"
+  ],
+  "attack": [
+   "attack_0",
+   "attack_1",
+   "attack_2"
+  ],
+  "hurt": [
+   "hurt_0",
+   "hurt_1"
+  ],
+  "death": [
+   "death_0",
+   "death_1",
+   "death_2",
+   "death_3",
+   "death_4"
+  ]
+ },
+ "fps": {
+  "idle": 5,
+  "move": 10,
+  "windup": 8,
+  "attack": 14,
+  "hurt": 10,
+  "death": 10
+ },
+ "clipList": [
+  {
+   "name": "idle",
+   "frames": [
+    "idle_0",
+    "idle_1",
+    "idle_2",
+    "idle_3"
+   ]
+  },
+  {
+   "name": "move",
+   "frames": [
+    "move_0",
+    "move_1",
+    "move_2",
+    "move_3",
+    "move_4",
+    "move_5"
+   ]
+  },
+  {
+   "name": "windup",
+   "frames": [
+    "windup_0",
+    "windup_1"
+   ]
+  },
+  {
+   "name": "attack",
+   "frames": [
+    "attack_0",
+    "attack_1",
+    "attack_2"
+   ]
+  },
+  {
+   "name": "hurt",
+   "frames": [
+    "hurt_0",
+    "hurt_1"
+   ]
+  },
+  {
+   "name": "death",
+   "frames": [
+    "death_0",
+    "death_1",
+    "death_2",
+    "death_3",
+    "death_4"
+   ]
+  }
+ ],
+ "fpsList": [
+  {
+   "name": "idle",
+   "x": 5.0,
+   "y": 0.0
+  },
+  {
+   "name": "move",
+   "x": 10.0,
+   "y": 0.0
+  },
+  {
+   "name": "windup",
+   "x": 8.0,
+   "y": 0.0
+  },
+  {
+   "name": "attack",
+   "x": 14.0,
+   "y": 0.0
+  },
+  {
+   "name": "hurt",
+   "x": 10.0,
+   "y": 0.0
+  },
+  {
+   "name": "death",
+   "x": 10.0,
+   "y": 0.0
+  }
+ ]
+}

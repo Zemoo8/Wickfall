@@ -21,6 +21,8 @@ namespace Wickfall.Combat
         readonly RaycastHit2D[] results = new RaycastHit2D[8];
         readonly IDamageable[] pierced = new IDamageable[8];
         int piercedCount;
+        bool firstStep;
+        readonly Collider2D[] overlaps = new Collider2D[8];
         ContactFilter2D filter;
         PooledObject pooled;
 
@@ -33,6 +35,7 @@ namespace Wickfall.Combat
             distanceLeft = range;
             mask = HitQuery.TargetsFor(data.Source) | Layers.WallMask;
             piercedCount = 0;
+            firstStep = true;
             transform.right = direction;
             if (data.HasFlame)
             {
@@ -64,33 +67,33 @@ namespace Wickfall.Combat
             filter.useLayerMask = true;
             filter.layerMask = mask;
             filter.useTriggers = true;
+
+            // Casts ignore colliders they start inside (Physics2D "queries start in colliders" is off),
+            // so on its first step a projectile also takes whatever it was spawned inside: a bolt fired
+            // point-blank must still hit.
+            if (firstStep)
+            {
+                firstStep = false;
+                int inside = Physics2D.OverlapCircle(position, radius, filter, overlaps);
+                for (int i = 0; i < inside; i++)
+                {
+                    var other = overlaps[i];
+                    overlaps[i] = null;
+                    if (other != null && Touch(other, position))
+                    {
+                        for (int k = i + 1; k < inside; k++)
+                            overlaps[k] = null;
+                        return;
+                    }
+                }
+            }
+
             int count = Physics2D.CircleCast(position, radius, step, filter, results, length);
             for (int i = 0; i < count; i++)
             {
                 var other = results[i].collider;
-                if (other == null)
-                    continue;
-                if (other.TryGetComponent(out Hurtbox hurtbox))
-                {
-                    var target = hurtbox.Owner;
-                    if (target == null || !target.IsAlive || target.Team == hit.Source || AlreadyPierced(target))
-                        continue;
-                    var each = hit;
-                    each.Direction = velocity.normalized;
-                    target.TakeHit(each);
-                    if (pierce && piercedCount < pierced.Length)
-                    {
-                        pierced[piercedCount++] = target;
-                        continue;
-                    }
-                    Impact(results[i].centroid);
+                if (other != null && Touch(other, results[i].centroid))
                     return;
-                }
-                if (((1 << other.gameObject.layer) & Layers.WallMask) != 0 && !other.isTrigger)
-                {
-                    Impact(results[i].centroid);
-                    return;
-                }
             }
 
             transform.position = position + step;
@@ -99,6 +102,33 @@ namespace Wickfall.Combat
             distanceLeft -= length;
             if (distanceLeft <= 0f)
                 Impact(transform.position);
+        }
+
+        /// <summary>Hits a target or stops on a wall. Returns true when the projectile is spent.</summary>
+        bool Touch(Collider2D other, Vector2 at)
+        {
+            if (other.TryGetComponent(out Hurtbox hurtbox))
+            {
+                var target = hurtbox.Owner;
+                if (target == null || !target.IsAlive || target.Team == hit.Source || AlreadyPierced(target))
+                    return false;
+                var each = hit;
+                each.Direction = velocity.normalized;
+                target.TakeHit(each);
+                if (pierce && piercedCount < pierced.Length)
+                {
+                    pierced[piercedCount++] = target;
+                    return false;
+                }
+                Impact(at);
+                return true;
+            }
+            if (((1 << other.gameObject.layer) & Layers.WallMask) != 0 && !other.isTrigger)
+            {
+                Impact(at);
+                return true;
+            }
+            return false;
         }
 
         bool AlreadyPierced(IDamageable target)

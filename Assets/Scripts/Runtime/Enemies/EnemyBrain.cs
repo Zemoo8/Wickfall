@@ -146,6 +146,9 @@ namespace Wickfall.Enemies
 
         protected virtual bool WantsToAttack(float distance) => distance <= AttackRange && Time.time >= nextAttack;
 
+        /// <summary>Starts the attack cooldown (for creatures with their own attack states).</summary>
+        protected void BeginCooldown() => nextAttack = Time.time + type.attackCooldown;
+
         /// <summary>The moment the attack lands (melee by default).</summary>
         protected virtual void PerformAttack(Vector2 direction)
         {

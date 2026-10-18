@@ -139,6 +139,23 @@ namespace Wickfall.Tests
         }
 
         [UnityTest]
+        public IEnumerator BlueBolt_FiredPointBlank_StillHits()
+        {
+            var plain = Object.FindObjectsByType<TrainingDummy>(FindObjectsSortMode.None)
+                .Select(e => e.GetComponent<Damageable>()).First(d => d.tags == DamageTags.None);
+            Input.SelectSlot(1); // blue
+            yield return Wait(0.3f);
+            Assert.AreEqual(FlameId.Blue, Player.Flames.Current);
+            float before = plain.Health;
+            // close enough that the bolt is born inside the effigy's hurtbox
+            Player.Teleport(plain.Position + new Vector2(0f, -0.55f));
+            yield return null;
+            Input.PressAttack(plain.Position + new Vector2(0f, 0.4f));
+            yield return Wait(0.5f);
+            Assert.Less(plain.Health, before, "a point-blank bolt hits");
+        }
+
+        [UnityTest]
         public IEnumerator Hit_RemovesWax_LeavesADrop_AndHurts()
         {
             yield return Wait(0.2f);

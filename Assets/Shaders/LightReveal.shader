@@ -1,6 +1,7 @@
 // PDF §4 "Shader LightReveal : Dans le Creux Profond, n'affiche le sol que là où la lumière du joueur arrive."
-// The ground is drawn only where 2D light reaches it; outside the light it is fully transparent (the
-// void shows through). A faint bone-white rim marks the edge of what the light reveals.
+// The ground is drawn only where 2D light reaches it; outside the light it is pure black, as dark as
+// the walls (an earlier transparent version let the camera's background, lifted by post-processing,
+// show the cave's shape). A faint bone-white rim marks the edge of what the light reveals.
 Shader "Wickfall/LightReveal"
 {
     Properties
@@ -113,9 +114,9 @@ Shader "Wickfall/LightReveal"
 
                 half reveal = smoothstep(_RevealStart, _RevealFull, amount);
                 half rimBand = saturate(1 - abs(amount - _RevealStart * 1.6) / max(_RevealStart * 1.2, 0.001));
-                half3 color = lit.rgb + _RimColor.rgb * rimBand * _RimStrength * 0.25;
-                half alpha = main.a * saturate(max(reveal, rimBand * 0.6));
-                return half4(color, alpha);
+                half shown = saturate(max(reveal, rimBand * 0.6));
+                half3 color = (lit.rgb + _RimColor.rgb * rimBand * _RimStrength * 0.25) * shown;
+                return half4(color, main.a);
             }
             ENDHLSL
         }

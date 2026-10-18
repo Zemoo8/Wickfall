@@ -1,0 +1,33 @@
+{
+ "sheet": "Prop_RosePanel",
+ "cell": [
+  24,
+  24
+ ],
+ "pivot": [
+  12,
+  12
+ ],
+ "frames": [
+  {
+   "name": "panel_0",
+   "x": 0,
+   "y": 0,
+   "w": 24,
+   "h": 24
+  }
+ ],
+ "clips": {
+  "panel": [
+   "panel_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "panel",
+   "frames": [
+    "panel_0"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c952da3910c92846b22ebc8d3f3166d, type: 3}
+  m_Name: Enemy_Reflection
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.Enemies.EnemySpriteSet
+  idle:
+    frames:
+    - {fileID: -1506108550, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: -1885563474, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: -45296135, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: -90276609, guid: af365709615aa6b458874e51b435d060, type: 3}
+    fps: 5
+    loop: 1
+  move:
+    frames:
+    - {fileID: 25588786, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: 66454534, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: -1343306025, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: -62368328, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: 207041709, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: -1220157588, guid: af365709615aa6b458874e51b435d060, type: 3}
+    fps: 10
+    loop: 1
+  windup:
+    frames:
+    - {fileID: 289485085, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: 1507952882, guid: af365709615aa6b458874e51b435d060, type: 3}
+    fps: 8
+    loop: 1
+  attack:
+    frames:
+    - {fileID: 1276863753, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: 1156900910, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: -786275882, guid: af365709615aa6b458874e51b435d060, type: 3}
+    fps: 14
+    loop: 0
+  hurt:
+    frames:
+    - {fileID: -1546866090, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: 1199421117, guid: af365709615aa6b458874e51b435d060, type: 3}
+    fps: 10
+    loop: 0
+  death:
+    frames:
+    - {fileID: -499150586, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: -909723706, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: 912441966, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: 1778902461, guid: af365709615aa6b458874e51b435d060, type: 3}
+    - {fileID: 1415776001, guid: af365709615aa6b458874e51b435d060, type: 3}
+    fps: 10
+    loop: 0
+  special:
+    frames: []
+    fps: 8
+    loop: 1
+  special2:
+    frames: []
+    fps: 8
+    loop: 1
+  alertHeight: 2.9

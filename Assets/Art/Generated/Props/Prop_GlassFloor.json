@@ -1,0 +1,60 @@
+{
+ "sheet": "Prop_GlassFloor",
+ "cell": [
+  16,
+  16
+ ],
+ "pivot": [
+  8,
+  8
+ ],
+ "frames": [
+  {
+   "name": "floor_0",
+   "x": 0,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "floor_1",
+   "x": 16,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "floor_2",
+   "x": 32,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  },
+  {
+   "name": "floor_3",
+   "x": 48,
+   "y": 0,
+   "w": 16,
+   "h": 16
+  }
+ ],
+ "clips": {
+  "floor": [
+   "floor_0",
+   "floor_1",
+   "floor_2",
+   "floor_3"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "floor",
+   "frames": [
+    "floor_0",
+    "floor_1",
+    "floor_2",
+    "floor_3"
+   ]
+  }
+ ]
+}

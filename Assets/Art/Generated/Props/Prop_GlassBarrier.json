@@ -1,0 +1,33 @@
+{
+ "sheet": "Prop_GlassBarrier",
+ "cell": [
+  16,
+  32
+ ],
+ "pivot": [
+  8,
+  2
+ ],
+ "frames": [
+  {
+   "name": "glass_0",
+   "x": 0,
+   "y": 0,
+   "w": 16,
+   "h": 32
+  }
+ ],
+ "clips": {
+  "glass": [
+   "glass_0"
+  ]
+ },
+ "clipList": [
+  {
+   "name": "glass",
+   "frames": [
+    "glass_0"
+   ]
+  }
+ ]
+}

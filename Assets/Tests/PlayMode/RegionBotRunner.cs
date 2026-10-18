@@ -45,7 +45,8 @@ namespace Wickfall.Tests
                     nextLog += 15f;
                     var cell = LevelData.CellOf(player.transform.position);
                     Debug.Log($"[WICKFALL Bot] {label} t={real:0}s step {bot.Step}/{bot.StepCount} '{bot.CurrentStep}' at text {cell.x} {director.Level.Height - 1 - cell.y} " +
-                              $"state={player.StateName} wax={player.Wax.Current:0} deaths={bot.Deaths} kills={bot.Kills}");
+                              $"state={player.StateName} wax={player.Wax.Current:0} deaths={bot.Deaths} kills={bot.Kills} flame={player.Flames.Current} " +
+                              $"loadout={string.Join(",", player.Flames.Loadout)} {bot.Note}");
                 }
                 yield return null;
             }

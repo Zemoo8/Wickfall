@@ -45,6 +45,8 @@ namespace Wickfall.DevTools
         public string CurrentStep => steps != null && step < steps.Length ? steps[step] : "-";
         public int Deaths { get; private set; }
         public int Kills { get; private set; }
+        /// <summary>What the current step is doing (for logs).</summary>
+        public string Note { get; private set; } = "";
 
         public void Begin(PlayerController target, LevelData data)
         {
@@ -178,6 +180,62 @@ namespace Wickfall.DevTools
                         Next();
                     }
                     break;
+                case "aim":
+                {
+                    // turn a crystal pedestal until it faces step k (0 = east, counter-clockwise, 45° steps)
+                    int k = int.Parse(parts[3], CultureInfo.InvariantCulture);
+                    var pedestal = Near<CrystalPedestal>(target);
+                    if (pedestal != null && pedestal.facing == k)
+                    {
+                        Next();
+                        break;
+                    }
+                    if (Interact(target, 0.25f))
+                        interacted = false; // press again
+                    break;
+                }
+                case "smash":
+                {
+                    var glass = Near<GlassBarrier>(target);
+                    if (glass == null || glass.Broken)
+                    {
+                        Next();
+                        break;
+                    }
+                    if (EquipFlameThatHurts(DamageTags.Glass))
+                        break;
+                    Strike(glass.transform.position + new Vector3(0f, 0.3f, 0f), 1.6f);
+                    break;
+                }
+                case "rose":
+                {
+                    var rose = Near<RoseWindow>(target, 3f);
+                    if (rose == null || rose.Complete)
+                    {
+                        Next();
+                        break;
+                    }
+                    RosePanel panel = null;
+                    foreach (var p in rose.panels)
+                        if (p != null && !p.IsLit) { panel = p; break; }
+                    if (panel == null)
+                        break;
+                    Note = $"rose: {rose.LitCount}/5 lit, panel {panel.flame}, flame {player.Flames.Current}, powered {rose.Powered}";
+                    if (player.Flames.Current != panel.flame)
+                    {
+                        if (Time.time >= nextFlameSwitch && player.Flames.IsEquipped(panel.flame))
+                        {
+                            input.SelectSlot(player.Flames.SlotOf(panel.flame));
+                            nextFlameSwitch = Time.time + 1.2f;
+                        }
+                        break;
+                    }
+                    Vector2 out_ = ((Vector2)panel.transform.position - (Vector2)rose.transform.position).normalized;
+                    Vector2 stand = (Vector2)panel.transform.position + out_ * 0.85f;
+                    if (MoveTo(stand, 0.25f))
+                        Strike(panel.transform.position, 1.5f);
+                    break;
+                }
                 case "exit":
                     MoveTo(target, 0.2f);
                     if (RegionDirector.Instance == null || RegionDirector.Instance.Completed)
@@ -190,6 +248,58 @@ namespace Wickfall.DevTools
         }
 
         /// <param name="oneShot">The target can only be used once: if it still can be after the wait, the press was lost; press again.</param>
+        static T Near<T>(Vector2 point, float radius = 1.5f) where T : Component
+        {
+            T best = null;
+            float bestDistance = radius;
+            foreach (var c in Object.FindObjectsByType<T>(FindObjectsSortMode.None))
+            {
+                float d = Vector2.Distance(c.transform.position, point);
+                if (d <= bestDistance)
+                {
+                    bestDistance = d;
+                    best = c;
+                }
+            }
+            return best;
+        }
+
+        /// <summary>Selects a flame that can hurt `tags` (true while switching).</summary>
+        bool EquipFlameThatHurts(DamageTags tags)
+        {
+            if (CombatMath.CanHurt(tags, true, player.Flames.Current))
+                return false;
+            if (Time.time >= nextFlameSwitch)
+            {
+                for (int s = 0; s < player.Flames.Slots; s++)
+                {
+                    int f = player.Flames.Loadout[s];
+                    if (f >= 0 && CombatMath.CanHurt(tags, true, (FlameId)f))
+                    {
+                        input.SelectSlot(s);
+                        nextFlameSwitch = Time.time + 1.2f;
+                        break;
+                    }
+                }
+            }
+            return true;
+        }
+
+        /// <summary>Walks into reach of a point and swings at it.</summary>
+        void Strike(Vector2 point, float reach)
+        {
+            Vector2 position = player.transform.position;
+            Vector2 to = point - position;
+            if (to.magnitude > reach)
+            {
+                MoveTo(point, reach * 0.8f);
+                return;
+            }
+            input.Move = to.normalized * 0.2f; // face it
+            if (player.Combat.CanAttack && !player.IsAttacking)
+                input.PressAttack(point); // aimed, like a mouse click on it
+        }
+
         bool Interact(Vector2 target, float wait, bool oneShot = false)
         {
             if (!interacted)
@@ -242,6 +352,25 @@ namespace Wickfall.DevTools
             return false;
         }
 
+        /// <summary>Waits before stepping into a laser that burns or is about to; never stops on one.</summary>
+        bool LaserBlocks(Vector2 position, Vector2 waypoint)
+        {
+            var lasers = LaserEmitter.All;
+            if (lasers.Count == 0)
+                return false;
+            Vector2 step = waypoint - position;
+            Vector2 ahead = position + (step.sqrMagnitude > 0.0001f ? step.normalized * 0.95f : Vector2.zero);
+            for (int i = 0; i < lasers.Count; i++)
+            {
+                var l = lasers[i];
+                if (l.DistanceToPath(position) < 0.8f)
+                    continue; // already on it: get off
+                if (l.DistanceToPath(ahead) < 0.8f && (l.IsFiring || l.SecondsUntilFire < 0.9f))
+                    return true;
+            }
+            return false;
+        }
+
         bool MoveTo(Vector2 target, float tolerance)
         {
             Vector2 position = player.transform.position;
@@ -269,7 +398,7 @@ namespace Wickfall.DevTools
             while (pathIndex < pathCount - 1 && (path[pathIndex] - position).sqrMagnitude < 0.2f)
                 pathIndex++;
             Vector2 waypoint = pathIndex >= pathCount - 1 ? target : path[pathIndex];
-            if (PressBlocks(position, waypoint))
+            if (PressBlocks(position, waypoint) || LaserBlocks(position, waypoint))
             {
                 input.Move = Vector2.zero;
                 return false;
@@ -350,7 +479,7 @@ namespace Wickfall.DevTools
             }
             input.Move = dir * 0.2f; // face it
             if (player.Combat.CanAttack && !player.IsAttacking)
-                input.PressAttack();
+                input.PressAttack(enemy + new Vector2(0f, 0.4f)); // aimed at its body
             return true;
         }
     }

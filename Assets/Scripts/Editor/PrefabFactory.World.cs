@@ -31,6 +31,9 @@ namespace Wickfall.EditorTools
             FoundryPrefabs.EnsureAll();
             EnsureNest("SwarmNestSlagborn", "Slagborn");
             EnsureNest("SwarmNestBellows", "Bellows");
+            CathedralPrefabs.EnsureAll();
+            EnsureNest("SwarmNestReflection", "Reflection");
+            EnsureNest("SwarmNestUnlit", "Unlit");
             EnsureCirelle();
             EnsureBrokenWick();
             EnsureBell();

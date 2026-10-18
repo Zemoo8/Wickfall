@@ -177,6 +177,12 @@ namespace Wickfall.Meta
             else
             {
                 player.Flames.Configure(Save.flamesUnlockedMask, Save.loadout, m.FlameSlots, (FlameId)Save.activeFlame);
+                // G53: a new slot (the R4 relic) takes an unlocked flame that had no room.
+                for (int f = 0; f < WickfallCounts.Flames; f++)
+                    if (player.Flames.IsUnlocked((FlameId)f) && !player.Flames.IsEquipped((FlameId)f))
+                        player.Flames.Unlock((FlameId)f);
+                for (int i = 0; i < Save.loadout.Length; i++)
+                    Save.loadout[i] = player.Flames.Loadout[i];
             }
             Events.ShardsChanged.Raise(Save.shards);
             Events.ProgressChanged.Raise();
@@ -233,6 +239,12 @@ namespace Wickfall.Meta
         {
             if (!string.IsNullOrEmpty(flag))
                 flags.Add(flag);
+        }
+
+        public void ClearFlag(string flag)
+        {
+            if (!string.IsNullOrEmpty(flag))
+                flags.Remove(flag);
         }
 
         public void AddShards(int amount)

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8f5214f6544f54faf052e194f0f3ef, type: 3}
+  m_Name: decor_outline_anim
+  m_EditorClassIdentifier: Wickfall.Runtime::Wickfall.World.AnimatedTile
+  frames:
+  - {fileID: 2041850086, guid: 617a1e196b77d8642a17bb57db25eae3, type: 3}
+  - {fileID: 1294663311, guid: 617a1e196b77d8642a17bb57db25eae3, type: 3}
+  - {fileID: 1958868482, guid: 617a1e196b77d8642a17bb57db25eae3, type: 3}
+  fps: 2
+  randomStart: 1
+  collider: 0

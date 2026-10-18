@@ -29,6 +29,8 @@ namespace Wickfall.EditorTools
             Build(RegionId.TallowFields, "tallow");
             Build(RegionId.Wickwood, "wickwood");
             Build(RegionId.SootFoundries, "foundry");
+            Build(RegionId.GlassCathedral, "cathedral");
+            Build(RegionId.DeepHollow, "hollow");
         }
 
         public static void Build(RegionId region, string tileKey)
@@ -91,7 +93,7 @@ namespace Wickfall.EditorTools
                     data.lightRevealGround ? EditorAssets.Reveal : null, seed: group.Name.GetHashCode());
                 var entities = new GameObject("Entities");
                 var darkCells = new List<Vector2>();
-                var gateCells = new List<Vector2Int>();
+                var gateCells = new Dictionary<string, List<Vector2Int>>(); // "Gate" (the bell's), "GateA", "GateB"...
 
                 foreach (var marker in built.Markers)
                 {
@@ -100,6 +102,35 @@ namespace Wickfall.EditorTools
                         continue;
                     Vector2 c = marker.Center;
                     string id = $"{key}/{kind}/{marker.Cell.x}_{marker.Cell.y}";
+                    if (kind.StartsWith("Gate"))
+                    {
+                        if (!gateCells.TryGetValue(kind, out var cellsOfGate))
+                            gateCells[kind] = cellsOfGate = new List<Vector2Int>();
+                        cellsOfGate.Add(marker.Cell);
+                        continue;
+                    }
+                    if (kind.StartsWith("Pedestal"))
+                    {
+                        // "Pedestal3": a crystal pedestal first turned to facing 3 (x 45°, from east, counter-clockwise)
+                        var pedestal = Place(WorldPrefabs.WorldPath("CrystalPedestal"), c, entities).GetComponent<CrystalPedestal>();
+                        pedestal.facing = kind.Length > "Pedestal".Length ? int.Parse(kind.Substring("Pedestal".Length)) : 0;
+                        pedestal.id = id;
+                        continue;
+                    }
+                    if (kind.StartsWith("Socket"))
+                    {
+                        var socket = Place(WorldPrefabs.WorldPath("BeamSocket"), c, entities).GetComponent<BeamSocket>();
+                        socket.gateId = GateId(key, "Gate" + kind.Substring("Socket".Length));
+                        socket.id = id;
+                        continue;
+                    }
+                    if (kind.StartsWith("Rose"))
+                    {
+                        var rose = Place(WorldPrefabs.WorldPath("RoseWindow"), c, entities).GetComponent<RoseWindow>();
+                        rose.gateId = GateId(key, "Gate" + kind.Substring("Rose".Length));
+                        rose.id = id;
+                        continue;
+                    }
                     if (kind.StartsWith("Inscription"))
                     {
                         // "Inscription3" carries its number; a bare "Inscription" falls back to map order.
@@ -144,9 +175,6 @@ namespace Wickfall.EditorTools
                         case "GreatBell":
                             Place(WorldPrefabs.WorldPath("GreatBell"), c, entities).GetComponent<GreatBell>().gateId = key;
                             break;
-                        case "Gate":
-                            gateCells.Add(marker.Cell);
-                            break;
                         case "Exit":
                             Place(WorldPrefabs.WorldPath("RegionExit"), c, entities);
                             break;
@@ -155,6 +183,8 @@ namespace Wickfall.EditorTools
                         case "SwarmNestLurker":
                         case "SwarmNestSlagborn":
                         case "SwarmNestBellows":
+                        case "SwarmNestReflection":
+                        case "SwarmNestUnlit":
                         {
                             var nest = Place(WorldPrefabs.WorldPath(kind), c, entities).GetComponent<SwarmNest>();
                             nest.gateId = key;
@@ -184,6 +214,32 @@ namespace Wickfall.EditorTools
                         case "Furnace":
                             Place(WorldPrefabs.WorldPath("Furnace"), c + new Vector2(0f, -0.4f), entities);
                             break;
+                        case "BeamLampN":
+                        case "BeamLampS":
+                        case "BeamLampE":
+                        case "BeamLampW":
+                            Place(WorldPrefabs.WorldPath("BeamLamp"), c, entities).GetComponent<LightBeam>().direction = DirectionOf(kind[kind.Length - 1]);
+                            break;
+                        case "LaserN":
+                        case "LaserS":
+                        case "LaserE":
+                        case "LaserW":
+                        {
+                            var laser = Place(WorldPrefabs.WorldPath("LaserEmitter"), c, entities).GetComponent<LaserEmitter>();
+                            laser.direction = DirectionOf(kind[kind.Length - 1]);
+                            laser.phaseOffset = PhaseFor(marker.Cell, 3.2f);
+                            break;
+                        }
+                        case "MirrorSlash":
+                        case "MirrorBackslash":
+                            Place(WorldPrefabs.WorldPath(kind), c, entities);
+                            break;
+                        case "GlassBarrier":
+                            Place(WorldPrefabs.WorldPath("GlassBarrier"), c, entities).GetComponent<GlassBarrier>().id = id;
+                            break;
+                        case "GlassFloor":
+                            Place(WorldPrefabs.WorldPath("GlassFloor"), c, entities);
+                            break;
                         case "DarkZone":
                             darkCells.Add(c);
                             break;
@@ -211,14 +267,15 @@ namespace Wickfall.EditorTools
                     }
                 }
 
-                // A gate spans its cells (one object at their centre, bottom row).
-                if (gateCells.Count > 0)
+                // A gate spans its cells (one object at their centre, bottom row). "Gate" is opened by the
+                // Great Bell (id = the region key); "GateA" etc. by puzzles (id = key/A).
+                foreach (var pair in gateCells)
                 {
-                    int minY = gateCells.Min(g => g.y);
-                    var row = gateCells.Where(g => g.y == minY).ToList();
+                    int minY = pair.Value.Min(g => g.y);
+                    var row = pair.Value.Where(g => g.y == minY).ToList();
                     float cx = (row.Min(g => g.x) + row.Max(g => g.x) + 1) / 2f;
                     var gate = Place(WorldPrefabs.WorldPath("Gate"), new Vector2(cx, minY), entities).GetComponent<Gate>();
-                    gate.id = key;
+                    gate.id = GateId(key, pair.Key);
                     gate.widthCells = row.Count;
                 }
                 if (darkCells.Count > 0)
@@ -231,6 +288,10 @@ namespace Wickfall.EditorTools
             LevelBuilder.WallLikeChars = new HashSet<char>();
             Debug.Log($"[WICKFALL Setup] Built region {region}: {level.Groups.Count} room groups.");
         }
+
+        /// <summary>"Gate" belongs to the bell (the region key); "GateA" to a puzzle ("key/A").</summary>
+        public static string GateId(string regionKey, string kind) =>
+            kind == "Gate" ? regionKey : regionKey + "/" + kind.Substring("Gate".Length);
 
         static Vector2 DirectionOf(char letter) =>
             letter == 'N' ? Vector2.up : letter == 'S' ? Vector2.down : letter == 'E' ? Vector2.right : Vector2.left;

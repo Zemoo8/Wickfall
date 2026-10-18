@@ -63,6 +63,16 @@ namespace Wickfall.EditorTools
             (116, 20, "shrine"), (42, 20, "relic"), (22, 18, "bell"),
         });
 
+        public static void CaptureRegion4() => CaptureRegion(RegionId.GlassCathedral, new[]
+        {
+            (14, 82, "nave"), (36, 63, "lasers"), (80, 50, "glass"), (80, 36, "bridge"), (42, 30, "rose"), (42, 10, "bell"),
+        });
+
+        public static void CaptureRegion5() => CaptureRegion(RegionId.DeepHollow, new[]
+        {
+            (12, 66, "start"), (56, 62, "unlit"), (50, 30, "relic"), (78, 36, "nook"), (20, 17, "bell"),
+        });
+
         public static void CaptureRegion(RegionId region, (int x, int y, string name)[] shots)
         {
             var core = EditorSceneManager.OpenScene(SceneFactory.PathOf(SceneNames.Core), OpenSceneMode.Single);
@@ -96,6 +106,9 @@ namespace Wickfall.EditorTools
         {
             foreach (var canopy in Object.FindObjectsByType<Wickfall.Lighting.Canopy>(FindObjectsSortMode.None))
                 canopy.Snap(center);
+            Physics2D.SyncTransforms();
+            foreach (var beam in Object.FindObjectsByType<Wickfall.World.LightBeam>(FindObjectsSortMode.None))
+                beam.Refresh();
             Directory.CreateDirectory(Output);
             var pixel = cam.GetComponent<PixelPerfectCamera>();
             bool pixelWasOn = pixel != null && pixel.enabled;
