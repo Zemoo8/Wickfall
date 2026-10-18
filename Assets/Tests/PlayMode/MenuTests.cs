@@ -107,6 +107,12 @@ namespace Wickfall.Tests
             OptionsView.Instance.Open();
             yield return null;
             Assert.IsTrue(OptionsView.Instance.IsOpen);
+            // the menu's canvas draws over Core's: its page must hide, or its text shows through Options
+            var entries = menu.transform.Find("Entries");
+            Assert.IsFalse(entries.gameObject.activeSelf, "the menu page hides while Options is open");
+            OptionsView.Instance.Close();
+            yield return null;
+            Assert.IsTrue(entries.gameObject.activeSelf, "the menu page comes back after Options");
         }
     }
 }

@@ -12,6 +12,25 @@ namespace Wickfall.UI
         RectTransform root;
         readonly List<Button> buttons = new List<Button>();
         bool paused;
+        float timeScaleBefore = 1f;
+        static ChoiceView shown;
+
+        /// <summary>Gameplay videos: show the question even when a bot answers it (without pausing), so viewers see it.</summary>
+        public static bool ShowForBots;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics()
+        {
+            ShowForBots = false;
+            shown = null;
+        }
+
+        /// <summary>Moves the highlight to an option (a bot "pointing" at its answer in a video).</summary>
+        public static void Highlight(int option)
+        {
+            if (shown != null && shown.root != null && option >= 0 && option < shown.buttons.Count)
+                UiKit.Select(shown.buttons[option]);
+        }
 
         void OnEnable()
         {
@@ -30,12 +49,16 @@ namespace Wickfall.UI
             var session = GameSession.Instance;
             var player = session != null ? session.player : null;
             var kit = UiKit.Instance;
-            if (kit == null || (player != null && player.IsBotControlled))
+            bool bot = player != null && player.IsBotControlled;
+            if (kit == null || (bot && !ShowForBots))
                 return; // bots and tests answer through Choice.Resolve
-            if (player != null)
+            // the game waits for the answer, for a person and in a video alike
+            if (!bot && player != null)
                 player.ControlsLocked = true;
             paused = true;
+            timeScaleBefore = Time.timeScale;
             Time.timeScale = 0f;
+            shown = this;
 
             root = UiKit.Fill(transform, "Choice");
             kit.Veil(root, 0.6f);
@@ -69,7 +92,7 @@ namespace Wickfall.UI
             if (!paused)
                 return;
             paused = false;
-            Time.timeScale = 1f;
+            Time.timeScale = timeScaleBefore > 0f ? timeScaleBefore : 1f;
             var session = GameSession.Instance;
             if (session != null && session.player != null)
                 session.player.ControlsLocked = false;

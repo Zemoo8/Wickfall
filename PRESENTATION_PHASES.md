@@ -17,14 +17,14 @@ In Unity: **`WICKFALL > Presentation > Phase N`** switches on only that stage's 
 
 | Stage | Clips |
 |---|---|
-| 4 Development | `Stage4_R1_TallowFields.mp4` (1:51), `Stage4_R2_Wickwood.mp4` (1:35) |
-| 5 2D Animation | `Stage5_R3_SootFoundries.mp4` (1:24), `Stage5_R4_GlassCathedral.mp4` (1:28) |
-| 6 Testing | `Stage6_R5_DeepHollow.mp4` (1:13), `Stage6_R6_Boss_and_EndingA.mp4` (1:08) |
+| 4 Development | `Stage4_R1_TallowFields.mp4` (1:51), `Stage4_R2_Wickwood.mp4` (1:30) |
+| 5 2D Animation | `Stage5_R3_SootFoundries.mp4` (1:34), `Stage5_R4_GlassCathedral.mp4` (1:28) |
+| 6 Testing | `Stage6_R5_DeepHollow.mp4` (1:13), `Stage6_R6_Boss_and_EndingA.mp4` (1:55) |
 | 7–8 | show the stage 6 clips and run the `.exe` |
 
-The bot plays like a careful player: it sneaks past creatures with the wick trimmed, fights only what catches it (or guards a puzzle), and dodges. All six clips: regions cleared, 0 deaths.
+The bot plays like a careful player: it sneaks past creatures with the wick trimmed, fights only what catches it (or guards a puzzle), and dodges. Captions are in the first person ("I'm climbing..."). Regions 1–5: cleared with 0 deaths; Region 6: the King wins the first attempt, the second wins, then the choices and Ending A are shown.
 
-Make them again (Unity closed, one at a time, about 4–8 minutes each):
+Make them again (Unity closed, one at a time, about 2–6 minutes each; Regions 5–6 need phase 0, Show Everything):
 `powershell -File Tools/unity.ps1 -Tests PlayMode -Filter Wickfall.Tests.ZzRecordR1` (R1 … R6), then
 `sh Tools/shrink_video.sh Builds/Videos/<clip>.mp4` if a clip is over 29 MB.
 

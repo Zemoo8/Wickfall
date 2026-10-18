@@ -26,7 +26,7 @@ namespace Wickfall.Tests
         // exactly 3x the game's 480x270, so pixels and the HUD scale cleanly
         const int Width = 1440, Height = 810;
         const float IntroSeconds = 6f;
-        const string HudText = "Bottom-left: the candle is the wax bar. Wax is life AND light: it burns down over time, and every hit costs wax. Next to it: the current flame";
+        const string HudText = "Bottom-left: the candle is my wax bar. Wax is life AND light: it burns down over time, and every hit costs wax. Next to it: my current flame";
         RenderTexture rt;
         Texture2D tex;
         Camera cam;
@@ -51,8 +51,8 @@ namespace Wickfall.Tests
         /// <summary>Region number and Loc key (for the intro caption).</summary>
         protected abstract int Number { get; }
         protected abstract string RegionKey { get; }
-        protected virtual string Goal => "Goal: ring the Great Bell to open the exit, and get out alive";
-        protected virtual string Outro => "Region cleared: the score screen shows time, wax left, kills and rank";
+        protected virtual string Goal => "My goal: ring the Great Bell to open the exit, and get out alive";
+        protected virtual string Outro => "Region cleared! The score screen shows my time, wax left, enemies avoided and rank";
         /// <summary>What this region adds, told after the HUD.</summary>
         protected abstract string RegionNote { get; }
         protected virtual string[] Route => null;
@@ -63,7 +63,7 @@ namespace Wickfall.Tests
 
         static string En(string key) => UI.Loc.Get(key, UI.Loc.English) ?? key;
 
-        string Intro => $"Region {Number}: {En(RegionKey)}. {En(RegionKey + ".env")}.\n{Goal} (bot playing at {Speed:0.##}x speed)";
+        string Intro => $"Region {Number}: {En(RegionKey)}. {En(RegionKey + ".env")}.\n{Goal}";
 
         void Begin()
         {
@@ -84,6 +84,7 @@ namespace Wickfall.Tests
             language = UI.Loc.Language;
             UI.Loc.SetLanguage(UI.Loc.English);
             Time.captureFramerate = Fps;
+            UI.ChoiceView.ShowForBots = true; // the King's fate and the ending appear on screen
             // a level opened directly (as here) is never faded in by the scene loader: clear the black
             UI.ScreenFader.Instance?.SetBlack(false);
             // recordings are not checks: unrelated error logs must not fail them
@@ -246,6 +247,7 @@ namespace Wickfall.Tests
         void End()
         {
             Time.captureFramerate = 0;
+            UI.ChoiceView.ShowForBots = false;
             if (cam != null) cam.targetTexture = null;
             if (pixel != null) pixel.enabled = true;
             if (rt != null) { rt.Release(); Object.Destroy(rt); }
@@ -275,7 +277,10 @@ namespace Wickfall.Tests
 
         protected IEnumerator Record()
         {
-            yield return WaitUntil(() => RegionDirector.Instance != null && RoomLoader.Instance != null && RoomLoader.Instance.Settled, 10f);
+            // a slow first load can take longer than the game tests allow: wait for the level itself
+            yield return WaitUntil(() => RegionDirector.Instance != null && RegionDirector.Instance.Level != null
+                                         && RoomLoader.Instance != null && RoomLoader.Instance.Settled, 60f);
+            Assert.IsNotNull(RegionDirector.Instance?.Level, "the region did not load");
             Begin();
             run = new RegionBotRunner.Run();
             var route = Route;
@@ -309,7 +314,7 @@ namespace Wickfall.Tests
         protected override string Music => "TallowFields";
         protected override int Number => 1;
         protected override string RegionKey => "region.tallow";
-        protected override string RegionNote => "The Tallow Fields teach the basics: walk, fight only when needed, rest at braziers, and find the region's flame and relic";
+        protected override string RegionNote => "I'm crossing the Tallow Fields, where the basics are: fighting only when I must, resting at braziers, and finding the region's flame and relic";
         [UnityTest, Timeout(3000000)] public IEnumerator Record_R1() => Record();
     }
 
@@ -320,7 +325,7 @@ namespace Wickfall.Tests
         protected override string Music => "Wickwood";
         protected override int Number => 2;
         protected override string RegionKey => "region.wickwood";
-        protected override string RegionNote => "Under the black canopy no light gets through: it is darker, but the creatures see you less there too";
+        protected override string RegionNote => "I'm entering the Wickwood: under the black canopy no light gets through, so it's darker, but creatures see me less there too";
         [UnityTest, Timeout(3000000)] public IEnumerator Record_R2() => Record();
     }
 
@@ -331,7 +336,7 @@ namespace Wickfall.Tests
         protected override string Music => "SootFoundries";
         protected override int Number => 3;
         protected override string RegionKey => "region.foundries";
-        protected override string RegionNote => "In the foundry, conveyors carry you, presses slam on a rhythm and steam jets scald: it is a timing puzzle";
+        protected override string RegionNote => "I'm in the Soot Foundries: conveyors carry me, presses slam on a rhythm and steam jets scald, so timing is everything";
         [UnityTest, Timeout(3000000)] public IEnumerator Record_R3() => Record();
     }
 
@@ -349,7 +354,7 @@ namespace Wickfall.Tests
         };
         protected override int Number => 4;
         protected override string RegionKey => "region.cathedral";
-        protected override string RegionNote => "In the cathedral, crystals steer a beam of light: it powers the rose window that opens the way on";
+        protected override string RegionNote => "I'm in the Glass Cathedral: crystals steer a beam of light that powers the rose window, the way on";
         [UnityTest, Timeout(3000000)] public IEnumerator Record_R4() => Record();
     }
 
@@ -361,7 +366,7 @@ namespace Wickfall.Tests
         protected override string[] KeepFights => new[] { "fight 52 30" }; // the Unlit around the relic
         protected override int Number => 5;
         protected override string RegionKey => "region.hollow";
-        protected override string RegionNote => "No light at all here: only what the flame lights exists, so every creature stays hidden until it is close";
+        protected override string RegionNote => "I'm in the Deep Hollow: no light at all, only what my flame lights exists, so creatures stay hidden until they're close";
         [UnityTest, Timeout(3000000)] public IEnumerator Record_R5() => Record();
     }
 
@@ -372,8 +377,8 @@ namespace Wickfall.Tests
         protected override string Music => "Boss";
         protected override int Number => 6;
         protected override string RegionKey => "region.hearth";
-        protected override string RegionNote => "The last region: the Hollow King waits at the Hearth, where the whole journey leads";
-        protected override string Goal => "Goal: beat the Hollow King, then choose an ending";
+        protected override string RegionNote => "I'm in the Hearth Chamber, the last region: the Hollow King waits at the Hearth, where the whole journey leads";
+        protected override string Goal => "My goal: beat the Hollow King, then choose an ending";
         protected override string Outro => "Ending A: the Grand Hearth burns again, and the Wickbearer is consumed by it";
         protected override string[] Route => new[]
         {

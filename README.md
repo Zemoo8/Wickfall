@@ -21,6 +21,7 @@ Design source: `Wickfall_Idee_Complete.pdf` (copy and transcript in `Docs/Source
 - Every number from the PDF is checked by tests. A bot finishes every region and reaches every ending.
 
 ## For the teacher
+- `Docs/GAME_IDEA.md` — the game idea in plain English, and what came from the PDF.
 - `Docs/HOW_IT_WORKS.md` — the main Unity ideas in one page, with what to say.
 - `PRESENTATION_PHASES.md` — what to show at each review stage.
 - `Docs/DESIGN_DECISIONS.md` — what was decided where the PDF says nothing.

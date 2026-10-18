@@ -103,6 +103,8 @@ namespace Wickfall.DevTools
         int captionPriority;
         bool routeTrim;
         int toldStep = -1;
+        float choiceAt = -1f;
+        const float ChoiceSeconds = 4.5f;
         string objective = "", objectiveShown = "";
 
         /// <summary>Showcase: the narration on screen, in plain English.</summary>
@@ -176,30 +178,33 @@ namespace Wickfall.DevTools
         {
             Kills++;
             if (info.Kind != EnemyKind.HollowKing)
-                Tell("kill", "Killing a creature gives wax back and shards: fighting is risky, but it can also refill the candle", 1);
+                Tell("kill", "I'm defeating a creature: it drops wax and shards. Fighting is risky, but it can also refill my candle", 1);
         }
 
         void OnWax(WaxChange change)
         {
             if (change.Reason == WaxChangeReason.Damage && change.Delta <= -1f)
-                Tell("hit", "Every hit burns wax. Wax is also the light, so a hurt candle sees less and less", 2);
+                Tell("hit", "I'm getting hit: every hit burns wax. Wax is also my light, so a hurt candle sees less and less", 2);
             else if (change.Reason == WaxChangeReason.Gain && change.Delta >= 1f)
-                Tell("gain", "Wax drops refill the candle: wax is the only resource, life and light at once", 1);
+                Tell("gain", "I'm picking up wax: it refills my candle. Wax is the only resource, life and light at once", 1);
             else if (change.Reason == WaxChangeReason.Refill)
                 Tell("brazier", BrazierText, 2);
         }
 
-        const string BrazierText = "Braziers are checkpoints: resting refills the wax once and saves. If the flame goes out, the bot comes back here";
+        const string BrazierText = "I'm resting at a brazier, a checkpoint: it refills my wax once and saves. If my flame goes out, I come back here";
 
         void OnExtinguished() =>
-            Tell("death", "Out of wax: the flame goes out. The bot comes back at the last brazier, and each death costs score", 4);
+            Tell("death", "I'm out of wax and my flame goes out: I'm coming back at the last brazier, and each death costs score", 4);
 
         void OnBossPhase(int phase)
         {
+            // the King's phases each take a support away (PDF §4, G13): 1 at the start of the fight, then 2 and 3
             if (phase == 1)
-                Tell("phase1", "Phase 2: each phase takes something away. The arena's wax pools go dark and ash waves begin", 3);
-            else if (phase >= 2)
-                Tell("phase2", "Phase 3: no more trimming the wick, and the King pulses negative light", 3);
+                Tell("phase1", "The fight begins, and phase 1 takes something away: the arena's wax pools go dark, so I can't refill here", 3);
+            else if (phase == 2)
+                Tell("phase2", "The King is entering phase 2: I can't trim my wick anymore, and ash waves begin", 3);
+            else if (phase >= 3)
+                Tell("phase3", "The King is entering phase 3: my maximum wax drops to 40, and he pulses negative light", 3);
         }
 
         void OnRespawned()
@@ -234,24 +239,25 @@ namespace Wickfall.DevTools
                 var p = steps[j].Split(' ');
                 switch (p[0])
                 {
-                    case "rest": return "Next: the brazier ahead, the next checkpoint";
-                    case "read": return "Next: an inscription stone";
-                    case "drink": return "Next: a wax pool, to refill the candle";
+                    case "rest": return "I'm heading to the brazier ahead, the next checkpoint";
+                    case "read": return "I'm heading to an inscription stone";
+                    case "drink": return "I'm heading to a wax pool to refill my candle";
                     case "take":
                     {
                         Vector2 at = World(p[1], p[2]);
                         var shrine = Near<FlameShrine>(at, 2f);
                         if (shrine != null)
-                            return $"Next: the shrine of the {FlameName(shrine.flame)} flame";
-                        return Near<RelicPickup>(at, 2f) != null ? "Next: this region's relic" : "Next: something to collect";
+                            return $"I'm heading to the shrine of the {FlameName(shrine.flame)} flame";
+                        return Near<RelicPickup>(at, 2f) != null ? "I'm heading to this region's relic" : "I'm heading to the next treasure";
                     }
-                    case "ring": return "Next: the Great Bell, which opens the exit gate";
-                    case "climb": return "Next: the wick-vine up the wall";
-                    case "aim": return "Next: the crystals that steer the light beam";
-                    case "smash": return "Next: a glass barrier blocking the way";
-                    case "rose": return "Next: the rose window puzzle";
-                    case "boss": return "Next: the Hollow King's arena";
-                    case "exit": return "The gate is open: heading for the exit";
+                    case "ring": return "I'm heading to the Great Bell, which opens the exit gate";
+                    case "climb": return "I'm heading to the wick-vine up the wall";
+                    case "aim": return "I'm heading to the crystals that steer the light beam";
+                    case "smash": return "I'm heading to a glass barrier blocking the way";
+                    case "rose": return "I'm heading to the rose window puzzle";
+                    case "boss": return j == step ? "I'm fighting the Hollow King: dodging his attacks and striking with the White flame"
+                                                  : "I'm heading into the Hollow King's arena";
+                    case "exit": return "The gate is open: I'm heading for the exit";
                     case "judge":
                     case "ending": return "";
                 }
@@ -265,33 +271,33 @@ namespace Wickfall.DevTools
             switch (command)
             {
                 case "rest": Tell("brazier", BrazierText, 2); break;
-                case "clear": Tell("clear", "Creatures guard this spot, so here the bot has to fight: it clears them first, then goes on", 3); break;
-                case "read": Tell("read", "Inscription stones tell the story of Wickfall, one piece at a time", 1); break;
-                case "drink": Tell("pool", "Wax pools refill the candle: wax is life, so drinking heals", 2); break;
+                case "clear": Tell("clear", "Creatures guard this spot, so I'm fighting here: I'm clearing them first, then moving on", 3); break;
+                case "read": Tell("read", "I'm reading an inscription stone: each one tells a piece of Wickfall's story", 1); break;
+                case "drink": Tell("pool", "I'm drinking from a wax pool: wax is life, so drinking heals", 2); break;
                 case "take":
                 {
                     var shrine = Near<FlameShrine>(target, 2f);
                     var relic = shrine == null ? Near<RelicPickup>(target, 2f) : null;
                     if (shrine != null)
-                        Tell("flame" + shrine.flame, $"A flame shrine gives a new flame: {FlameName(shrine.flame)} ({LowerFirst(FlameRole(shrine.flame))}). " +
+                        Tell("flame" + shrine.flame, $"I'm taking a new flame at its shrine: {FlameName(shrine.flame)} ({LowerFirst(FlameRole(shrine.flame))}). " +
                                                      "Each flame suits other enemies; switching costs a little wax", 3);
                     else if (relic != null)
-                        Tell("relic" + relic.relicIndex, $"A relic is a permanent power. This one, {UI.Loc.Get("relic." + relic.relicIndex, En)}: " +
+                        Tell("relic" + relic.relicIndex, $"I'm taking a relic, a permanent power. This one, {UI.Loc.Get("relic." + relic.relicIndex, En)}: " +
                                                          UI.Loc.Get("relic." + relic.relicIndex + ".desc", En), 3);
                     break;
                 }
-                case "ring": Tell("bell", "The Great Bell opens the exit gate, but its toll wakes every creature around: ring it, then run", 3); break;
-                case "climb": Tell("vine", "With the Ember Hook relic the bot can climb wick-vines to reach higher ground", 2); break;
-                case "aim": Tell("aim", "Crystal pedestals turn step by step: the bot points them so the light beam reaches the next mirror", 2); break;
-                case "smash": Tell("glass", "Glass barriers only break under the Crimson flame, so the bot switches to it and strikes", 2); break;
-                case "rose": Tell("rose", "The rose window has five panels; each lights only with the flame of its own colour, so the bot switches flame for each", 3); break;
-                case "boss": Tell("boss", "The Hollow King has three phases, each taking something away. The bot uses the White flame (anti-Hollow) and dodges his big attacks", 3); break;
+                case "ring": Tell("bell", "I'm ringing the Great Bell: it opens the exit gate, but its toll wakes every creature around, so I'm running", 3); break;
+                case "climb": Tell("vine", "I'm climbing a wick-vine: the Ember Hook relic lets me grip the wall and reach higher ground", 3); break;
+                case "aim": Tell("aim", "I'm turning the crystal pedestals step by step, so the light beam reaches the next mirror", 2); break;
+                case "smash": Tell("glass", "I'm switching to the Crimson flame and striking: glass barriers only break under it", 2); break;
+                case "rose": Tell("rose", "I'm lighting the rose window: each of its five panels lights only with its own flame colour, so I'm switching flame for each", 3); break;
+                case "boss": Tell("boss", "I'm facing the Hollow King: three phases, each taking something away. I'm using the White flame (anti-Hollow) and dodging his big attacks", 3); break;
                 case "judge":
-                    Tell("judge", "The King is beaten and the game asks: spare him or extinguish him? The choice changes the ending. The bot " +
-                                  (parts.Length > 3 && parts[3] == "spare" ? "spares him" : "extinguishes him"), 4);
+                    Tell("judge", "The King is beaten, and the game asks: spare him or extinguish him? The choice changes the ending. I'm " +
+                                  (parts.Length > 3 && parts[3] == "spare" ? "sparing him" : "extinguishing him"), 4);
                     break;
-                case "ending": Tell("ending", "At the Hearth, the last choice picks one of three endings. The bot picks ending " + (parts.Length > 3 ? parts[3] : ""), 4); break;
-                case "exit": Tell("exit", "At the exit, the score counts wax left, time, relics and enemies avoided, minus deaths, and gives a rank", 2); break;
+                case "ending": Tell("ending", "I'm at the Hearth: the last choice picks one of three endings. I'm choosing ending " + (parts.Length > 3 ? parts[3] : ""), 4); break;
+                case "exit": Tell("exit", "I'm leaving the region: the score counts wax left, time, relics and enemies avoided, minus deaths, and gives a rank", 2); break;
             }
         }
 
@@ -333,6 +339,8 @@ namespace Wickfall.DevTools
             if (player == null || steps == null || Done || Failed)
                 return;
             input.Move = Vector2.zero;
+            if (Choice.IsOpen && AnswerChoice())
+                return; // a question on screen pauses the game, as it does for a person
             if (player.IsExtinguished || player.ControlsLocked || Time.timeScale <= 0f)
                 return;
 
@@ -376,9 +384,10 @@ namespace Wickfall.DevTools
                     objective = Objective();
                     TellStep(command, parts, target);
                 }
-                if (Evade())
-                    return;
                 bool bossFight = command == "boss" || command == "judge" || command == "ending";
+                // the boss step has its own dodges (slam, voids, ash wave): a general roll would waste its one charge
+                if (!bossFight && Evade())
+                    return;
                 if (!bossFight)
                 {
                     if (Defend())
@@ -499,7 +508,7 @@ namespace Wickfall.DevTools
                         {
                             input.SelectSlot(player.Flames.SlotOf(FlameId.White));
                             nextFlameSwitch = Time.time + 1.5f;
-                            Tell("bosswhite", "The White flame is anti-Hollow: it hurts the Hollow King the most", 2);
+                            Tell("bosswhite", "I'm switching to the White flame: it's anti-Hollow, so it hurts the Hollow King the most", 2);
                         }
                         break;
                     }
@@ -512,7 +521,7 @@ namespace Wickfall.DevTools
                         if (player.Dodger.Charges > 0 && !player.IsDodging)
                         {
                             input.PressDodge();
-                            Tell("bossdodge", "A dodge roll cannot be hit: the bot rolls out of the King's slam, through his void volleys and over his ash waves", 3);
+                            Tell("bossdodge", "I'm dodge-rolling, which can't be hit: out of the King's slam, through his void volleys and over his ash waves", 3);
                         }
                         break;
                     }
@@ -524,7 +533,7 @@ namespace Wickfall.DevTools
                         Vector2 side = me - kingAt;
                         input.Move = side.sqrMagnitude > 0.01f ? new Vector2(-side.y, side.x).normalized : Vector2.right;
                         input.PressDodge();
-                        Tell("bossdodge", "A dodge roll cannot be hit: the bot rolls out of the King's slam, through his void volleys and over his ash waves", 3);
+                        Tell("bossdodge", "I'm dodge-rolling, which can't be hit: out of the King's slam, through his void volleys and over his ash waves", 3);
                         break;
                     }
                     Vector2 aim = kingAt + new Vector2(0f, 1.5f);
@@ -533,7 +542,7 @@ namespace Wickfall.DevTools
                     {
                         input.PressArt(aim);
                         nextArt = Time.time + 3f;
-                        Tell("art", "A flame art: a strong special attack that costs wax", 1);
+                        Tell("art", "I'm using a flame art: a strong special attack that costs wax", 1);
                         break;
                     }
                     Strike(kingAt, 1.9f, aim);
@@ -542,15 +551,14 @@ namespace Wickfall.DevTools
                 case "judge":
                 case "ending":
                 {
-                    // answer the question like a person picking an option
-                    int option = command == "judge" ? (parts[3] == "spare" ? 1 : 0) : parts[3][0] - 'A';
-                    if (Choice.IsOpen)
-                    {
-                        if (Choice.Resolve(option))
-                            Next();
-                        else
-                            Fail("option refused: " + parts[3]);
+                    if (Choice.IsOpen && AnswerChoice())
                         break;
+                    if (command == "judge")
+                    {
+                        // the King falls where the fight ends, not on his throne
+                        var fallen = Near<BossHollowKing>(target, 25f);
+                        if (fallen != null)
+                            target = fallen.transform.position;
                     }
                     if (Interact(target, 0.3f, false, command == "judge" ? 3f : 4.5f))
                         interacted = false;
@@ -565,6 +573,34 @@ namespace Wickfall.DevTools
                     Fail("unknown command " + command);
                     break;
             }
+        }
+
+        /// <summary>
+        /// Answers the open question of a judge/ending step like a person picking an option. In a video the
+        /// question stays on screen long enough to read, with the answer highlighted. True when handled.
+        /// </summary>
+        bool AnswerChoice()
+        {
+            if (step >= steps.Length)
+                return false;
+            var parts = steps[step].Split(' ');
+            if ((parts[0] != "judge" && parts[0] != "ending") || parts.Length < 4)
+                return false;
+            int option = parts[0] == "judge" ? (parts[3] == "spare" ? 1 : 0) : parts[3][0] - 'A';
+            if (showcase)
+            {
+                if (choiceAt < 0f)
+                    choiceAt = Now;
+                UI.ChoiceView.Highlight(option);
+                if (Now - choiceAt < ChoiceSeconds)
+                    return true;
+                choiceAt = -1f;
+            }
+            if (Choice.Resolve(option))
+                Next();
+            else
+                Fail("option refused: " + parts[3]);
+            return true;
         }
 
         /// <param name="oneShot">The target can only be used once: if it still can be after the wait, the press was lost; press again.</param>
@@ -723,9 +759,9 @@ namespace Wickfall.DevTools
             {
                 input.Move = Vector2.zero;
                 if (press)
-                    Tell("press", "The presses slam down on a rhythm: the bot waits for one to lift, then runs under it", 2);
+                    Tell("press", "I'm waiting for the press to lift, then running under it: the presses slam down on a rhythm", 2);
                 else
-                    Tell("laser", "The lasers fire on a rhythm: the bot waits for a pause before crossing", 2);
+                    Tell("laser", "I'm waiting for a pause in the lasers before crossing: they fire on a rhythm", 2);
                 return false;
             }
             Vector2 d = waypoint - position;
@@ -776,7 +812,7 @@ namespace Wickfall.DevTools
                 if (e is UnlitBrain)
                 {
                     // the Unlit drain wax on touch: meet them early, with the anti-Hollow flame
-                    Tell("unlit", "The Unlit are holes in the dark: they drift toward the strongest light and drain wax on touch. The White flame burns them", 3);
+                    Tell("unlit", "The Unlit are holes in the dark: they drift toward the strongest light and drain wax on touch. I'm burning them with the White flame", 3);
                     if (d < 36f)
                         ReadyFlame(FlameId.White);
                     d *= 0.5f; // counts as closer: fought from about 3.4 units
@@ -790,7 +826,7 @@ namespace Wickfall.DevTools
             if (threat == null)
                 return false;
             input.TrimHeld = false; // a trimmed wick halves the damage
-            Tell("defend", $"{Capital(AName(threat.type.kind))} caught up with the bot, so it fights back. It only fights when it has to", 2);
+            Tell("defend", $"{Capital(AName(threat.type.kind))} caught up with me, so I'm fighting back. I only fight when I have to", 2);
             return Fight(threat);
         }
 
@@ -824,10 +860,10 @@ namespace Wickfall.DevTools
             input.TrimHeld = routeTrim || sneaking;
             if (sneaking || routeTrim)
             {
-                Tell("sneak", "Golden rule: you cannot be strong and hidden at once. Near enemies the bot trims its wick: " +
+                Tell("sneak", "Golden rule: you can't be strong and hidden at once. Near enemies I'm trimming my wick: " +
                               "a small light is hard to see, but it hits half as hard", 3);
                 if (told.Contains("sneak"))
-                    Tell("avoid", "The bot walks past creatures instead of fighting them: each enemy avoided adds 20 points to the score", 1);
+                    Tell("avoid", "I'm walking past creatures instead of fighting them: each enemy avoided adds 20 points to the score", 1);
             }
         }
 
@@ -898,7 +934,7 @@ namespace Wickfall.DevTools
             }
             input.Move = bestDir;
             input.PressDodge();
-            Tell("dodge", "Dodge roll: a quick dash that cannot be hit. It has one charge, back after about a second", 2);
+            Tell("dodge", "I'm dodge-rolling: a quick dash that can't be hit. One charge, back after about a second", 2);
         }
 
         /// <summary>Fights the nearest living creature in range. Returns true while busy fighting.</summary>
@@ -944,7 +980,7 @@ namespace Wickfall.DevTools
                         input.SelectSlot(s);
                         nextFlameSwitch = Time.time + 1.5f;
                         if (showcase && best.type != null)
-                            Tell("armour", $"The {EnemyName(best.type.kind)} is armoured: only some flames hurt it, so the bot switches to the {FlameName((FlameId)f)} flame", 2);
+                            Tell("armour", $"The {EnemyName(best.type.kind)} is armoured: only some flames hurt it, so I'm switching to the {FlameName((FlameId)f)} flame", 2);
                         return true;
                     }
                 }

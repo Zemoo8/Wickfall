@@ -25,6 +25,7 @@ namespace Wickfall.UI
         TextMeshProUGUI note;
         SaveData record;
         Action rebuild;
+        bool optionsShown;
 
         public enum Page { Main, Regions, Endings, Credits, HowTo }
         public Page Current { get; private set; }
@@ -240,6 +241,24 @@ namespace Wickfall.UI
 
         void Update()
         {
+            // Options opens on the Core canvas, which this menu's canvas draws over: hide the page meanwhile
+            bool optionsOpen = OptionsView.Instance != null && OptionsView.Instance.IsOpen;
+            if (optionsOpen != optionsShown)
+            {
+                optionsShown = optionsOpen;
+                if (list != null) list.gameObject.SetActive(!optionsOpen);
+                if (note != null) note.enabled = !optionsOpen;
+                if (title != null) title.enabled = !optionsOpen && Current == Page.Main;
+                if (!optionsOpen)
+                {
+                    var options = entries.Find(e => e.key == "menu.options");
+                    if (options.button != null)
+                        EventSystem.current?.SetSelectedGameObject(options.button.gameObject);
+                }
+            }
+            if (optionsOpen)
+                return;
+
             // Keep a selection so keyboard and gamepad always work.
             if (EventSystem.current != null && EventSystem.current.currentSelectedGameObject == null && entries.Count > 0)
             {
