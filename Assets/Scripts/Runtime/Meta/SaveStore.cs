@@ -26,7 +26,16 @@ namespace Wickfall.Meta
             Directory = directory;
         }
 
-        public static SaveStore Default => new SaveStore(Application.persistentDataPath);
+        /// <summary>
+        /// Tests set this to a folder of their own, so a test run never touches the player's real save
+        /// (BUG_LOG 17). Null means the normal place.
+        /// </summary>
+        public static string DirectoryOverride;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetStatics() => DirectoryOverride = null;
+
+        public static SaveStore Default => new SaveStore(string.IsNullOrEmpty(DirectoryOverride) ? Application.persistentDataPath : DirectoryOverride);
 
         public bool HasSave => File.Exists(SavePath) || File.Exists(BackupPath);
 

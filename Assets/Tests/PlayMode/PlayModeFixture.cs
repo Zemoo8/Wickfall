@@ -20,9 +20,21 @@ namespace Wickfall.Tests
 
         protected virtual string SceneName => SceneNames.LightLab;
 
+        /// <summary>Every PlayMode test saves into its own empty folder, never the player's real save.</summary>
+        public static string TestSaveFolder => System.IO.Path.Combine(Application.temporaryCachePath, "wickfall-tests");
+
+        public static void UseTestSaveFolder()
+        {
+            if (System.IO.Directory.Exists(TestSaveFolder))
+                System.IO.Directory.Delete(TestSaveFolder, true);
+            System.IO.Directory.CreateDirectory(TestSaveFolder);
+            SaveStore.DirectoryOverride = TestSaveFolder;
+        }
+
         [UnitySetUp]
         public IEnumerator LoadScene()
         {
+            UseTestSaveFolder();
             AudioListener.volume = 0f;
             Time.timeScale = 1f;
             SceneManager.LoadScene(SceneName, LoadSceneMode.Single);

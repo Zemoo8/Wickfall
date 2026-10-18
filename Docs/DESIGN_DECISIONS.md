@@ -86,3 +86,6 @@ for the same reason and are listed first in the review summary.
 | G63 | Ending screens | Each ending shows its PDF line only (plus "Endings found n/3"), then back to the menu; no added story (G16). | `EndingView`, `Ending` scene | Proposed |
 | G64 | Where the pacts are | Four pact shrines in R6's gallery, before the King; each can be taken once and never undone; refusing costs nothing. | `PactShrine`, `R6_HearthChamber` | Proposed |
 | G65 | The last region's shape | R6 has no bell and no exit: the ash nave, the pact gallery (relic, brazier), the King's arena (two pools, G13) and the Grand Foyer beyond it, which can be used once the King is judged. | `R6_HearthChamber` | Proposed |
+| G66 | First-launch language | Always French (the game's language); English is one press away in the menu and the options. | `Loc.SystemDefault` | Proposed |
+| G67 | Menus | Main menu: Continue, New game, Region select (once a region is cleared, with best score and rank), Endings (once one is found), How to play (controls and the rule), Options, Language, Credits, Light Lab, Quit. | `MainMenu` | Proposed |
+| G68 | Credits | The author line uses the name on the account ("Ahmed Baghouli"); please correct it in `Strings.txt` (`credits.2`) if it is wrong. | `Strings.txt` | **Check** |

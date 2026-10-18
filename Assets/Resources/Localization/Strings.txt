@@ -238,3 +238,25 @@ ending.c.title	Fin C — Passer la mèche	Ending C — Pass the wick on
 ending.c.text	À la Mèche Brisée, le Porte-mèche passe la mèche à un autre.	At the Broken Wick, the Wickbearer passes the wick on to another.
 ending.continue	Continuer	Continue
 ending.unlocked	Fins découvertes : {0}/3	Endings found: {0}/3
+# ---- menus and credits
+ending.locked	??? (fin non trouvée)	??? (not found yet)
+menu.regionselect.note	Rejouer une région nettoyée pour battre son meilleur score.	Replay a cleared region to beat its best score.
+credits.0	WICKFALL	WICKFALL
+credits.1	D'après « Wickfall — Idée complète »	From the design document “Wickfall — Idée complète”
+credits.2	Conception et projet : Ahmed Baghouli	Design and project: Ahmed Baghouli
+credits.3	Réalisé avec Unity 6, URP 2D et TextMesh Pro	Made with Unity 6, URP 2D and TextMesh Pro
+credits.4	Pixel art dessiné par code ; référence de style : Gemini	Pixel art drawn in code; style reference: Gemini
+credits.5	Police « Wickfall Pixel » et sons synthétisés pour le jeu (CC0)	“Wickfall Pixel” font and sounds synthesized for the game (CC0)
+credits.6	Programmé avec l'assistance de Claude (Anthropic)	Programmed with the help of Claude (Anthropic)
+credits.7	Merci d'avoir porté la flamme.	Thank you for carrying the flame.
+# ---- how to play
+menu.howto	Comment jouer	How to play
+howto.0	La cire est la vie, la lumière et le risque.	Wax is life, light and risk.
+howto.1	Plus tu brilles, plus tu vois... et plus on te voit.	The more you shine, the more you see... and are seen.
+howto.2	Se déplacer : ZQSD / WASD / flèches / stick	Move: WASD / arrows / stick
+howto.3	Attaquer : J / clic gauche  -  Art : K / clic droit	Attack: J / left click  -  Art: K / right click
+howto.4	Esquiver : Espace  -  Tailler la mèche : Maj gauche (maintenir)	Dodge: Space  -  Trim the wick: hold Left Shift
+howto.5	Flammes : Q (roue), 1 à 5, Tab, R  -  changer coûte 8 de cire	Flames: Q (wheel), 1-5, Tab, R  -  switching costs 8 wax
+howto.6	Interagir : E  -  Pause : Échap	Interact: E  -  Pause: Esc
+howto.7	Brasero : repos, cire pleine, sauvegarde (un usage par repos).	Brazier: rest, full wax, save (one use per rest).
+howto.8	La cloche ouvre la sortie de chaque région... et réveille ce qui dort.	The bell opens each region's exit... and wakes what sleeps.

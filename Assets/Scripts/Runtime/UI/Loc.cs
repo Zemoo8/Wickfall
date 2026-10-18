@@ -71,9 +71,8 @@ namespace Wickfall.UI
                 Events.LanguageChanged.Raise();
         }
 
-        /// <summary>The language a first launch should use: French unless the system is English.</summary>
-        public static string SystemDefault() =>
-            Application.systemLanguage == SystemLanguage.English ? English : French;
+        /// <summary>The language a first launch uses: French (the game's language, prompt §1); Options switch it.</summary>
+        public static string SystemDefault() => French;
 
         public static string Get(string key)
         {
