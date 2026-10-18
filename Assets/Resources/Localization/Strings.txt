@@ -209,3 +209,32 @@ inscription.r5.2	Les Éteints vont vers la lumière la plus forte.	The Unlit go 
 inscription.r5.3	Le blanc brûle le creux.	White burns the hollow.
 inscription.r5.4	Le cœur bat plus vite quand la cire baisse.	The heart beats faster as the wax runs low.
 inscription.r5.5	La cloche sonne aussi pour les éteints.	The bell rings for the unlit too.
+# ---- region 6, choices and endings
+inscription.r6.0	La cendre ralentit le pas.	Ash slows the step.
+inscription.r6.1	Le Roi Creux offre des pactes. Ils ne se défont pas.	The Hollow King offers pacts. They cannot be undone.
+inscription.r6.2	Une braise du Foyer attend ici.	An ember of the Hearth waits here.
+inscription.r6.3	Le Roi Creux attend sous sa couronne.	The Hollow King waits beneath his crown.
+inscription.r6.4	Le Foyer froid boit la lumière.	The cold Hearth drinks the light.
+prompt.foyer	Approcher du Foyer	Approach the Hearth
+prompt.judge	Juger le Roi Creux	Judge the Hollow King
+pact.voice	Une voix creuse murmure un pacte :	A hollow voice whispers a pact:
+pact.accept	Accepter le pacte	Accept the pact
+pact.refuse	Refuser	Refuse
+king.title	Le Roi Creux est tombé	The Hollow King has fallen
+king.body	Sa couronne brisée attend ton geste.	His broken crown waits for your choice.
+king.extinguish	L'éteindre	Extinguish him
+king.spare	L'épargner	Spare him
+foyer.title	Le Grand Foyer	The Grand Hearth
+foyer.body	Le Foyer froid boit la lumière. Que faire de ta flamme ?	The cold Hearth drinks the light. What will you do with your flame?
+foyer.body.c	Six braises, un roi épargné : une autre voie s'ouvre.	Six embers and a spared king: another way opens.
+foyer.relight	Rallumer le Foyer (et s'éteindre)	Relight the Hearth (and go out)
+foyer.keep	Garder la flamme (et rester seul)	Keep the flame (and stay alone)
+foyer.pass	Passer la mèche à un autre	Pass the wick on to another
+ending.a.title	Fin A — Rallumer le Foyer	Ending A — Relight the Hearth
+ending.a.text	Le Grand Foyer se rallume. Le Porte-mèche s'y consume et s'éteint.	The Grand Hearth burns again. The Wickbearer is consumed by it and goes out.
+ending.b.title	Fin B — Garder la flamme	Ending B — Keep the flame
+ending.b.text	Le Porte-mèche garde la flamme. Le Foyer reste froid ; il reste seul.	The Wickbearer keeps the flame. The Hearth stays cold; it stays alone.
+ending.c.title	Fin C — Passer la mèche	Ending C — Pass the wick on
+ending.c.text	À la Mèche Brisée, le Porte-mèche passe la mèche à un autre.	At the Broken Wick, the Wickbearer passes the wick on to another.
+ending.continue	Continuer	Continue
+ending.unlocked	Fins découvertes : {0}/3	Endings found: {0}/3

@@ -15,7 +15,7 @@ MonoBehaviour:
   phase1DisablesWaxPools: 1
   phase2DisablesTrim: 1
   phase3MaxWax: 40
-  healthPerPhase: 260
+  healthPerPhase: 200
   slamDamage: 20
   slamRadius: 3.2
   slamWindup: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
   ashSlowMultiplier: 0.55
   negativePulseRadius: 5.5
   negativePulseSeconds: 2.4
-  timeBetweenAttacks: 1.6
-  phaseSpeedup: 0.8
+  timeBetweenAttacks: 2
+  phaseSpeedup: 0.85
   moveSpeed: 1.4
   contactDamage: 10

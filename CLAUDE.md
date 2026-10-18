@@ -54,6 +54,12 @@ python Tools/font/make_font.py                                 # the pixel font
 - `Start-Process -Wait` hangs on Unity's helper processes: `Tools/unity.ps1` waits on Unity only.
 - Unity can't serialize 64-bit enums: `Feature` flags are stored as `long`.
 - Disable the Pixel Perfect Camera before rendering into a RenderTexture.
+- `GC.GetAllocatedBytesForCurrentThread` always reads 0 on Unity's Mono: measure with the profiler counter
+  "GC Allocated In Frame" (`ProfilerRecorder`), against a floor taken with the game's scripts off.
+- Physics2D "queries start in colliders" is off: a cast ignores what it starts inside (projectiles also
+  check their first-step overlap).
+- A MonoBehaviour must live in a file of its own name, or prefabs save it as a missing script.
+- Level inscriptions carry their number (`Inscription3`); map scan order is not the intended order.
 
 ## Presentation commands
 - `SHOW PHASE N` / `SHOW EVERYTHING` / `PREPARE FOR NEXT SESSION` — see `PRESENTATION_PHASES.md`.

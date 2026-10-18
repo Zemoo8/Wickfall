@@ -88,6 +88,7 @@ def tiles():
     contact("tiles_foundry", tile_art.build_foundry(folder), 4)
     contact("tiles_cathedral", tile_art.build_cathedral(folder), 4)
     contact("tiles_hollow", tile_art.build_hollow(folder), 4)
+    contact("tiles_hearth", tile_art.build_hearth(folder), 4)
     room = tile_art.render_map(tile_art.TALLOW, tile_art.TEST_ROOM, tile_art.tallow_face_detail,
                                [tile_art.wax_grass(0, 0), tile_art.wax_grass(0, 1), tile_art.wax_cracks(0)])
     contact("tiles_tallow_room", room, 3)
@@ -115,6 +116,12 @@ def enemies():
     for name, img in cathedral.build_enemies(folder):
         contact("enemy_" + name, img, 6)
     cathedral.build_vfx(os.path.join(OUT, "VFX"))
+    import hearth
+    images, props = hearth.build(folder, os.path.join(OUT, "Props"), os.path.join(OUT, "VFX"))
+    for name, img in images:
+        contact("enemy_" + name, img, 3)
+    for name in props:
+        contact("props_" + name, Image.open(os.path.join(OUT, "Props", name + ".png")), 4)
 
 
 def world():

@@ -599,6 +599,57 @@ def build_hollow(out):
                          decor=[("outline", [faint_outline(i) for i in range(3)]), ("crack", [bone_crack(i) for i in range(3)])])
 
 
+# ---- Region 6: Chambre du Foyer (grey ash ground with slow-down drifts) ------------------------
+
+HEARTH = Style(
+    "hearth",
+    floor=["k3", "b0", "b0", "k3"],
+    floor_accents=[("b1", 0.03), ("k2", 0.03)],
+    top=["k2", "k3", "b0"],
+    top_rim=("b1", "k1"),
+    face=["k2", "k3", "b0"],
+    seed=6,
+)
+
+
+def hearth_face_detail(cv, rnd, variant):
+    """Ash-caked stone: soot runs down the face."""
+    for _ in range(3):
+        x = rnd.randrange(1, 15)
+        for y in range(5, 5 + rnd.randrange(4, 10)):
+            cv.set(x, y, "k2")
+
+
+def ash_drift(variant):
+    """A pale heap of ash (the tiles of an AshZone)."""
+    cv = Canvas(16, 16)
+    rnd = random.Random(1000 + variant)
+    for y in range(16):
+        for x in range(16):
+            n = periodic_noise(x, y, 1100 + variant, ((2, 1.0), (4, 0.6)))
+            if n > -0.3:
+                cv.set(x, y, "b1" if n > 0.5 else "b0")
+    for _ in range(4):
+        cv.set(rnd.randrange(16), rnd.randrange(16), "b2")
+    return cv
+
+
+def cinder(variant):
+    cv = Canvas(16, 16)
+    rnd = random.Random(1200 + variant)
+    for _ in range(3):
+        x, y = rnd.randrange(2, 14), rnd.randrange(2, 14)
+        cv.set(x, y, "k1")
+        cv.set(x + 1, y, "k2")
+    return cv
+
+
+def build_hearth(out):
+    return region_sheets(HEARTH, out, hearth_face_detail,
+                         decor=[("cinder", [cinder(i) for i in range(2)])],
+                         specials=[("ash", [ash_drift(i) for i in range(1)])])
+
+
 def build_tallow(out):
     return region_sheets(
         TALLOW, out, tallow_face_detail,

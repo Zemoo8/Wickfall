@@ -40,6 +40,7 @@ namespace Wickfall.EditorTools
             BuildCore();
             BuildMainMenu();
             BuildLightLab();
+            BuildEnding();
         }
 
         static bool CanOverwrite(string path)
@@ -311,6 +312,7 @@ namespace Wickfall.EditorTools
             overlay.AddComponent<BrazierMenuView>();
             overlay.AddComponent<PauseMenuView>();
             overlay.AddComponent<OptionsView>();
+            overlay.AddComponent<ChoiceView>();
 
             flash = Img(Stretch(root, "Flash"), null, false);
             flash.color = new Color(1f, 1f, 1f, 0f);
@@ -350,6 +352,40 @@ namespace Wickfall.EditorTools
             var menu = root.AddComponent<MainMenu>();
             menu.title = title;
             menu.font = font;
+            Save(scene, path);
+        }
+
+        // ---- Ending (PDF §1: A, B, C) -----------------------------------------------------------
+
+        public static void BuildEnding()
+        {
+            string path = PathOf(SceneNames.Ending);
+            if (!CanOverwrite(path))
+                return;
+            var scene = NewScene(path);
+            new GameObject("CoreBootstrap").AddComponent<CoreBootstrap>();
+            var profile = new GameObject("SceneProfile").AddComponent<SceneProfile>();
+            profile.kind = SceneKind.Cinematic;
+            profile.hasRegion = false;
+            profile.music = MusicId.Ending;
+            EditorAssets.GlobalLight(new GameObject("Global Light"), 1f, Color.white);
+
+            var font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(ArtFactory.FontAssetPath);
+            var canvas = MakeCanvas("Ending", 20);
+            var root = canvas.gameObject;
+            var view = root.AddComponent<EndingView>();
+            var artRt = Rect(root, "Art", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 40f), new Vector2(120f, 120f));
+            view.art = artRt.gameObject.AddComponent<UnityEngine.UI.Image>();
+            view.title = Text(Rect(root, "Title", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, -36f), new Vector2(420f, 20f)),
+                font, "", 16f, TextAlignmentOptions.Center, new Color(1f, 0.76f, 0.3f));
+            view.body = Text(Rect(root, "Body", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, -62f), new Vector2(420f, 30f)),
+                font, "", 12f, TextAlignmentOptions.Center, new Color(0.93f, 0.9f, 0.83f));
+            view.body.enableWordWrapping = true;
+            view.tally = Text(Rect(root, "Tally", new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, -88f), new Vector2(420f, 14f)),
+                font, "", 12f, TextAlignmentOptions.Center, new Color(0.64f, 0.6f, 0.55f));
+            view.artA = SpriteSheets.Clip(ArtFactory.Sheet("Props", "Prop_Foyer"), "lit").FirstOrDefault();
+            view.artB = SpriteSheets.Clip(ArtFactory.Sheet("Player", "Player_Body"), "idle_down").FirstOrDefault();
+            view.artC = SpriteSheets.Clip(ArtFactory.Sheet("Props", "Prop_BrokenWick"), "wick").FirstOrDefault();
             Save(scene, path);
         }
 

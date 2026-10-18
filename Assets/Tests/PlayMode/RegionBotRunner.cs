@@ -20,7 +20,8 @@ namespace Wickfall.Tests
             public bool Completed;
         }
 
-        public static IEnumerator Play(PlayerController player, GameSession session, string label, Run run, float realSeconds = 420f)
+        public static IEnumerator Play(PlayerController player, GameSession session, string label, Run run, float realSeconds = 420f,
+            System.Collections.Generic.IList<string> route = null)
         {
             float waited = 0f;
             while ((RegionDirector.Instance == null || RoomLoader.Instance == null || !RoomLoader.Instance.Settled) && waited < 10f)
@@ -31,7 +32,7 @@ namespace Wickfall.Tests
             ScoreScreen.AutoContinueSeconds = 0.5f;
             player.SetInputSource(null);
             var bot = player.gameObject.AddComponent<RegionBot>();
-            bot.Begin(player, RegionDirector.Instance.Level);
+            bot.Begin(player, RegionDirector.Instance.Level, route);
             run.Bot = bot;
             Time.timeScale = 4f;
             float real = 0f;

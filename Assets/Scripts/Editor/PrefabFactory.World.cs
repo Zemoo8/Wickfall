@@ -34,6 +34,7 @@ namespace Wickfall.EditorTools
             CathedralPrefabs.EnsureAll();
             EnsureNest("SwarmNestReflection", "Reflection");
             EnsureNest("SwarmNestUnlit", "Unlit");
+            HearthPrefabs.EnsureAll();
             EnsureCirelle();
             EnsureBrokenWick();
             EnsureBell();

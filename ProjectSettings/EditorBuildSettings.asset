@@ -74,5 +74,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Regions/R5/R5_DeepHollow_West.unity
     guid: 076624b0c72d5a74baac98d2bf8c592e
+  - enabled: 1
+    path: Assets/Scenes/Regions/R6/R6_HearthChamber.unity
+    guid: c9cf24638554f6f41b607c5f251cc502
+  - enabled: 1
+    path: Assets/Scenes/Regions/R6/R6_HearthChamber_South.unity
+    guid: ef1cb2f763b3dc84682425942a6c0dd8
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: 04d079eb589e89c4cbd189ce5d4a7b91
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

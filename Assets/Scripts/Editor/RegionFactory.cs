@@ -31,6 +31,7 @@ namespace Wickfall.EditorTools
             Build(RegionId.SootFoundries, "foundry");
             Build(RegionId.GlassCathedral, "cathedral");
             Build(RegionId.DeepHollow, "hollow");
+            Build(RegionId.HearthChamber, "hearth");
         }
 
         public static void Build(RegionId region, string tileKey)
@@ -117,6 +118,12 @@ namespace Wickfall.EditorTools
                         pedestal.id = id;
                         continue;
                     }
+                    if (kind.StartsWith("PactShrine"))
+                    {
+                        var shrine = Place(WorldPrefabs.WorldPath("PactShrine"), c, entities).GetComponent<PactShrine>();
+                        shrine.pactIndex = int.Parse(kind.Substring("PactShrine".Length));
+                        continue;
+                    }
                     if (kind.StartsWith("Socket"))
                     {
                         var socket = Place(WorldPrefabs.WorldPath("BeamSocket"), c, entities).GetComponent<BeamSocket>();
@@ -152,9 +159,12 @@ namespace Wickfall.EditorTools
                             break;
                         }
                         case "WaxPool":
+                        case "ArenaPool":
                         {
                             var go = Place(PrefabFactory.PoolPath, c, entities);
-                            go.GetComponent<WaxPool>().id = $"{key}_W{pools.IndexOf(marker.Cell) + 1}";
+                            var pool = go.GetComponent<WaxPool>();
+                            pool.id = kind == "ArenaPool" ? $"{key}_arena_{marker.Cell.x}_{marker.Cell.y}" : $"{key}_W{pools.IndexOf(marker.Cell) + 1}";
+                            pool.bossArena = kind == "ArenaPool"; // G13: dark from the King's first phase
                             break;
                         }
                         case "Geyser":
@@ -240,6 +250,11 @@ namespace Wickfall.EditorTools
                         case "GlassFloor":
                             Place(WorldPrefabs.WorldPath("GlassFloor"), c, entities);
                             break;
+                        case "Foyer":
+                            Place(WorldPrefabs.WorldPath("GrandFoyer"), c, entities);
+                            break;
+                        case "Ash":
+                            break; // built per run by BuildAsh
                         case "DarkZone":
                             darkCells.Add(c);
                             break;
@@ -282,11 +297,38 @@ namespace Wickfall.EditorTools
                     SceneFactoryDark(entities, darkCells);
                 BuildVines(level, tiles, group.Cells, built, entities);
                 BuildConveyors(level, tiles, group.Cells, built, entities);
+                BuildAsh(level, tiles, group.Cells, built, entities);
                 BuildCanopyShade(level, group.Cells, entities);
                 EditorSceneManager.SaveScene(gscene, groupPath);
             }
             LevelBuilder.WallLikeChars = new HashSet<char>();
             Debug.Log($"[WICKFALL Setup] Built region {region}: {level.Groups.Count} room groups.");
+        }
+
+        /// <summary>"Cendre qui ralentit": each horizontal run of Ash cells is one drift (pale ash tiles + an AshZone).</summary>
+        static void BuildAsh(LevelData level, RegionTiles tiles, RectInt groupCells, LevelBuilder.Result built, GameObject parent)
+        {
+            var cells = level.Entities().Where(e => e.kind == "Ash" && groupCells.Contains(e.cell)).Select(e => e.cell).ToHashSet();
+            if (cells.Count == 0)
+                return;
+            var ashTile = tiles.Special("ash").tile;
+            foreach (var cell in cells)
+            {
+                built.Decor.SetTile(new Vector3Int(cell.x, cell.y, 0), ashTile);
+                if (cells.Contains(cell + Vector2Int.left))
+                    continue;
+                int length = 1;
+                while (cells.Contains(cell + Vector2Int.right * length))
+                    length++;
+                var go = new GameObject("AshDrift");
+                go.transform.SetParent(parent.transform, false);
+                go.transform.position = new Vector2(cell.x + length * 0.5f, cell.y + 0.5f);
+                EditorAssets.SetLayer(go, Layers.Zone);
+                var box = go.AddComponent<BoxCollider2D>();
+                box.isTrigger = true;
+                box.size = new Vector2(length, 1f);
+                go.AddComponent<AshZone>().hazard = AssetDatabase.LoadAssetAtPath<HazardSO>(EditorPaths.Hazards + "/Hazard_Ash.asset");
+            }
         }
 
         /// <summary>"Gate" belongs to the bell (the region key); "GateA" to a puzzle ("key/A").</summary>

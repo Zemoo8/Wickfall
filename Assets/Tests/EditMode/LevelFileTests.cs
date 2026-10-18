@@ -61,7 +61,12 @@ namespace Wickfall.Tests
             {
                 var level = LevelData.Parse(File.ReadAllText(path));
                 var kinds = level.Entities().Select(e => e.kind).ToList();
-                foreach (string required in new[] { "PlayerStart", "Brazier", "Relic", "GreatBell", "Exit" })
+                // the last region ends at the Grand Foyer, past the Roi Creux, instead of a bell and an exit
+                bool finale = Path.GetFileName(path).StartsWith("R6_");
+                var essentials = finale
+                    ? new[] { "PlayerStart", "Brazier", "Relic", "HollowKing", "Foyer" }
+                    : new[] { "PlayerStart", "Brazier", "Relic", "GreatBell", "Exit" };
+                foreach (string required in essentials)
                     if (!kinds.Contains(required))
                         problems.Add($"{Path.GetFileName(path)}: no {required}");
                 if (level.BotScript.Count == 0)

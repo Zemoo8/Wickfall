@@ -334,6 +334,36 @@ namespace Wickfall.Meta
             Events.ProgressChanged.Raise();
         }
 
+        /// <summary>G12: after phase 3 the Roi Creux falls; the player extinguishes or spares him.</summary>
+        public void DecideKing(bool spared)
+        {
+            Save.kingDecided = true;
+            Save.kingSpared = spared;
+            Events.BossDefeated.Raise();
+            SaveGame();
+        }
+
+        /// <summary>The last ending reached this session (the Ending scene shows it).</summary>
+        public EndingId LastEnding { get; private set; } = EndingId.None;
+
+        /// <summary>
+        /// PDF §1: A) relight the Foyer and die, B) keep the flame and stay alone, C) (secret) pass the wick
+        /// on, with the 6 relics and the Roi Creux spared. Unlocked endings are saved (PDF §4).
+        /// </summary>
+        public bool ReachEnding(EndingId ending)
+        {
+            if (ending == EndingId.C && !ProgressRules.CanPassTheWick(Save))
+                return false;
+            LastEnding = ending;
+            Save.endingsMask |= 1 << (int)ending;
+            SaveGame();
+            Events.EndingReached.Raise(ending);
+            var loader = SceneLoader.Instance;
+            if (loader != null && Application.CanStreamedLevelBeLoaded(SceneNames.Ending))
+                loader.Load(SceneNames.Ending);
+            return true;
+        }
+
         public void TakePact(int index)
         {
             Save.pactsMask |= 1 << index;

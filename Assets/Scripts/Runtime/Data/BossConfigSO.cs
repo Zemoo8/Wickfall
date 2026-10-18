@@ -18,7 +18,7 @@ namespace Wickfall
         public float phase3MaxWax = 40f;
 
         [Header("Health (G06 proposal)")]
-        public float healthPerPhase = 260f;
+        public float healthPerPhase = 200f;
 
         [Header("Attacks (G06 proposals, from the PDF's themes: slam, ash, negative light, voids)")]
         public float slamDamage = 20f;
@@ -31,9 +31,9 @@ namespace Wickfall
         public float ashSlowMultiplier = 0.55f;
         public float negativePulseRadius = 5.5f;
         public float negativePulseSeconds = 2.4f;
-        public float timeBetweenAttacks = 1.6f;
+        public float timeBetweenAttacks = 2f;
         [Tooltip("Each phase attacks this much faster than the previous one.")]
-        public float phaseSpeedup = 0.8f;
+        public float phaseSpeedup = 0.85f;
         public float moveSpeed = 1.4f;
         public float contactDamage = 10f;
     }

@@ -35,6 +35,7 @@ namespace Wickfall.DevTools
         Vector2 pathTarget;
         float repath;
         float nextFlameSwitch;
+        float nextArt;
         readonly HashSet<int> doneOnce = new HashSet<int>(); // take/ring steps already done (skipped after a death)
 
         public int Step => step;
@@ -48,11 +49,11 @@ namespace Wickfall.DevTools
         /// <summary>What the current step is doing (for logs).</summary>
         public string Note { get; private set; } = "";
 
-        public void Begin(PlayerController target, LevelData data)
+        public void Begin(PlayerController target, LevelData data, IList<string> route = null)
         {
             player = target;
             level = data;
-            steps = data.BotScript.ToArray();
+            steps = route != null ? new List<string>(route).ToArray() : data.BotScript.ToArray();
             step = 0;
             resumeStep = 0;
             stepTime = 0f;
@@ -236,6 +237,74 @@ namespace Wickfall.DevTools
                         Strike(panel.transform.position, 1.5f);
                     break;
                 }
+                case "boss":
+                {
+                    var king = Near<BossHollowKing>(target, 25f);
+                    if (king == null || (king.Current != BossHollowKing.Mode.Dormant && king.Current != BossHollowKing.Mode.Fighting
+                                         && king.Current != BossHollowKing.Mode.Shifting))
+                    {
+                        Next();
+                        break;
+                    }
+                    Note = $"boss: {king.DebugState} hp {king.Body.Health:0}";
+                    // the white flame is anti-Creux (PDF): prefer it against the King
+                    if (player.Flames.IsEquipped(FlameId.White) && player.Flames.Current != FlameId.White)
+                    {
+                        if (Time.time >= nextFlameSwitch)
+                        {
+                            input.SelectSlot(player.Flames.SlotOf(FlameId.White));
+                            nextFlameSwitch = Time.time + 1.5f;
+                        }
+                        break;
+                    }
+                    Vector2 me = player.transform.position;
+                    Vector2 kingAt = king.transform.position;
+                    if (king.IsTelegraphingSlam && Vector2.Distance(me, king.SlamTarget) < Db.Boss.slamRadius * 0.6f + 0.8f)
+                    {
+                        Vector2 away = me - king.SlamTarget;
+                        input.Move = away.sqrMagnitude > 0.01f ? away.normalized : Vector2.right;
+                        if (player.Dodger.Charges > 0 && !player.IsDodging)
+                            input.PressDodge();
+                        break;
+                    }
+                    // dodge through a void volley or the ash wave's ring (a dodge is invulnerable)
+                    float fromKing = Vector2.Distance(me, kingAt);
+                    if ((king.VoidsComing || (king.AshWaveActive && Mathf.Abs(fromKing - king.WaveRadius) < 1.3f))
+                        && player.Dodger.Charges > 0 && !player.IsDodging)
+                    {
+                        Vector2 side = me - kingAt;
+                        input.Move = side.sqrMagnitude > 0.01f ? new Vector2(-side.y, side.x).normalized : Vector2.right;
+                        input.PressDodge();
+                        break;
+                    }
+                    Vector2 aim = kingAt + new Vector2(0f, 1.5f);
+                    // a flame art when there is wax to spare (the white flame's art is anti-Creux too)
+                    if (fromKing < 2.6f && player.Wax.Current > 45f && player.Combat.CanArt && !player.IsAttacking && Time.time >= nextArt)
+                    {
+                        input.PressArt(aim);
+                        nextArt = Time.time + 3f;
+                        break;
+                    }
+                    Strike(kingAt, 1.9f, aim);
+                    break;
+                }
+                case "judge":
+                case "ending":
+                {
+                    // answer the question like a person picking an option
+                    int option = command == "judge" ? (parts[3] == "spare" ? 1 : 0) : parts[3][0] - 'A';
+                    if (Choice.IsOpen)
+                    {
+                        if (Choice.Resolve(option))
+                            Next();
+                        else
+                            Fail("option refused: " + parts[3]);
+                        break;
+                    }
+                    if (Interact(target, 0.3f, false, command == "judge" ? 3f : 4.5f))
+                        interacted = false;
+                    break;
+                }
                 case "exit":
                     MoveTo(target, 0.2f);
                     if (RegionDirector.Instance == null || RegionDirector.Instance.Completed)
@@ -285,8 +354,8 @@ namespace Wickfall.DevTools
             return true;
         }
 
-        /// <summary>Walks into reach of a point and swings at it.</summary>
-        void Strike(Vector2 point, float reach)
+        /// <summary>Walks into reach of a point and swings at it (aimed at `aim`, or the point).</summary>
+        void Strike(Vector2 point, float reach, Vector2? aim = null)
         {
             Vector2 position = player.transform.position;
             Vector2 to = point - position;
@@ -297,17 +366,17 @@ namespace Wickfall.DevTools
             }
             input.Move = to.normalized * 0.2f; // face it
             if (player.Combat.CanAttack && !player.IsAttacking)
-                input.PressAttack(point); // aimed, like a mouse click on it
+                input.PressAttack(aim ?? point); // aimed, like a mouse click on it
         }
 
-        bool Interact(Vector2 target, float wait, bool oneShot = false)
+        bool Interact(Vector2 target, float wait, bool oneShot = false, float near = 1.5f)
         {
             if (!interacted)
             {
                 // Like a person: walk toward it and use it as soon as its prompt shows.
                 float distance = Vector2.Distance(player.transform.position, target);
                 var current = player.Interactor.Current;
-                if (current == null || distance > 2.6f || Vector2.Distance(current.transform.position, target) > 1.5f)
+                if (current == null || distance > near + 1.1f || Vector2.Distance(current.transform.position, target) > near)
                 {
                     MoveTo(target, 0.2f);
                     if (stepTime > 30f)
