@@ -20,7 +20,7 @@ namespace Wickfall.EditorTools
     {
         public const string CompanyName = "Zemoo8";
         public const string ProductName = "WICKFALL";
-        public const string Version = "0.1.0";
+        public const string Version = "1.0.0";
 
         /// <summary>Index of the light blend style used for negative light (PDF §2.2, Chambre du Foyer).</summary>
         public const int NegativeBlendStyle = 3;

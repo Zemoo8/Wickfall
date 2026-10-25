@@ -120,3 +120,6 @@ TestResults*.xml
 __pycache__/
 *.pyc
 /ArtSource/Scratch/
+
+# Submission package (videos, zips): copies of things kept elsewhere
+/livrable/
