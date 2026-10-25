@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>{{{ PRODUCT_NAME }}}</title>
+  <!-- GamePix SDK first, as its guide asks. The game also runs without it (local tests). -->
+  <script>window.GamePixConfig = { lifecycle: 'manual' };</script>
+  <script src="https://integration.gamepix.com/sdk/v3/gamepix.sdk.js"></script>
+  <style>
+    html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #0b0a09; touch-action: none; }
+    #canvas-working-area { position: fixed; inset: 0; background: #0b0a09; }
+    #unity-canvas { width: 100%; height: 100%; display: block; background: #0b0a09; outline: none; }
+    #loading { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+               gap: 22px; background: #0b0a09; color: #f0e8d6; font: 15px monospace; }
+    #loading .name { font-size: 44px; letter-spacing: 8px; text-shadow: 0 0 22px #ffbe5c; }
+    #bar { width: min(60vw, 360px); height: 6px; background: #2a241c; }
+    #fill { width: 0; height: 100%; background: #ffbe5c; }
+  </style>
+</head>
+<body>
+  <div id="canvas-working-area"><canvas id="unity-canvas" tabindex="-1"></canvas></div>
+  <div id="loading"><div class="name">WICKFALL</div><div id="bar"><div id="fill"></div></div></div>
+  <script>
+    (function () {
+      var unity = null;
+      function gpx() { return window.GamePix || null; }
+
+      // Called by the game (Plugins/WebGL/WebHost.jslib).
+      window.WickfallHost = {
+        loaded: function () { var g = gpx(); if (g && g.lifecycle) g.lifecycle.loaded(); },
+        gameStart: function () { var g = gpx(); if (g && g.lifecycle) g.lifecycle.gameStart(); }
+      };
+
+      // The host pauses the game when the tab is hidden or an ad plays (the game also mutes).
+      var g = gpx();
+      if (g && g.events) {
+        g.events.on('pause', function () { if (unity) unity.SendMessage('WebHost', 'HostPause'); });
+        g.events.on('resume', function () { if (unity) unity.SendMessage('WebHost', 'HostResume'); });
+      }
+
+      // Keep the arrow keys and space in the game instead of scrolling the page around it.
+      window.addEventListener('keydown', function (e) {
+        if ([' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.key) >= 0) e.preventDefault();
+      }, { passive: false });
+
+      var canvas = document.getElementById('unity-canvas');
+      var config = {
+        arguments: [],
+        dataUrl: "Build/{{{ DATA_FILENAME }}}",
+        frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_THREADS
+        workerUrl: "Build/{{{ WORKER_FILENAME }}}",
+#endif
+#if USE_WASM
+        codeUrl: "Build/{{{ CODE_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+        symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+#endif
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+        productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+        productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+        // Saves and settings live in persistentDataPath: keep it in the browser's storage.
+        autoSyncPersistentDataPath: true,
+        // Pixel art: draw at the page's own pixel size, which is also lighter on phones.
+        devicePixelRatio: 1,
+        showBanner: function (msg, type) { if (type === 'error') console.error(msg); else console.warn(msg); }
+      };
+
+      var script = document.createElement('script');
+      script.src = "Build/{{{ LOADER_FILENAME }}}";
+      script.onload = function () {
+        createUnityInstance(canvas, config, function (progress) {
+          var pct = Math.round(progress * 100);
+          document.getElementById('fill').style.width = pct + '%';
+          var host = gpx();
+          if (host && host.lifecycle) host.lifecycle.loading(pct);
+        }).then(function (instance) {
+          unity = instance;
+          document.getElementById('loading').style.display = 'none';
+          canvas.focus();
+        }).catch(function (message) {
+          document.getElementById('loading').textContent = String(message);
+        });
+      };
+      document.body.appendChild(script);
+    })();
+  </script>
+</body>
+</html>

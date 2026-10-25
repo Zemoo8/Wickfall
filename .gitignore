@@ -123,3 +123,5 @@ __pycache__/
 
 # Submission package (videos, zips): copies of things kept elsewhere
 /livrable/
+# Written by the Performance Testing package during player builds
+/Assets/Resources/PerformanceTestRun*

@@ -45,8 +45,10 @@ namespace Wickfall.Meta
 
         void OnApplicationFocus(bool focused)
         {
-            // Appendix A: the game pauses itself when the window loses focus.
-            if (!focused && Application.isPlaying && !Application.isEditor)
+            // Appendix A: the game pauses itself when the window loses focus. In a browser a click
+            // outside the game's frame also takes the focus, so there the page pauses it instead,
+            // when the tab is hidden (WebHost, G70).
+            if (!focused && Application.isPlaying && !Application.isEditor && Application.platform != RuntimePlatform.WebGLPlayer)
                 Events.GamePaused.Raise(true);
         }
 
@@ -66,7 +68,8 @@ namespace Wickfall.Meta
 
         public void ApplyDisplay()
         {
-            if (Application.isEditor)
+            // In a browser the page owns the canvas size and the frame rate.
+            if (Application.isEditor || Application.platform == RuntimePlatform.WebGLPlayer)
                 return;
             QualitySettings.vSyncCount = Settings.vsync ? 1 : 0;
             Application.targetFrameRate = Settings.vsync ? -1 : Mathf.Max(30, Settings.frameCap);

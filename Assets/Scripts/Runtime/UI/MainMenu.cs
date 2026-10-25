@@ -91,7 +91,8 @@ namespace Wickfall.UI
             Add("menu.language", ToggleLanguage);
             Add("menu.credits", ShowCredits);
             Add("menu.lightlab", () => SceneLoader.Instance.Load(SceneNames.LightLab));
-            Add("menu.quit", Quit);
+            if (Application.platform != RuntimePlatform.WebGLPlayer) // a web page has no Quit (G70)
+                Add("menu.quit", Quit);
             Layout();
         }
 

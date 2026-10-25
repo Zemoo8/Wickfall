@@ -40,7 +40,8 @@ namespace Wickfall.UI
             buttons.Add(kit.Button(panel, "Options", Loc.Get("menu.options"), new Vector2(0f, y), new Vector2(170f, 14f), OpenOptions)); y -= 16f;
             buttons.Add(kit.Button(panel, "Language", LanguageLabel(), new Vector2(0f, y), new Vector2(170f, 14f), ToggleLanguage)); y -= 16f;
             buttons.Add(kit.Button(panel, "Menu", Loc.Get("menu.mainmenu"), new Vector2(0f, y), new Vector2(170f, 14f), ToMenu)); y -= 16f;
-            buttons.Add(kit.Button(panel, "Quit", Loc.Get("menu.quit"), new Vector2(0f, y), new Vector2(170f, 14f), Quit));
+            if (Application.platform != RuntimePlatform.WebGLPlayer) // a web page has no Quit (G70)
+                buttons.Add(kit.Button(panel, "Quit", Loc.Get("menu.quit"), new Vector2(0f, y), new Vector2(170f, 14f), Quit));
             UiKit.Select(buttons[0]);
             Events.PlayUi(SoundId.UiOpen);
         }
