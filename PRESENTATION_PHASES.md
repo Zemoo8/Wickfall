@@ -11,7 +11,7 @@ In Unity: **`WICKFALL > Presentation > Phase N`** switches on only that stage's 
 | 5 2D Animation | Regions 1–4: animations, VFX, camera shake, post-processing | Yes |
 | 6 Testing | All 6 regions and the Roi Creux; the tests and the bots (`Logs/bot_runs.txt`) | Yes |
 | 7 Final Product | Everything polished, the menus, the endings | Mostly (polish still in progress) |
-| 8 Release (PC) | The Windows `.exe` | A working build exists; the final package is not done |
+| 8 Release (PC) | The Windows `.exe` | Yes: `Wickfall_v1.0_Windows.zip` (tested from a fresh unzip), in the v1.0 GitHub release |
 
 **Videos** in `Builds/Videos/` (a bot plays at 1.25× speed; a caption on top explains what is on screen, one idea at a time):
 
@@ -27,5 +27,9 @@ The bot plays like a careful player: it sneaks past creatures with the wick trim
 Make them again (Unity closed, one at a time, about 2–6 minutes each; Regions 5–6 need phase 0, Show Everything):
 `powershell -File Tools/unity.ps1 -Tests PlayMode -Filter Wickfall.Tests.ZzRecordR1` (R1 … R6), then
 `sh Tools/shrink_video.sh Builds/Videos/<clip>.mp4` if a clip is over 29 MB.
+
+**Final deliverables** (the professor's last stage): the presentation video `WICKFALL_Presentation.mp4` (2:34),
+the description `Docs/PROJECT_DESCRIPTION.md`, this GitHub repository with its v1.0 release (Windows zip,
+videos, description), and the optional GamePix web build (`WICKFALL > Build > Web (GamePix)`).
 
 **What to say at each phase:** the one-line answers in `Docs/HOW_IT_WORKS.md`.

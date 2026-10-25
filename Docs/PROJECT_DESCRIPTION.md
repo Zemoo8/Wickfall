@@ -4,7 +4,7 @@
 |---|---|
 | **Genre** | 2D top-down action RPG, pixel art |
 | **Engine** | Unity 6 (6000.2.7f2), Universal Render Pipeline 2D, C# |
-| **Platform** | Windows 64-bit (a web build is prepared for GamePix) |
+| **Platform** | Windows 64-bit (the project can also build for the web, for GamePix) |
 | **Languages** | English and French |
 | **Controls** | Keyboard and mouse, or a gamepad |
 | **Author** | Ahmed Baghouli |
